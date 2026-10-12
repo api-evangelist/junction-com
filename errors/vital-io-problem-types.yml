@@ -1,0 +1,46 @@
+generated: '2026-10-12'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/vital-io-aggregate-api-openapi.yml
+- openapi/vital-io-aggregation-api-openapi.yml
+- openapi/vital-io-compendium-api-openapi.yml
+- openapi/vital-io-insurance-api-openapi.yml
+- openapi/vital-io-introspect-api-openapi.yml
+- openapi/vital-io-lab-account-api-openapi.yml
+- openapi/vital-io-lab-report-api-openapi.yml
+- openapi/vital-io-lab-testing-api-openapi.yml
+- openapi/vital-io-lab-tests-api-openapi.yml
+- openapi/vital-io-link-api-openapi.yml
+- openapi/vital-io-order-api-openapi.yml
+- openapi/vital-io-order-transaction-api-openapi.yml
+format: custom
+envelope:
+  media_type: application/json
+  schema: HTTPValidationError
+coverage:
+  operations: 197
+  statuses_declared: 3
+problems:
+- status: 400
+  title: Bad Request
+  description: Bad Request
+  operations: 2
+  media_types:
+  - application/json
+  schema: ClientUserIDConflictResponse
+- status: 404
+  title: Not Found
+  description: No slots found. Not all PSCs support scheduling appointments and some included in your query were
+    filtered out because of this.
+  operations: 1
+  media_types:
+  - application/json
+  schema: null
+- status: 422
+  title: Unprocessable Content
+  description: Validation Error
+  operations: 191
+  media_types:
+  - application/json
+  schema: HTTPValidationError

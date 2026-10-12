@@ -1,0 +1,49 @@
+# Vital (vital.io) – AI‑Powered Patient Experience Platform
+
+> No-download, AI-powered patient engagement across hospital settings.
+Supports real-time communication and service automation in Emergency, Inpatient, Access, Care Team, and Urgent Care. Deployed in 100+ hospitals, serving over 5 million patients annually.
+
+## Company Values & Approach
+
+### Core Principles:
+  - Create beautiful, intelligent software for patients and providers  
+  - Enable clear, calm, personalized guidance during health events  
+  - Translate medical complexity into understandable human terms  
+  - Motivate decisions with data and achievable actions  
+  - Focus on the entire care continuum
+
+### Differentiation:
+  - Consumer-grade user experience without app downloads  
+  - Highest patient utilization rates in the industry  
+  - Minimal staff training and setup requirements  
+  - Proven ROI with measurable clinical and financial outcomes  
+  - Integration flexibility with existing healthcare technology stacks
+
+## Products
+
+- [Vital Emergency](https://vital.io/products/emergency-department-patient-experience-technology): Guides ER patients with wait-time predictions, plain‑language test/exam explanations, and discharge checklists. 60%+ adoption; significant reductions in LWOBS/AMA and LOS; 10–15% NPS uplift.
+
+- [Vital Inpatient](https://vital.io/products/inpatient-patient-experience-technology): Enables in-hospital care goals, meal orders, and live “Care Summary” updates. Over 50% usage; ~13 hr LOS reduction; 6% fewer 30‑day readmissions; saves 2,200 staff hours annually.
+
+- [Vital Access](https://vital.io/products/vital-access): Automates post-discharge follow-ups by intelligently matching patients to providers by diagnosis, insurance, location, and language. Delivers ~30% appointment completion (industry norm: 3–4%).
+
+- [Vital Care Team](https://vital.io/products/vital-care-team): Routes non‑clinical requests (e.g., food, charger, lactation consult) to the right staff via secure OAuth2/SSO and PHI-free workflows, saving thousands of coordination hours.
+
+- [Vital Urgent Care](https://vital.io/products/urgent-care-patient-experience-technology): Improves walk-in clinics through check-in support, wait-time updates, result summaries, and discharge guidance. 60%+ adoption; +$500K follow-up revenue per site; +1.3 Google stars.
+
+## Documentation
+- [About](https://vital.io/about): Mission, vision, and team.
+- [Resources](https://vital.io/resources): Case studies and e-books.
+- [Demo](https://vital.io/contact): Schedule a 30-minute demo.
+
+## Security & Trust
+
+- [Trust Center](https://security.vital.io):  
+  - Certifications: HIPAA, HITRUST CSF, NIST CSF, SOC 2  
+  - Downloadable resources: SOC2 report, HITRUST report, network diagrams, pentest & CAIQ self‑assessments  
+  - Policies and infrastructure details: InfoSec, audit logs, IAM, endpoint encryption, DDoS/firewall, backup, incident response, cyber insurance
+
+## Tools & Resources
+
+- [Finance](https://vital.io/finance): Financial modeling tools and ROI calculators for hospital decision-makers.
+

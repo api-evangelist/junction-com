@@ -1,0 +1,39 @@
+name: Junction API conventions
+generated: '2026-10-12'
+method: derived
+source: openapi/_original/junction-openapi-live-2026-10-12.json
+authentication:
+  style: API key header (apiKeyAuth); pk_* production, sk_* sandbox key prefixes
+  docs: https://docs.junction.com/api-details/junction-api
+idempotency:
+  coverage: partial
+  mechanism: request header / body token declared in the OpenAPI
+  scope:
+  - POST /v3/order/testkit
+  - POST /v3/order/{order_id}/psc/appointment/book
+  - POST /v3/order
+  - POST /v3/unmatched_result_test
+  - POST /checkout/v1/session
+  header: x-idempotency-key
+  evidence: x-idempotency-key on 2 of 49 mutating operations
+  verified: derived
+rate_limit_signaling:
+  statuses:
+  - 429
+  - 503
+  docs: https://docs.junction.com/api-details/rate_limiting
+webhooks:
+  delivery: Svix-based; 8 attempts with exponential backoff up to 10 hours
+  docs: https://docs.junction.com/webhooks/retry-policy
+reversibility:
+  status: documented
+  note: Reversal operations exist in the contract; no reversal window stated in docs read on 2026-10-12.
+  operations:
+  - surface: user delete
+    reversal: undo_user_delete_v2_user_undo_delete_post
+  - surface: lab order
+    reversal: cancel_order_v3_order__order_id__cancel_post
+  - surface: phlebotomy appointment
+    reversal: cancel_phlebotomy_appointment_v3_order__order_id__phlebotomy_appointment_cancel_patch
+  - surface: PSC appointment
+    reversal: cancel_phlebotomy_appointment_v3_order__order_id__psc_appointment_cancel_patch

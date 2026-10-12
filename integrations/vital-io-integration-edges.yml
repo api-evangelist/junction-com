@@ -1,0 +1,20 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/vital-io/integrations
+- https://zapier.com/apps/vital/integrations
+- https://n8n.io/integrations/vital-io/
+- https://n8n.io/integrations/vital/
+- https://composio.dev/toolkits/vital-io
+- https://monid.ai/tools/vital-io
+checked:
+- https://composio.dev/toolkits/vital-io
+- https://monid.ai/tools/vital-io
+- https://n8n.io/integrations/vital-io/
+- https://n8n.io/integrations/vital/
+- https://zapier.com/apps/vital-io/integrations
+- https://zapier.com/apps/vital/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []

@@ -1,0 +1,18 @@
+name: Junction tool crosswalk
+generated: '2026-10-12'
+method: derived
+source: https://docs.junction.com/mcp
+surfaces:
+  openapi: openapi/_original/junction-openapi-live-2026-10-12.json
+  mcp: https://docs.junction.com/mcp (anonymous)
+crosswalk: []
+mcp_only:
+- tool: search_junction
+  reason: documentation tool; no REST operation backs it
+- tool: query_docs_filesystem_junction
+  reason: documentation tool; no REST operation backs it
+- tool: submit_feedback
+  reason: documentation tool; no REST operation backs it
+coverage:
+  tools: 3
+  mapped: 0

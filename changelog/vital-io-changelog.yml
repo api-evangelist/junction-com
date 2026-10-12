@@ -1,0 +1,44 @@
+name: Junction API changelog
+generated: '2026-10-12'
+method: searched
+source: https://docs.junction.com/changelog/core/api
+scheme: dated entries (month granularity); OpenAPI info.version 0.4.911 on 2026-10-12
+entries:
+- version: null
+  date: 2025-11
+  breaking: false
+  highlights:
+  - Error for closed beta endpoint calls is now JSON
+- version: null
+  date: 2025-06
+  breaking: false
+  highlights:
+  - Lab Test Result Interpretation Filtering
+- version: null
+  date: 2025-05
+  breaking: false
+  highlights:
+  - Webhook Management Endpoints
+- version: null
+  date: 2025-05
+  breaking: false
+  highlights:
+  - Team Management Keys
+- version: null
+  date: 2025-05
+  breaking: false
+  highlights:
+  - Enhanced Historical Data Pull Status Tracking
+- version: null
+  date: 2025-04
+  breaking: false
+  highlights:
+  - X-Management-Key header for Junction Management API
+- version: null
+  date: 2024-08
+  breaking: false
+  highlights:
+  - Prepare Team Custom Credentials endpoint
+deprecations:
+- https://docs.junction.com/changelog/wearables/deprecations
+- https://docs.junction.com/changelog/lab-testing/deprecations

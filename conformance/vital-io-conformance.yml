@@ -1,10 +1,8 @@
 generated: '2026-07-21'
 method: searched
 source: https://vital.io/help/en/collections/19470958-integration-guide
-notes: >-
-  Vital is a healthcare patient-experience platform, not a public API provider. It has no public
-  OpenAPI/REST developer surface; conformance here reflects the healthcare interoperability and
-  compliance standards it documents for its hospital/EHR integrations.
+notes: Vital is a healthcare patient-experience platform, not a public API provider. It has no public OpenAPI/REST developer surface; conformance
+  here reflects the healthcare interoperability and compliance standards it documents for its hospital/EHR integrations.
 standards:
 - id: fhir-r4
   conforms: true
@@ -30,3 +28,15 @@ standards:
 - id: rfc9457-problem-details
   conforms: false
   evidence: no public API / error contract published
+- id: openapi-3.2
+  conforms: true
+  evidence: the document declares 3.2.0
+- id: rfc9457
+  conforms: false
+  evidence: no response declares application/problem+json
+- id: idempotency
+  conforms: true
+  evidence: x-idempotency-key declared on 2 of 49 mutating operations (partial)
+- id: pagination
+  conforms: true
+  evidence: list operations take cursor, lab_test_limit, limit, next_cursor, offset, page

@@ -1,0 +1,162 @@
+generated: '2026-10-12'
+method: derived
+source: the pre-flight dossier, apis.yml pointers, spec servers, well-known, vendors -- nothing fetched here
+generator: derive-hosts.py
+summary:
+  hosts: 13
+  own: 2
+  other_domain: 6
+  platform: 5
+  roles:
+  - api
+  - docs
+  - identity
+  - marketing
+  - other
+  - source
+  - status
+  - website
+hosts:
+- host: api.us.junction.com
+  found_by:
+  - apis[]
+  types: []
+  serves:
+  - api
+  registrable_domain: junction.com
+  role: api
+  relation: other-domain
+- host: app.junction.com
+  found_by:
+  - pointer
+  types:
+  - Console
+  - Signup
+  - Login
+  serves: []
+  registrable_domain: junction.com
+  role: identity
+  relation: other-domain
+- host: docs.junction.com
+  found_by:
+  - pointer
+  - apis[]
+  - vendor-detect
+  types:
+  - Documentation
+  - APIReference
+  - GettingStarted
+  - ChangeLog
+  - RateLimiting
+  - Authentication
+  - Webhooks
+  - Security
+  serves:
+  - docs
+  - cdn
+  - hosting
+  vendor: cloudflare
+  registrable_domain: junction.com
+  role: docs
+  relation: other-domain
+- host: github.com
+  found_by:
+  - pointer
+  types:
+  - GitHubOrganization
+  - GitHubRepository
+  - SampleApp
+  - SDKs
+  serves: []
+  registrable_domain: github.com
+  role: source
+  relation: platform
+- host: pypi.org
+  found_by:
+  - pointer
+  types:
+  - SDKs
+  serves: []
+  registrable_domain: pypi.org
+  role: other
+  relation: platform
+- host: raw.githubusercontent.com
+  found_by:
+  - pointer
+  types:
+  - OpenAPI
+  serves: []
+  registrable_domain: githubusercontent.com
+  role: other
+  relation: platform
+- host: status.tryvital.io
+  found_by:
+  - pointer
+  types:
+  - StatusPage
+  serves: []
+  registrable_domain: tryvital.io
+  role: status
+  relation: other-domain
+- host: status.vital.io
+  found_by:
+  - pointer
+  - vendor-detect
+  types:
+  - StatusPage
+  serves:
+  - status-page
+  vendor: instatus
+  registrable_domain: vital.io
+  role: status
+  relation: own
+- host: vital.io
+  found_by:
+  - pointer
+  types:
+  - Website
+  - Documentation
+  - Support
+  - Blog
+  - PrivacyPolicy
+  - TermsOfService
+  serves: []
+  registrable_domain: vital.io
+  role: website
+  relation: own
+- host: www.junction.com
+  found_by:
+  - pointer
+  types:
+  - Portal
+  serves: []
+  registrable_domain: junction.com
+  role: other
+  relation: other-domain
+- host: www.npmjs.com
+  found_by:
+  - pointer
+  types:
+  - SDKs
+  serves: []
+  registrable_domain: npmjs.com
+  role: other
+  relation: platform
+- host: www.postman.com
+  found_by:
+  - pointer
+  types:
+  - PostmanWorkspace
+  serves: []
+  registrable_domain: postman.com
+  role: other
+  relation: platform
+- host: www.tryvital.com
+  found_by:
+  - pointer
+  types:
+  - Pricing
+  serves: []
+  registrable_domain: tryvital.com
+  role: marketing
+  relation: other-domain

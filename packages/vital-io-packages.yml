@@ -1,0 +1,70 @@
+name: Junction (Vital) packages
+generated: '2026-10-12'
+method: searched
+source: https://docs.junction.com/home/libraries
+note: Listed on the provider Libraries page; versions from registry.npmjs.org, pypi.org JSON API and GitHub releases/latest.
+  @tryvital/vital-link last published 2021-04-03, much older than the API it wraps.
+packages:
+- name: '@junction-api/sdk'
+  registry: npm
+  url: https://www.npmjs.com/package/@junction-api/sdk
+  language: TypeScript
+  official: true
+  version: 2.0.0
+  published: '2026-09-24'
+- name: junction-api-sdk
+  registry: pypi
+  url: https://pypi.org/project/junction-api-sdk
+  language: Python
+  official: true
+  version: 2.0.0
+  published: '2026-09-24'
+- name: junction-java
+  registry: github
+  url: https://github.com/junction-api/junction-java
+  language: Java
+  official: true
+  version: 2.0.0
+  published: '2026-09-24'
+- name: junction-go
+  registry: go
+  url: https://github.com/junction-api/junction-go
+  language: Go
+  official: true
+  version: v2.0.0
+  published: '2026-09-24'
+- name: vital-ios
+  registry: github
+  url: https://github.com/tryVital/vital-ios
+  language: Swift
+  official: true
+  version: 1.9.0
+  published: '2026-08-26'
+- name: vital-android
+  registry: github
+  url: https://github.com/tryVital/vital-android
+  language: Kotlin
+  official: true
+  version: 5.0.5
+  published: '2026-09-21'
+- name: vital-flutter
+  registry: github
+  url: https://github.com/tryVital/vital-flutter
+  language: Dart
+  official: true
+  version: vital_health-v4.6.2
+  published: '2026-04-29'
+- name: vital-react-native
+  registry: github
+  url: https://github.com/tryVital/vital-react-native
+  language: TypeScript
+  official: true
+  version: 6.0.4
+  published: '2026-09-23'
+- name: '@tryvital/vital-link'
+  registry: npm
+  url: https://www.npmjs.com/package/@tryvital/vital-link
+  language: JavaScript
+  official: true
+  version: 0.1.7
+  published: '2021-04-03'

@@ -1,0 +1,404 @@
+generated: '2026-10-12'
+method: derived
+generator: derive-webhooks.py
+source:
+- openapi/vital-io-aggregation-api-openapi.yml
+- openapi/vital-io-lab-testing-api-openapi.yml
+- openapi/vital-io-link-api-openapi.yml
+- openapi/vital-io-summary-api-openapi.yml
+- openapi/vital-io-time-series-api-openapi.yml
+description: 'Event surface derived from the provider''s own OpenAPI: webhooks. No AsyncAPI document is published by the provider; this catalog
+  lists the events the contract names.'
+management_operations:
+- resend_order_webhook_v3_order_resend_events_post
+- get_svix_webhook_url_v2_team_svix_url_get
+- get_sleep_apnea_alert_grouped
+- get_heart_rate_alert_grouped
+events:
+- event: continuous_query.result_table.changed
+  description: Result Table Changed
+  declared_in: webhooks
+- event: labtest.order.*
+  description: Order
+  declared_in: webhooks
+- event: labtest.appointment.*
+  description: Appointment
+  declared_in: webhooks
+- event: labtest.result.critical
+  description: Critical Result
+  declared_in: webhooks
+- event: lab_report.parsing_job.created
+  description: Lab Report Parsing Job Created
+  declared_in: webhooks
+- event: lab_report.parsing_job.updated
+  description: Lab Report Parsing Job Updated
+  declared_in: webhooks
+- event: provider.connection.created
+  description: Provider Connection Created
+  declared_in: webhooks
+- event: provider.connection.error
+  description: Provider Connection Error
+  declared_in: webhooks
+- event: daily.data.activity.*
+  description: Activity
+  declared_in: webhooks
+- event: daily.data.sleep.*
+  description: Sleep
+  declared_in: webhooks
+- event: daily.data.sleep_cycle.*
+  description: Sleep Cycle
+  declared_in: webhooks
+- event: daily.data.workouts.*
+  description: Workout
+  declared_in: webhooks
+- event: daily.data.workout_stream.*
+  description: Workout Stream
+  declared_in: webhooks
+- event: daily.data.body.*
+  description: Body
+  declared_in: webhooks
+- event: daily.data.profile.*
+  description: Profile
+  declared_in: webhooks
+- event: daily.data.meal.*
+  description: Meal
+  declared_in: webhooks
+- event: daily.data.menstrual_cycle.*
+  description: Menstrual Cycle
+  declared_in: webhooks
+- event: daily.data.electrocardiogram.*
+  description: Electrocardiogram
+  declared_in: webhooks
+- event: historical.data.activity.created
+  description: Activity Historical Pull Completed
+  declared_in: webhooks
+- event: historical.data.sleep.created
+  description: Sleep Historical Pull Completed
+  declared_in: webhooks
+- event: historical.data.sleep_cycle.created
+  description: Sleep Cycle Historical Pull Completed
+  declared_in: webhooks
+- event: historical.data.workouts.created
+  description: Workout Historical Pull Completed
+  declared_in: webhooks
+- event: historical.data.workout_stream.created
+  description: Workout Stream Historical Pull Completed
+  declared_in: webhooks
+- event: historical.data.body.created
+  description: Body Historical Pull Completed
+  declared_in: webhooks
+- event: historical.data.profile.created
+  description: Profile Historical Pull Completed
+  declared_in: webhooks
+- event: historical.data.meal.created
+  description: Meal Historical Pull Completed
+  declared_in: webhooks
+- event: historical.data.menstrual_cycle.created
+  description: Menstrual Cycle Historical Pull Completed
+  declared_in: webhooks
+- event: historical.data.electrocardiogram.created
+  description: Electrocardiogram Historical Pull Completed
+  declared_in: webhooks
+- event: provider.device.*
+  description: Provider Device Created
+  declared_in: webhooks
+- event: daily.data.calories_active.*
+  description: Calories Active
+  declared_in: webhooks
+- event: historical.data.calories_active.created
+  description: Calories Active Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.calories_basal.*
+  description: Calories Basal
+  declared_in: webhooks
+- event: historical.data.calories_basal.created
+  description: Calories Basal Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.blood_pressure.*
+  description: Blood Pressure
+  declared_in: webhooks
+- event: historical.data.blood_pressure.created
+  description: Blood Pressure Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.blood_oxygen.*
+  description: Blood Oxygen
+  declared_in: webhooks
+- event: historical.data.blood_oxygen.created
+  description: Blood Oxygen Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.weight.*
+  description: Weight
+  declared_in: webhooks
+- event: historical.data.weight.created
+  description: Weight Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.fat.*
+  description: Fat
+  declared_in: webhooks
+- event: historical.data.fat.created
+  description: Fat Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.body_temperature.*
+  description: Body Temperature
+  declared_in: webhooks
+- event: historical.data.body_temperature.created
+  description: Body Temperature Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.body_temperature_delta.*
+  description: Body Temperature Delta
+  declared_in: webhooks
+- event: historical.data.body_temperature_delta.created
+  description: Body Temperature Delta Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.caffeine.*
+  description: Caffeine
+  declared_in: webhooks
+- event: historical.data.caffeine.created
+  description: Caffeine Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.cholesterol.*
+  description: Cholesterol
+  declared_in: webhooks
+- event: historical.data.cholesterol.created
+  description: Cholesterol Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.distance.*
+  description: Distance
+  declared_in: webhooks
+- event: historical.data.distance.created
+  description: Distance Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.floors_climbed.*
+  description: Floors Climbed
+  declared_in: webhooks
+- event: historical.data.floors_climbed.created
+  description: Floors Climbed Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.glucose.*
+  description: Glucose
+  declared_in: webhooks
+- event: historical.data.glucose.created
+  description: Glucose Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.heartrate.*
+  description: Heartrate
+  declared_in: webhooks
+- event: historical.data.heartrate.created
+  description: Heartrate Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.hrv.*
+  description: Hrv
+  declared_in: webhooks
+- event: historical.data.hrv.created
+  description: Hrv Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.ige.*
+  description: Ige
+  declared_in: webhooks
+- event: historical.data.ige.created
+  description: Ige Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.igg.*
+  description: Igg
+  declared_in: webhooks
+- event: historical.data.igg.created
+  description: Igg Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.mindfulness_minutes.*
+  description: Mindfulness Minutes
+  declared_in: webhooks
+- event: historical.data.mindfulness_minutes.created
+  description: Mindfulness Minutes Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.respiratory_rate.*
+  description: Respiratory Rate
+  declared_in: webhooks
+- event: historical.data.respiratory_rate.created
+  description: Respiratory Rate Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.steps.*
+  description: Steps
+  declared_in: webhooks
+- event: historical.data.steps.created
+  description: Steps Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.stress_level.*
+  description: Stress Level
+  declared_in: webhooks
+- event: historical.data.stress_level.created
+  description: Stress Level Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.vo2_max.*
+  description: Vo2 Max
+  declared_in: webhooks
+- event: historical.data.vo2_max.created
+  description: Vo2 Max Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.water.*
+  description: Water
+  declared_in: webhooks
+- event: historical.data.water.created
+  description: Water Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.electrocardiogram_voltage.*
+  description: Electrocardiogram Voltage
+  declared_in: webhooks
+- event: historical.data.electrocardiogram_voltage.created
+  description: Electrocardiogram Voltage Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.afib_burden.*
+  description: Afib Burden
+  declared_in: webhooks
+- event: historical.data.afib_burden.created
+  description: Afib Burden Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.heart_rate_alert.*
+  description: Heart Rate Alert
+  declared_in: webhooks
+- event: historical.data.heart_rate_alert.created
+  description: Heart Rate Alert Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.workout_duration.*
+  description: Workout Duration
+  declared_in: webhooks
+- event: historical.data.workout_duration.created
+  description: Workout Duration Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.insulin_injection.*
+  description: Insulin Injection
+  declared_in: webhooks
+- event: historical.data.insulin_injection.created
+  description: Insulin Injection Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.carbohydrates.*
+  description: Carbohydrates
+  declared_in: webhooks
+- event: historical.data.carbohydrates.created
+  description: Carbohydrates Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.note.*
+  description: Note
+  declared_in: webhooks
+- event: historical.data.note.created
+  description: Note Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.stand_hour.*
+  description: Stand Hour
+  declared_in: webhooks
+- event: historical.data.stand_hour.created
+  description: Stand Hour Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.stand_duration.*
+  description: Stand Duration
+  declared_in: webhooks
+- event: historical.data.stand_duration.created
+  description: Stand Duration Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.sleep_apnea_alert.*
+  description: Sleep Apnea Alert
+  declared_in: webhooks
+- event: historical.data.sleep_apnea_alert.created
+  description: Sleep Apnea Alert Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.sleep_breathing_disturbance.*
+  description: Sleep Breathing Disturbance
+  declared_in: webhooks
+- event: historical.data.sleep_breathing_disturbance.created
+  description: Sleep Breathing Disturbance Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.wheelchair_push.*
+  description: Wheelchair Push
+  declared_in: webhooks
+- event: historical.data.wheelchair_push.created
+  description: Wheelchair Push Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.forced_expiratory_volume_1.*
+  description: Forced Expiratory Volume 1
+  declared_in: webhooks
+- event: historical.data.forced_expiratory_volume_1.created
+  description: Forced Expiratory Volume 1 Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.forced_vital_capacity.*
+  description: Forced Vital Capacity
+  declared_in: webhooks
+- event: historical.data.forced_vital_capacity.created
+  description: Forced Vital Capacity Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.peak_expiratory_flow_rate.*
+  description: Peak Expiratory Flow Rate
+  declared_in: webhooks
+- event: historical.data.peak_expiratory_flow_rate.created
+  description: Peak Expiratory Flow Rate Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.inhaler_usage.*
+  description: Inhaler Usage
+  declared_in: webhooks
+- event: historical.data.inhaler_usage.created
+  description: Inhaler Usage Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.fall.*
+  description: Fall
+  declared_in: webhooks
+- event: historical.data.fall.created
+  description: Fall Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.uv_exposure.*
+  description: Uv Exposure
+  declared_in: webhooks
+- event: historical.data.uv_exposure.created
+  description: Uv Exposure Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.daylight_exposure.*
+  description: Daylight Exposure
+  declared_in: webhooks
+- event: historical.data.daylight_exposure.created
+  description: Daylight Exposure Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.handwashing.*
+  description: Handwashing
+  declared_in: webhooks
+- event: historical.data.handwashing.created
+  description: Handwashing Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.basal_body_temperature.*
+  description: Basal Body Temperature
+  declared_in: webhooks
+- event: historical.data.basal_body_temperature.created
+  description: Basal Body Temperature Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.body_mass_index.*
+  description: Body Mass Index
+  declared_in: webhooks
+- event: historical.data.body_mass_index.created
+  description: Body Mass Index Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.lean_body_mass.*
+  description: Lean Body Mass
+  declared_in: webhooks
+- event: historical.data.lean_body_mass.created
+  description: Lean Body Mass Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.waist_circumference.*
+  description: Waist Circumference
+  declared_in: webhooks
+- event: historical.data.waist_circumference.created
+  description: Waist Circumference Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.heart_rate_recovery_one_minute.*
+  description: Heart Rate Recovery One Minute
+  declared_in: webhooks
+- event: historical.data.heart_rate_recovery_one_minute.created
+  description: Heart Rate Recovery One Minute Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.workout_distance.*
+  description: Workout Distance
+  declared_in: webhooks
+- event: historical.data.workout_distance.created
+  description: Workout Distance Historical Pull Completed
+  declared_in: webhooks
+- event: daily.data.workout_swimming_stroke.*
+  description: Workout Swimming Stroke
+  declared_in: webhooks
+- event: historical.data.workout_swimming_stroke.created
+  description: Workout Swimming Stroke Historical Pull Completed
+  declared_in: webhooks

@@ -1,0 +1,25 @@
+name: Junction documentation MCP server
+generated: '2026-10-12'
+method: probed
+source: https://docs.junction.com/mcp
+deployment:
+  mode: remote
+  endpoint: https://docs.junction.com/mcp
+  auth: none
+  verified: probed
+scope: documentation search only (not the Junction data API); GET returns server card, POST tools/list returned 200 anonymously
+  on 2026-10-12
+tools:
+- name: search_junction
+  description: Search documentation
+  inputs:
+  - query
+- name: query_docs_filesystem_junction
+  description: Read docs pages via filesystem-style commands
+  inputs:
+  - command
+- name: submit_feedback
+  description: Submit documentation feedback
+  inputs:
+  - path
+  - feedback

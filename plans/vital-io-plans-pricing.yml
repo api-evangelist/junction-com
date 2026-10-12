@@ -1,99 +1,14 @@
-# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (undated — the file carries no date and git cannot supply one), not
-# harvested from the provider. `method: generated` so the economics campaign may replace it with a
-# dated, verbatim transcription; every figure below is unverified until it does.
-method: generated
+method: searched
+name: Vital API Plans
 apiCommonsPlans: '0.1'
 provider:
   id: vital-io
   name: Vital (Junction)
   url: https://www.junction.com
-  pricingPage: https://www.tryvital.com/pricing
+  pricingPage: https://www.junction.com/pricing
   contact: https://www.junction.com/contact
-generatedAt: '2026-05-25'
-notes: |
-  Junction (formerly Vital / tryVital) publishes per-user wearable-data pricing on its
-  pricing page. Lab-testing pricing is quote-based and tied to test volume; the page calls
-  out a 250-kit minimum on at-home testkits with flexibility on smaller volumes by request.
-  Enterprise terms (uptime SLAs, white-label, ETL pipelines, Analytics API) are negotiated
-  on the Scale tier.
-plans:
-- id: launch
-  name: Launch
-  audience: 0 - 1000 users — high-growth startups
-  price:
-    currency: USD
-    unit: user/month
-    amount: 0.50
-    minimum:
-      amount: 300
-      unit: month
-  billingModel: per-active-user
-  freeStart: true
-  noCreditCardRequired: true
-  features:
-  - Vital Link Widget
-  - Basic device + provider integrations
-  - Community Slack support
-  - Usage analytics
-  bestFor:
-  - Early-stage teams validating a wearable-data product
-  - Side projects integrating one or two providers
-- id: grow
-  name: Grow
-  audience: 1000+ users — scaling digital-health products
-  price:
-    currency: USD
-    unit: user/month
-    amount: "< 0.50"
-    note: Discounted per-user rate, exact figure negotiated.
-  billingModel: per-active-user
-  includes:
-  - Everything in Launch
-  features:
-  - Dedicated Slack support channel
-  - Implementation support
-  - Custom OAuth credentials (BYO client IDs for Fitbit, Garmin, etc.)
-  - Vital iOS app (Connect)
-  bestFor:
-  - Series A digital-health and wellness products
-  - Teams needing per-provider custom OAuth branding
-- id: scale
-  name: Scale
-  audience: Enterprises and white-label partners
-  price:
-    currency: USD
-    model: custom
-    note: Custom contract; volume-tiered per-user pricing plus enterprise add-ons.
-  billingModel: contract
-  includes:
-  - Everything in Grow
-  features:
-  - Uptime SLAs
-  - White-glove onboarding and integration support
-  - Prioritized provider/integration requests
-  - ETL pipelines (Azure Event Hubs, Google Cloud Pub/Sub, RabbitMQ)
-  - App white labeling
-  - Analytics API access
-  bestFor:
-  - Large telehealth, payer, and EHR platforms
-  - Regulated digital-health products needing US/EU residency control
-- id: lab-testing
-  name: Lab Testing (add-on)
-  audience: Any plan; lab testing is metered separately.
-  price:
-    currency: USD
-    model: per-test
-    note: |
-      Per-test pricing varies by test SKU and lab. Junction emphasizes "no test upcharges"
-      (pass-through lab pricing plus a platform fee). At-home testkits have a 250-kit
-      minimum order with flexibility for smaller volumes by request. Quote-based.
-  features:
-  - At-home testkits (50-state coverage incl. NY/NJ/RI)
-  - At-home phlebotomy
-  - Walk-in / Patient Service Center collection
-  - On-site collection
-  - Result tracking, patient reminders, exception handling
-  - 6-day-per-week operational support
+notes: 'Re-read 2026-10-12: the page now shows two plans (Launch, Enterprise); the earlier Launch/Grow/Scale/Lab add-on file
+  was generated and is superseded.'
 compliance:
 - HIPAA (BAA available)
 - SOC 2 Type 2
@@ -103,39 +18,46 @@ regions:
 - id: us
   productionBaseUrl: https://api.us.junction.com
   sandboxBaseUrl: https://api.sandbox.us.junction.com
-  keyPrefixes: [pk_us_, sk_us_]
+  keyPrefixes:
+  - pk_us_
+  - sk_us_
 - id: eu
   productionBaseUrl: https://api.eu.junction.com
   sandboxBaseUrl: https://api.sandbox.eu.junction.com
-  keyPrefixes: [pk_eu_, sk_eu_]
-x-canonical:
-  generated: '2026-10-08'
-  vocabulary: all/0-working/economics/plans-canonical.yml
-  models:
-  - negotiated
-  units: []
-  plans:
-  - name: Launch
-    access: other
-    model: unstated
-    model_how: derived
-    units: []
-    periods: []
-  - name: Grow
-    access: other
-    model: negotiated
-    model_how: derived
-    units: []
-    periods: []
-  - name: Scale
-    access: other
-    model: negotiated
-    model_how: derived
-    units: []
-    periods: []
-  - name: Lab Testing (add-on)
-    access: other
-    model: negotiated
-    model_how: derived
-    units: []
-    periods: []
+  keyPrefixes:
+  - pk_eu_
+  - sk_eu_
+generated: '2026-10-12'
+source: https://www.junction.com/pricing
+audience: business-product
+pricing_basis: tiered-subscription
+published: true
+delivery:
+  delivery: managed
+plans:
+- name: Launch
+  description: For startups and scaleups shipping on health data.
+  price: 300
+  price_text: $300 /mo
+  currency: USD
+  period: month
+  features:
+  - Link widget
+  - Basic integrations
+  - Community Slack support
+  - Usage analytics
+  limits:
+  - name: Connected users
+    limit_text: 1-500
+- name: Enterprise
+  description: For organizations that need scale, SLAs, and white-glove support.
+  price: Custom
+  price_text: Custom
+  features:
+  - Everything in Launch
+  - Dedicated Slack and implementation support
+  - Uptime SLAs and volume discounts
+  - Lab testing API and ETL pipelines
+  limits:
+  - name: Connected users
+    limit_text: Unlimited

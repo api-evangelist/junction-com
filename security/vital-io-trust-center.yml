@@ -3,7 +3,7 @@ method: searched
 probe: true
 source: https://security.vital.io/
 url: https://security.vital.io/
-platform: SafeBase
+platform: safebase
 certifications:
 - SOC 2
 - HITRUST CSF

@@ -1,0 +1,26 @@
+name: Junction sandbox
+generated: '2026-10-12'
+method: searched
+source: https://docs.junction.com/api-details/junction-api
+description: 'Sandbox environments are functionally identical to Production environments, except that: each Team can have
+  only up to 50 Users in Sandbox; you can create Synthetic Device connections; and you can simulate and transition an order
+  through its lifecycle.'
+docs: https://docs.junction.com/api-details/junction-api
+environments:
+- name: Sandbox US
+  base_url: https://api.sandbox.us.junction.com/
+  key_prefix: sk_us_*
+- name: Sandbox EU
+  base_url: https://api.sandbox.eu.junction.com/
+  key_prefix: sk_eu_*
+- name: Production US
+  base_url: https://api.us.junction.com/
+  key_prefix: pk_us_*
+- name: Production EU
+  base_url: https://api.eu.junction.com/
+  key_prefix: pk_eu_*
+fixtures:
+- name: Synthetic Device connections
+  docs: https://docs.junction.com/wearables/providers/test_data
+- name: Order lifecycle simulation
+  docs: https://docs.junction.com/lab/overview/sandbox
