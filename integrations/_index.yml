@@ -19,6 +19,398 @@
     registered_name: io.github.apatzer/vital-care-finder
     register_id: io.github.apatzer/vital-care-finder
     detected_by: sweep-agent-tools.py
-    detected: '2026-10-14'
+    detected: '2026-10-15'
+  status: not-a-workflow
+  arazzo: null
+- slug: vital-io-android-health-connect
+  label: Android Health Connect
+  partner: android
+  partner_name: Android Health Connect
+  category: health data source
+  type: coverage
+  channel: provider-built
+  evidence: https://docs.junction.com/wearables/providers/introduction
+  source: edge
+  relationship: system-coverage
+  contract_reference:
+    list: Junction (Vital) supported providers (docs.junction.com)
+    spec_file: null
+    listed_name: Android Health Connect
+    listed_id: health_connect
+    listed_names:
+    - Android Health Connect
+    matched_domain: android.com
+    matched_by: domain
+    signal_note: delivery mode / access model / table section are context, never counted
+    detected_by: sweep-health-wellness.py
+    detected: '2026-10-15'
+    table_section:
+    - sdk-provider
+  status: not-a-workflow
+  arazzo: null
+- slug: vital-io-dexcom
+  label: Dexcom
+  partner: dexcom
+  partner_name: Dexcom
+  category: health data source
+  type: coverage
+  channel: provider-built
+  evidence: https://docs.junction.com/wearables/providers/introduction
+  source: edge
+  relationship: system-coverage
+  contract_reference:
+    list: Junction (Vital) supported providers (docs.junction.com)
+    spec_file: null
+    listed_name: Dexcom
+    listed_id: dexcom_v3
+    listed_names:
+    - Dexcom
+    - Dexcom (G6 and older)
+    matched_domain: dexcom.com
+    matched_by: domain
+    signal_note: delivery mode / access model / table section are context, never counted
+    detected_by: sweep-health-wellness.py
+    detected: '2026-10-15'
+    table_section:
+    - oauth
+    - password
+  status: not-a-workflow
+  arazzo: null
+- slug: vital-io-8sleep
+  label: 8Sleep
+  partner: eight-sleep
+  partner_name: 8Sleep
+  category: health data source
+  type: coverage
+  channel: provider-built
+  evidence: https://docs.junction.com/wearables/providers/introduction
+  source: edge
+  relationship: system-coverage
+  contract_reference:
+    list: Junction (Vital) supported providers (docs.junction.com)
+    spec_file: null
+    listed_name: 8Sleep
+    listed_id: eight_sleep
+    listed_names:
+    - 8Sleep
+    matched_domain: eightsleep.com
+    matched_by: domain+verified
+    signal_note: delivery mode / access model / table section are context, never counted
+    detected_by: sweep-health-wellness.py
+    detected: '2026-10-15'
+    table_section:
+    - password
+  status: not-a-workflow
+  arazzo: null
+- slug: vital-io-fitbit
+  label: Fitbit
+  partner: fitbit
+  partner_name: Fitbit
+  category: health data source
+  type: coverage
+  channel: provider-built
+  evidence: https://docs.junction.com/wearables/providers/introduction
+  source: edge
+  relationship: system-coverage
+  contract_reference:
+    list: Junction (Vital) supported providers (docs.junction.com)
+    spec_file: null
+    listed_name: Fitbit
+    listed_id: fitbit
+    listed_names:
+    - Fitbit
+    matched_domain: fitbit.com
+    matched_by: domain
+    signal_note: delivery mode / access model / table section are context, never counted
+    detected_by: sweep-health-wellness.py
+    detected: '2026-10-15'
+    table_section:
+    - oauth
+  status: not-a-workflow
+  arazzo: null
+- slug: vital-io-garmin
+  label: Garmin
+  partner: garmin
+  partner_name: Garmin
+  category: health data source
+  type: coverage
+  channel: provider-built
+  evidence: https://docs.junction.com/wearables/providers/introduction
+  source: edge
+  relationship: system-coverage
+  contract_reference:
+    list: Junction (Vital) supported providers (docs.junction.com)
+    spec_file: null
+    listed_name: Garmin
+    listed_id: garmin
+    listed_names:
+    - Garmin
+    matched_domain: garmin.com
+    matched_by: domain
+    signal_note: delivery mode / access model / table section are context, never counted
+    detected_by: sweep-health-wellness.py
+    detected: '2026-10-15'
+    table_section:
+    - oauth
+  status: not-a-workflow
+  arazzo: null
+- slug: vital-io-hammerhead
+  label: Hammerhead
+  partner: hammerhead
+  partner_name: Hammerhead
+  category: health data source
+  type: coverage
+  channel: provider-built
+  evidence: https://docs.junction.com/wearables/providers/introduction
+  source: edge
+  relationship: system-coverage
+  contract_reference:
+    list: Junction (Vital) supported providers (docs.junction.com)
+    spec_file: null
+    listed_name: Hammerhead
+    listed_id: hammerhead
+    listed_names:
+    - Hammerhead
+    matched_domain: hammerhead.io
+    matched_by: domain
+    signal_note: delivery mode / access model / table section are context, never counted
+    detected_by: sweep-health-wellness.py
+    detected: '2026-10-15'
+    table_section:
+    - password
+  status: not-a-workflow
+  arazzo: null
+- slug: vital-io-oura
+  label: Oura
+  partner: oura-ring
+  partner_name: Oura
+  category: health data source
+  type: coverage
+  channel: provider-built
+  evidence: https://docs.junction.com/wearables/providers/introduction
+  source: edge
+  relationship: system-coverage
+  contract_reference:
+    list: Junction (Vital) supported providers (docs.junction.com)
+    spec_file: null
+    listed_name: Oura
+    listed_id: oura
+    listed_names:
+    - Oura
+    matched_domain: ouraring.com
+    matched_by: domain
+    signal_note: delivery mode / access model / table section are context, never counted
+    detected_by: sweep-health-wellness.py
+    detected: '2026-10-15'
+    table_section:
+    - oauth
+  status: not-a-workflow
+  arazzo: null
+- slug: vital-io-peloton
+  label: Peloton
+  partner: peloton
+  partner_name: Peloton
+  category: health data source
+  type: coverage
+  channel: provider-built
+  evidence: https://docs.junction.com/wearables/providers/introduction
+  source: edge
+  relationship: system-coverage
+  contract_reference:
+    list: Junction (Vital) supported providers (docs.junction.com)
+    spec_file: null
+    listed_name: Peloton
+    listed_id: peloton
+    listed_names:
+    - Peloton
+    matched_domain: onepeloton.com
+    matched_by: domain+name-among-holders
+    signal_note: delivery mode / access model / table section are context, never counted
+    detected_by: sweep-health-wellness.py
+    detected: '2026-10-15'
+    table_section:
+    - password
+  status: not-a-workflow
+  arazzo: null
+- slug: vital-io-polar
+  label: Polar
+  partner: polar
+  partner_name: Polar
+  category: health data source
+  type: coverage
+  channel: provider-built
+  evidence: https://docs.junction.com/wearables/providers/introduction
+  source: edge
+  relationship: system-coverage
+  contract_reference:
+    list: Junction (Vital) supported providers (docs.junction.com)
+    spec_file: null
+    listed_name: Polar
+    listed_id: polar
+    listed_names:
+    - Polar
+    matched_domain: polar.com
+    matched_by: domain
+    signal_note: delivery mode / access model / table section are context, never counted
+    detected_by: sweep-health-wellness.py
+    detected: '2026-10-15'
+    table_section:
+    - oauth
+  status: not-a-workflow
+  arazzo: null
+- slug: vital-io-strava
+  label: Strava
+  partner: strava
+  partner_name: Strava
+  category: health data source
+  type: coverage
+  channel: provider-built
+  evidence: https://docs.junction.com/wearables/providers/introduction
+  source: edge
+  relationship: system-coverage
+  contract_reference:
+    list: Junction (Vital) supported providers (docs.junction.com)
+    spec_file: null
+    listed_name: Strava
+    listed_id: strava
+    listed_names:
+    - Strava
+    matched_domain: strava.com
+    matched_by: domain
+    signal_note: delivery mode / access model / table section are context, never counted
+    detected_by: sweep-health-wellness.py
+    detected: '2026-10-15'
+    table_section:
+    - oauth
+  status: not-a-workflow
+  arazzo: null
+- slug: vital-io-ultrahuman
+  label: Ultrahuman
+  partner: ultrahuman
+  partner_name: Ultrahuman
+  category: health data source
+  type: coverage
+  channel: provider-built
+  evidence: https://docs.junction.com/wearables/providers/introduction
+  source: edge
+  relationship: system-coverage
+  contract_reference:
+    list: Junction (Vital) supported providers (docs.junction.com)
+    spec_file: null
+    listed_name: Ultrahuman
+    listed_id: ultrahuman
+    listed_names:
+    - Ultrahuman
+    matched_domain: ultrahuman.com
+    matched_by: domain
+    signal_note: delivery mode / access model / table section are context, never counted
+    detected_by: sweep-health-wellness.py
+    detected: '2026-10-15'
+    table_section:
+    - oauth
+  status: not-a-workflow
+  arazzo: null
+- slug: vital-io-wahoo
+  label: Wahoo
+  partner: wahoo
+  partner_name: Wahoo
+  category: health data source
+  type: coverage
+  channel: provider-built
+  evidence: https://docs.junction.com/wearables/providers/introduction
+  source: edge
+  relationship: system-coverage
+  contract_reference:
+    list: Junction (Vital) supported providers (docs.junction.com)
+    spec_file: null
+    listed_name: Wahoo
+    listed_id: wahoo
+    listed_names:
+    - Wahoo
+    matched_domain: wahoofitness.com
+    matched_by: domain
+    signal_note: delivery mode / access model / table section are context, never counted
+    detected_by: sweep-health-wellness.py
+    detected: '2026-10-15'
+    table_section:
+    - oauth
+  status: not-a-workflow
+  arazzo: null
+- slug: vital-io-whoop
+  label: WHOOP
+  partner: whoop
+  partner_name: WHOOP
+  category: health data source
+  type: coverage
+  channel: provider-built
+  evidence: https://docs.junction.com/wearables/providers/introduction
+  source: edge
+  relationship: system-coverage
+  contract_reference:
+    list: Junction (Vital) supported providers (docs.junction.com)
+    spec_file: null
+    listed_name: WHOOP
+    listed_id: whoop_v2
+    listed_names:
+    - WHOOP
+    matched_domain: whoop.com
+    matched_by: domain
+    signal_note: delivery mode / access model / table section are context, never counted
+    detected_by: sweep-health-wellness.py
+    detected: '2026-10-15'
+    table_section:
+    - oauth
+  status: not-a-workflow
+  arazzo: null
+- slug: vital-io-withings
+  label: Withings
+  partner: withings
+  partner_name: Withings
+  category: health data source
+  type: coverage
+  channel: provider-built
+  evidence: https://docs.junction.com/wearables/providers/introduction
+  source: edge
+  relationship: system-coverage
+  contract_reference:
+    list: Junction (Vital) supported providers (docs.junction.com)
+    spec_file: null
+    listed_name: Withings
+    listed_id: withings
+    listed_names:
+    - Withings
+    matched_domain: withings.com
+    matched_by: domain
+    signal_note: delivery mode / access model / table section are context, never counted
+    detected_by: sweep-health-wellness.py
+    detected: '2026-10-15'
+    table_section:
+    - oauth
+  status: not-a-workflow
+  arazzo: null
+- slug: vital-io-zwift
+  label: Zwift
+  partner: zwift
+  partner_name: Zwift
+  category: health data source
+  type: coverage
+  channel: provider-built
+  evidence: https://docs.junction.com/wearables/providers/introduction
+  source: edge
+  relationship: system-coverage
+  contract_reference:
+    list: Junction (Vital) supported providers (docs.junction.com)
+    spec_file: null
+    listed_name: Zwift
+    listed_id: zwift
+    listed_names:
+    - Zwift
+    matched_domain: zwift.com
+    matched_by: domain
+    signal_note: delivery mode / access model / table section are context, never counted
+    detected_by: sweep-health-wellness.py
+    detected: '2026-10-15'
+    table_section:
+    - password
   status: not-a-workflow
   arazzo: null
