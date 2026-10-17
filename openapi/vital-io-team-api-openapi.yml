@@ -1,8 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Junction Team API
-  description: https://docs.junction.com/
-  version: 0.4.497
+  title: Vital Io Team API
+  version: '1.0'
+  description: 'Operations tagged team across 2 of this provider''s published API definitions: junction-openapi-live-2026-10-12.json, vital-openapi-original.json. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.us.junction.com
   x-fern-server-name: Production
@@ -48,6 +48,15 @@ paths:
       x-fern-sdk-group-name: team
       x-fern-sdk-method-name: get
       x-fern-availability: deprecated
+    servers:
+    - url: https://api.us.junction.com
+      x-fern-server-name: Production
+    - url: https://api.eu.junction.com
+      x-fern-server-name: ProductionEU
+    - url: https://api.sandbox.us.junction.com
+      x-fern-server-name: Sandbox
+    - url: https://api.sandbox.eu.junction.com
+      x-fern-server-name: SandboxEU
   /v2/team/users/search:
     get:
       tags:
@@ -82,6 +91,15 @@ paths:
       x-fern-sdk-group-name: team
       x-fern-sdk-method-name: get_user_by_id
       x-fern-availability: deprecated
+    servers:
+    - url: https://api.us.junction.com
+      x-fern-server-name: Production
+    - url: https://api.eu.junction.com
+      x-fern-server-name: ProductionEU
+    - url: https://api.sandbox.us.junction.com
+      x-fern-server-name: Sandbox
+    - url: https://api.sandbox.eu.junction.com
+      x-fern-server-name: SandboxEU
   /v2/team/svix/url:
     get:
       tags:
@@ -100,6 +118,15 @@ paths:
       x-fern-sdk-group-name: team
       x-fern-sdk-method-name: get_svix_url
       x-fern-availability: deprecated
+    servers:
+    - url: https://api.us.junction.com
+      x-fern-server-name: Production
+    - url: https://api.eu.junction.com
+      x-fern-server-name: ProductionEU
+    - url: https://api.sandbox.us.junction.com
+      x-fern-server-name: Sandbox
+    - url: https://api.sandbox.eu.junction.com
+      x-fern-server-name: SandboxEU
   /v2/team/source/priorities:
     get:
       tags:
@@ -154,6 +181,15 @@ paths:
                 title: Response Update Source Priorities V2 Team Source Priorities Patch
       x-fern-sdk-group-name: team
       x-fern-sdk-method-name: update_source_priorities
+    servers:
+    - url: https://api.us.junction.com
+      x-fern-server-name: Production
+    - url: https://api.eu.junction.com
+      x-fern-server-name: ProductionEU
+    - url: https://api.sandbox.us.junction.com
+      x-fern-server-name: Sandbox
+    - url: https://api.sandbox.eu.junction.com
+      x-fern-server-name: SandboxEU
   /v2/team/{team_id}/physicians:
     get:
       tags:
@@ -186,51 +222,38 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       x-fern-sdk-group-name: team
       x-fern-sdk-method-name: get_physicians
+    servers:
+    - url: https://api.us.junction.com
+      x-fern-server-name: Production
+    - url: https://api.eu.junction.com
+      x-fern-server-name: ProductionEU
+    - url: https://api.sandbox.us.junction.com
+      x-fern-server-name: Sandbox
+    - url: https://api.sandbox.eu.junction.com
+      x-fern-server-name: SandboxEU
 components:
   schemas:
-    ClientFacingApiKey:
+    FallbackBirthDate:
       properties:
-        label:
-          type: string
-          title: Label
         value:
           type: string
+          format: date
           title: Value
-        team_id:
-          anyOf:
-          - type: string
-            format: uuid
-          - type: 'null'
-          title: Team Id
-        id:
+          description: Fallback date of birth of the user, in YYYY-mm-dd format. Used for calculating max heartrate for providers that don not provide users' age.
+        source_slug:
           type: string
-          format: uuid
-          title: Id
-        created_at:
+          title: Source Slug
+          description: Slug for designated source
+        updated_at:
           type: string
           format: date-time
-          title: Created At
-        deleted_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Deleted At
+          title: Updated At
       type: object
       required:
-      - label
       - value
-      - id
-      - created_at
-      title: ClientFacingApiKey
-    DelegatedFlowType:
-      type: string
-      enum:
-      - order_and_results_with_customer_physician_network
-      - order_with_vital_physician_network
-      - order_and_results_with_vital_physician_network
-      title: DelegatedFlowType
-      description: ℹ️ This enum is non-exhaustive.
+      - source_slug
+      - updated_at
+      title: FallbackBirthDate
     ClientFacingProvider:
       properties:
         name:
@@ -256,40 +279,77 @@ components:
         logo: https://logo_url.com
         name: Oura
         slug: oura
-    FallbackTimeZone:
+    TeamConfig:
       properties:
-        id:
-          type: string
-          title: Id
-          description: "\n    Fallback time zone of the user, in the form of a valid IANA tzdatabase identifier (e.g., `Europe/London` or `America/Los_Angeles`).\n    Used when pulling data from sources that are completely time zone agnostic (e.g., all time is relative to UTC clock, without any time zone attributions on data points).\n    "
-        source_slug:
-          type: string
-          title: Source Slug
-          description: Slug for designated source
-        updated_at:
-          type: string
-          format: date-time
-          title: Updated At
-      type: object
-      required:
-      - id
-      - source_slug
-      - updated_at
-      title: FallbackTimeZone
-    LibreConfig:
-      properties:
-        practice_id:
-          additionalProperties: true
-          type: object
-          title: Practice Id
-        strip_tz:
+        libreview:
+          $ref: '#/components/schemas/LibreConfig'
+        texts_enabled:
           type: boolean
-          title: Strip Tz
+          title: Texts Enabled
           default: false
+        push_historical_data:
+          type: boolean
+          title: Push Historical Data
+          default: false
+        provider_raw_data:
+          type: boolean
+          title: Provider Raw Data
+          default: false
+        reject_duplicate_connection:
+          type: boolean
+          title: Reject Duplicate Connection
+          default: false
+        sdk_per_device_activity_timeseries:
+          type: boolean
+          title: Sdk Per Device Activity Timeseries
+          default: false
+        partial_webhooks_enabled:
+          type: boolean
+          title: Partial Webhooks Enabled
+          default: false
+        minor_ordering_enabled:
+          type: boolean
+          title: Minor Ordering Enabled
+          default: false
+        eds_preferences:
+          $ref: '#/components/schemas/EventDestinationPreferences'
+        event_type_prefixes:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Event Type Prefixes
       type: object
       required:
-      - practice_id
-      title: LibreConfig
+      - libreview
+      title: TeamConfig
+    EventDestinationPreferences:
+      properties:
+        preferred:
+          type: string
+          enum:
+          - cloud_pubsub
+          - rabbitmq
+          - svix
+          - azure_amqp
+          title: Preferred
+          description: ℹ️ This enum is non-exhaustive.
+        enabled:
+          items:
+            type: string
+            enum:
+            - cloud_pubsub
+            - rabbitmq
+            - svix
+            - azure_amqp
+          type: array
+          title: Enabled
+      type: object
+      required:
+      - preferred
+      - enabled
+      title: EventDestinationPreferences
     ClientFacingUser:
       properties:
         user_id:
@@ -353,92 +413,22 @@ components:
       example:
         client_user_id: ZTEwZjNjMjctOTI2ZS00M2Vm
         connected_sources:
-        - created_on: '2026-05-20T13:43:42+00:00'
+        - created_on: '2026-10-12T10:21:06+00:00'
           source:
             logo: logo_url
             name: Oura
             slug: oura
-        created_on: '2026-05-20T13:43:42+00:00'
+        created_on: '2026-10-12T10:21:06+00:00'
         fallback_birth_date:
           source_slug: manual
-          updated_at: '2026-05-20T13:43:42+00:00'
+          updated_at: '2026-10-12T10:21:06+00:00'
           value: '1989-09-12'
         fallback_time_zone:
           id: Europe/London
           source_slug: manual
-          updated_at: '2026-05-20T13:43:42+00:00'
+          updated_at: '2026-10-12T10:21:06+00:00'
         team_id: 56bd81c9-6219-4000-a775-ae85526eba18
         user_id: 56bd81c9-6219-4000-a775-ae85526eba18
-    HTTPValidationError:
-      properties:
-        detail:
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    EventDestinationPreferences:
-      properties:
-        preferred:
-          type: string
-          enum:
-          - cloud_pubsub
-          - rabbitmq
-          - svix
-          - azure_amqp
-          title: Preferred
-          description: ℹ️ This enum is non-exhaustive.
-        enabled:
-          items:
-            type: string
-            enum:
-            - cloud_pubsub
-            - rabbitmq
-            - svix
-            - azure_amqp
-          type: array
-          title: Enabled
-      type: object
-      required:
-      - preferred
-      - enabled
-      title: EventDestinationPreferences
-    FallbackBirthDate:
-      properties:
-        value:
-          type: string
-          format: date
-          title: Value
-          description: Fallback date of birth of the user, in YYYY-mm-dd format. Used for calculating max heartrate for providers that don not provide users' age.
-        source_slug:
-          type: string
-          title: Source Slug
-          description: Slug for designated source
-        updated_at:
-          type: string
-          format: date-time
-          title: Updated At
-      type: object
-      required:
-      - value
-      - source_slug
-      - updated_at
-      title: FallbackBirthDate
-    ClientFacingPhysician:
-      properties:
-        first_name:
-          type: string
-          title: First Name
-        last_name:
-          type: string
-          title: Last Name
-        npi:
-          type: string
-          title: Npi
-      type: object
-      required:
-      - first_name
-      - last_name
-      - npi
-      title: ClientFacingPhysician
     ConnectedSourceClientFacing:
       properties:
         provider:
@@ -459,51 +449,72 @@ components:
       - created_on
       - source
       title: ConnectedSourceClientFacing
-    TeamConfig:
+    LibreConfig:
       properties:
-        libreview:
-          $ref: '#/components/schemas/LibreConfig'
-        texts_enabled:
+        practice_id:
+          additionalProperties: true
+          type: object
+          title: Practice Id
+        strip_tz:
           type: boolean
-          title: Texts Enabled
+          title: Strip Tz
           default: false
-        push_historical_data:
-          type: boolean
-          title: Push Historical Data
-          default: false
-        provider_raw_data:
-          type: boolean
-          title: Provider Raw Data
-          default: false
-        reject_duplicate_connection:
-          type: boolean
-          title: Reject Duplicate Connection
-          default: false
-        sdk_per_device_activity_timeseries:
-          type: boolean
-          title: Sdk Per Device Activity Timeseries
-          default: false
-        partial_webhooks_enabled:
-          type: boolean
-          title: Partial Webhooks Enabled
-          default: false
-        minor_ordering_enabled:
-          type: boolean
-          title: Minor Ordering Enabled
-          default: false
-        eds_preferences:
-          $ref: '#/components/schemas/EventDestinationPreferences'
-        event_type_prefixes:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Event Type Prefixes
       type: object
       required:
-      - libreview
-      title: TeamConfig
+      - practice_id
+      title: LibreConfig
+    ClientFacingPhysician:
+      properties:
+        first_name:
+          type: string
+          title: First Name
+        last_name:
+          type: string
+          title: Last Name
+        npi:
+          type: string
+          title: Npi
+      type: object
+      required:
+      - first_name
+      - last_name
+      - npi
+      title: ClientFacingPhysician
+    ClientFacingApiKey:
+      properties:
+        label:
+          type: string
+          title: Label
+        value:
+          type: string
+          title: Value
+        team_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Team Id
+        id:
+          type: string
+          format: uuid
+          title: Id
+        created_at:
+          type: string
+          format: date-time
+          title: Created At
+        deleted_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Deleted At
+      type: object
+      required:
+      - label
+      - value
+      - id
+      - created_at
+      title: ClientFacingApiKey
     ClientFacingTeam:
       properties:
         id:
@@ -612,6 +623,12 @@ components:
 
 
         All must migrate to the Team endpoints of the Org Management API.'
+    HTTPValidationError:
+      properties:
+        detail:
+          title: Detail
+      type: object
+      title: HTTPValidationError
     PriorityResource:
       type: string
       enum:
@@ -622,9 +639,119 @@ components:
       - timeseries
       title: PriorityResource
       description: ℹ️ This enum is non-exhaustive.
+    DelegatedFlowType:
+      type: string
+      enum:
+      - order_and_results_with_customer_physician_network
+      - order_with_vital_physician_network
+      - order_and_results_with_vital_physician_network
+      title: DelegatedFlowType
+      description: ℹ️ This enum is non-exhaustive.
+    FallbackTimeZone:
+      properties:
+        id:
+          type: string
+          title: Id
+          description: "\n    Fallback time zone of the user, in the form of a valid IANA tzdatabase identifier (e.g., `Europe/London` or `America/Los_Angeles`).\n    Used when pulling data from sources that are completely time zone agnostic (e.g., all time is relative to UTC clock, without any time zone attributions on data points).\n    "
+        source_slug:
+          type: string
+          title: Source Slug
+          description: Slug for designated source
+        updated_at:
+          type: string
+          format: date-time
+          title: Updated At
+      type: object
+      required:
+      - id
+      - source_slug
+      - updated_at
+      title: FallbackTimeZone
+    ClientFacingUser_2:
+      properties:
+        user_id:
+          type: string
+          format: uuid
+          title: User Id
+          description: User id returned by vital create user request. This id should be stored in your database against the user and used for all interactions with the vital api.
+        team_id:
+          type: string
+          format: uuid
+          title: Team Id
+          description: Your team id.
+        client_user_id:
+          type: string
+          title: Client User Id
+          description: A unique ID representing the end user. Typically this will be a user ID from your application. Personally identifiable information, such as an email address or phone number, should not be used in the client_user_id.
+        created_on:
+          type: string
+          format: date-time
+          title: Created On
+          description: When your item is created
+        connected_sources:
+          items:
+            $ref: '#/components/schemas/ConnectedSourceClientFacing'
+          type: array
+          title: Connected Sources
+          description: A list of the users connected sources.
+        fallback_time_zone:
+          anyOf:
+          - $ref: '#/components/schemas/FallbackTimeZone'
+          - type: 'null'
+          description: "\n    Fallback time zone of the user, in the form of a valid IANA tzdatabase identifier (e.g., `Europe/London` or `America/Los_Angeles`).\n    Used when pulling data from sources that are completely time zone agnostic (e.g., all time is relative to UTC clock, without any time zone attributions on data points).\n    "
+        fallback_birth_date:
+          anyOf:
+          - $ref: '#/components/schemas/FallbackBirthDate'
+          - type: 'null'
+          description: Fallback date of birth of the user, in YYYY-mm-dd format. Used for calculating max heartrate for providers that don not provide users' age.
+        ingestion_start:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Ingestion Start
+          description: Starting bound for user [data ingestion bounds](https://docs.tryvital.io/wearables/providers/data-ingestion-bounds).
+        ingestion_end:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Ingestion End
+          description: Ending bound for user [data ingestion bounds](https://docs.tryvital.io/wearables/providers/data-ingestion-bounds).
+      type: object
+      required:
+      - user_id
+      - team_id
+      - client_user_id
+      - created_on
+      - connected_sources
+      - fallback_time_zone
+      title: User
+      example:
+        client_user_id: ZTEwZjNjMjctOTI2ZS00M2Vm
+        connected_sources:
+        - created_on: '2026-05-20T13:43:42+00:00'
+          source:
+            logo: logo_url
+            name: Oura
+            slug: oura
+        created_on: '2026-05-20T13:43:42+00:00'
+        fallback_birth_date:
+          source_slug: manual
+          updated_at: '2026-05-20T13:43:42+00:00'
+          value: '1989-09-12'
+        fallback_time_zone:
+          id: Europe/London
+          source_slug: manual
+          updated_at: '2026-05-20T13:43:42+00:00'
+        team_id: 56bd81c9-6219-4000-a775-ae85526eba18
+        user_id: 56bd81c9-6219-4000-a775-ae85526eba18
   securitySchemes:
     apiKeyAuth:
       type: apiKey
       in: header
       name: x-vital-api-key
       description: Vital Team API Key
+x-refined-from:
+- junction-openapi-live-2026-10-12.json
+- vital-openapi-original.json

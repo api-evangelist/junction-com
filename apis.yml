@@ -1242,6 +1242,90 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/vital-io-lab-testing-api-openapi.yml
+- aid: vital-io:vital-io-checkout-api
+  name: Vital Checkout API
+  description: The checkout API from Vital — 6 operation(s) for checkout.
+  humanURL: https://docs.junction.com/api-details/junction-management-api
+  baseURL: https://api.us.junction.com
+  tags:
+  - checkout
+  properties:
+  - type: OpenAPI
+    url: openapi/vital-io-checkout-api-openapi.yml
+  - type: Documentation
+    url: https://docs.junction.com/api-details/junction-api
+  - type: JSONSchema
+    url: json-schema/vital-user-schema.json
+  - type: Examples
+    url: examples/vital-create-user-example.json
+  - type: Documentation
+    url: https://docs.junction.com/wearables/providers/introduction
+  - type: JSONSchema
+    url: json-schema/vital-provider-schema.json
+  - type: Examples
+    url: examples/vital-link-token-example.json
+  - type: JSONSchema
+    url: json-schema/vital-sleep-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/vital-activity-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/vital-heart-rate-timeseries-schema.json
+  - type: Examples
+    url: examples/vital-sleep-summary-example.json
+  - type: Examples
+    url: examples/vital-heart-rate-timeseries-example.json
+  - type: JSONSchema
+    url: json-schema/vital-lab-order-schema.json
+  - type: JSONSchema
+    url: json-schema/vital-lab-result-schema.json
+  - type: Examples
+    url: examples/vital-create-order-example.json
+  - type: Examples
+    url: examples/vital-lab-result-example.json
+  - type: Documentation
+    url: https://docs.junction.com/api-details/junction-management-api
+- aid: vital-io:vital-io-unmatched-api
+  name: Vital Unmatched API
+  description: The unmatched API from Vital — 8 operation(s) for unmatched.
+  humanURL: https://docs.junction.com/api-details/junction-management-api
+  baseURL: https://api.us.junction.com
+  tags:
+  - unmatched
+  properties:
+  - type: OpenAPI
+    url: openapi/vital-io-unmatched-api-openapi.yml
+  - type: Documentation
+    url: https://docs.junction.com/api-details/junction-api
+  - type: JSONSchema
+    url: json-schema/vital-user-schema.json
+  - type: Examples
+    url: examples/vital-create-user-example.json
+  - type: Documentation
+    url: https://docs.junction.com/wearables/providers/introduction
+  - type: JSONSchema
+    url: json-schema/vital-provider-schema.json
+  - type: Examples
+    url: examples/vital-link-token-example.json
+  - type: JSONSchema
+    url: json-schema/vital-sleep-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/vital-activity-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/vital-heart-rate-timeseries-schema.json
+  - type: Examples
+    url: examples/vital-sleep-summary-example.json
+  - type: Examples
+    url: examples/vital-heart-rate-timeseries-example.json
+  - type: JSONSchema
+    url: json-schema/vital-lab-order-schema.json
+  - type: JSONSchema
+    url: json-schema/vital-lab-result-schema.json
+  - type: Examples
+    url: examples/vital-create-order-example.json
+  - type: Examples
+    url: examples/vital-lab-result-example.json
+  - type: Documentation
+    url: https://docs.junction.com/api-details/junction-management-api
 - aid: vital-io:vital-io-time-series-api
   name: Vital Time Series API
   description: The Time Series API from Vital — 80 operation(s) for time series.

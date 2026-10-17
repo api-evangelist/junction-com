@@ -1,8 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Junction Lab Tests API
-  description: https://docs.junction.com/
-  version: 0.4.497
+  title: Vital Io Lab Tests API
+  version: '1.0'
+  description: 'Operations tagged lab_tests across 2 of this provider''s published API definitions: junction-openapi-live-2026-10-12.json, vital-openapi-original.json. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.us.junction.com
   x-fern-server-name: Production
@@ -165,6 +165,15 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       x-fern-sdk-group-name: lab_tests
       x-fern-sdk-method-name: create
+    servers:
+    - url: https://api.us.junction.com
+      x-fern-server-name: Production
+    - url: https://api.eu.junction.com
+      x-fern-server-name: ProductionEU
+    - url: https://api.sandbox.us.junction.com
+      x-fern-server-name: Sandbox
+    - url: https://api.sandbox.eu.junction.com
+      x-fern-server-name: SandboxEU
   /v3/lab_tests/{lab_test_id}:
     patch:
       tags:
@@ -240,6 +249,15 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       x-fern-sdk-group-name: lab_tests
       x-fern-sdk-method-name: get_by_id
+    servers:
+    - url: https://api.us.junction.com
+      x-fern-server-name: Production
+    - url: https://api.eu.junction.com
+      x-fern-server-name: ProductionEU
+    - url: https://api.sandbox.us.junction.com
+      x-fern-server-name: Sandbox
+    - url: https://api.sandbox.eu.junction.com
+      x-fern-server-name: SandboxEU
   /v3/lab_tests/markers:
     get:
       tags:
@@ -287,6 +305,13 @@ paths:
           - type: boolean
           - type: 'null'
           title: A La Carte Enabled
+      - name: include_pricing
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+          title: Include Pricing
       - name: lab_account_id
         in: query
         required: false
@@ -330,6 +355,15 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       x-fern-sdk-group-name: lab_tests
       x-fern-sdk-method-name: get_markers
+    servers:
+    - url: https://api.us.junction.com
+      x-fern-server-name: Production
+    - url: https://api.eu.junction.com
+      x-fern-server-name: ProductionEU
+    - url: https://api.sandbox.us.junction.com
+      x-fern-server-name: Sandbox
+    - url: https://api.sandbox.eu.junction.com
+      x-fern-server-name: SandboxEU
   /v3/lab_tests/list_order_set_markers:
     post:
       tags:
@@ -375,6 +409,15 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       x-fern-sdk-group-name: lab_tests
       x-fern-sdk-method-name: get_markers_for_order_set
+    servers:
+    - url: https://api.us.junction.com
+      x-fern-server-name: Production
+    - url: https://api.eu.junction.com
+      x-fern-server-name: ProductionEU
+    - url: https://api.sandbox.us.junction.com
+      x-fern-server-name: Sandbox
+    - url: https://api.sandbox.eu.junction.com
+      x-fern-server-name: SandboxEU
   /v3/lab_tests/{lab_test_id}/markers:
     get:
       tags:
@@ -433,6 +476,15 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       x-fern-sdk-group-name: lab_tests
       x-fern-sdk-method-name: get_markers_for_lab_test
+    servers:
+    - url: https://api.us.junction.com
+      x-fern-server-name: Production
+    - url: https://api.eu.junction.com
+      x-fern-server-name: ProductionEU
+    - url: https://api.sandbox.us.junction.com
+      x-fern-server-name: Sandbox
+    - url: https://api.sandbox.eu.junction.com
+      x-fern-server-name: SandboxEU
   /v3/lab_tests/{lab_id}/markers/{provider_id}:
     get:
       tags:
@@ -479,6 +531,15 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       x-fern-sdk-group-name: lab_tests
       x-fern-sdk-method-name: get_markers_by_lab_and_provider_id
+    servers:
+    - url: https://api.us.junction.com
+      x-fern-server-name: Production
+    - url: https://api.eu.junction.com
+      x-fern-server-name: ProductionEU
+    - url: https://api.sandbox.us.junction.com
+      x-fern-server-name: Sandbox
+    - url: https://api.sandbox.eu.junction.com
+      x-fern-server-name: SandboxEU
   /v3/lab_tests/labs:
     get:
       tags:
@@ -498,6 +559,96 @@ paths:
                 title: Response Get Labs V3 Lab Tests Labs Get
       x-fern-sdk-group-name: lab_tests
       x-fern-sdk-method-name: get_labs
+    servers:
+    - url: https://api.us.junction.com
+      x-fern-server-name: Production
+    - url: https://api.eu.junction.com
+      x-fern-server-name: ProductionEU
+    - url: https://api.sandbox.us.junction.com
+      x-fern-server-name: Sandbox
+    - url: https://api.sandbox.eu.junction.com
+      x-fern-server-name: SandboxEU
+  /v3/lab_test_promotion:
+    get:
+      tags:
+      - lab_tests
+      summary: Get Lab Test Promotions
+      operationId: get_lab_test_promotions_v3_lab_test_promotion_get
+      parameters:
+      - name: source_sandbox_lab_test_ids
+        in: query
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+            format: uuid
+          maxItems: 35
+          title: Source Sandbox Lab Test Ids
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LabTestPromotion'
+                title: Response Get Lab Test Promotions V3 Lab Test Promotion Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      x-fern-sdk-group-name: lab_tests
+      x-fern-sdk-method-name: list_promotions
+    servers:
+    - url: https://api.us.junction.com
+      x-fern-server-name: Production
+    - url: https://api.eu.junction.com
+      x-fern-server-name: ProductionEU
+    - url: https://api.sandbox.us.junction.com
+      x-fern-server-name: Sandbox
+    - url: https://api.sandbox.eu.junction.com
+      x-fern-server-name: SandboxEU
+  /v3/lab_test/estimate_order_set_pricing:
+    post:
+      tags:
+      - lab_tests
+      summary: Estimate Order Set Pricing
+      operationId: estimate_order_set_pricing_v3_lab_test_estimate_order_set_pricing_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EstimateOrderSetPricingBody'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EstimateOrderSetPricingResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      x-fern-sdk-group-name: lab_tests
+      x-fern-sdk-method-name: estimate_order_set_pricing
+      x-fern-availability: beta
+    servers:
+    - url: https://api.us.junction.com
+      x-fern-server-name: Production
+    - url: https://api.eu.junction.com
+      x-fern-server-name: ProductionEU
+    - url: https://api.sandbox.us.junction.com
+      x-fern-server-name: Sandbox
+    - url: https://api.sandbox.eu.junction.com
+      x-fern-server-name: SandboxEU
   /v3/lab_test:
     get:
       tags:
@@ -522,6 +673,24 @@ paths:
           - type: 'null'
           description: The cursor for fetching the next page, or `null` to fetch the first page.
           title: Next Cursor
+      - name: include_pricing
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+          title: Include Pricing
+      - name: lab_account_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          description: The lab account ID. This lab account is used to determine the availability of markers and lab tests.
+          title: Lab Account Id
+        description: The lab account ID. This lab account is used to determine the availability of markers and lab tests.
       - name: generation_method
         in: query
         required: false
@@ -631,6 +800,61 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       x-fern-sdk-group-name: lab_tests
       x-fern-sdk-method-name: get_paginated
+    servers:
+    - url: https://api.us.junction.com
+      x-fern-server-name: Production
+    - url: https://api.eu.junction.com
+      x-fern-server-name: ProductionEU
+    - url: https://api.sandbox.us.junction.com
+      x-fern-server-name: Sandbox
+    - url: https://api.sandbox.eu.junction.com
+      x-fern-server-name: SandboxEU
+  /v3/lab_test/{lab_test_id}/collection_instructions:
+    get:
+      tags:
+      - lab_tests
+      summary: Get Lab Test Collection Instructions
+      description: 'Get the tube count for an at-home phlebotomy lab test.
+
+
+        Requires enable_approxdraw_labcorp for Labcorp and enable_approxdraw for
+
+        other labs. Labcorp reuses a saved count or refreshes it with an eligible
+
+        account. Other labs may also generate and store a collection-instructions PDF.'
+      operationId: get_lab_test_collection_instructions_v3_lab_test__lab_test_id__collection_instructions_get
+      parameters:
+      - name: lab_test_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: The identifier Vital assigned to a lab test.
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetLabTestCollectionInstructionsResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      x-fern-sdk-group-name: lab_tests
+      x-fern-sdk-method-name: get_lab_test_collection_instructions
+    servers:
+    - url: https://api.us.junction.com
+      x-fern-server-name: Production
+    - url: https://api.eu.junction.com
+      x-fern-server-name: ProductionEU
+    - url: https://api.sandbox.us.junction.com
+      x-fern-server-name: Sandbox
+    - url: https://api.sandbox.eu.junction.com
+      x-fern-server-name: SandboxEU
   /v3/lab_test/{lab_test_id}/collection_instruction_pdf:
     get:
       tags:
@@ -664,14 +888,258 @@ paths:
       x-fern-sdk-group-name: lab_tests
       x-fern-sdk-method-name: get_lab_test_collection_instruction_pdf
       x-fern-streaming: true
+    servers:
+    - url: https://api.us.junction.com
+      x-fern-server-name: Production
+    - url: https://api.eu.junction.com
+      x-fern-server-name: ProductionEU
+    - url: https://api.sandbox.us.junction.com
+      x-fern-server-name: Sandbox
+    - url: https://api.sandbox.eu.junction.com
+      x-fern-server-name: SandboxEU
+  /v3/lab_test/{lab_test_id}/promotion_source:
+    get:
+      tags:
+      - lab_tests
+      summary: Get Lab Test Promotion Source
+      operationId: get_lab_test_promotion_source_v3_lab_test__lab_test_id__promotion_source_get
+      parameters:
+      - name: lab_test_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Lab Test Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LabTestPromotionSource'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      x-fern-sdk-group-name: lab_tests
+      x-fern-sdk-method-name: get_promotion_source
+    servers:
+    - url: https://api.us.junction.com
+      x-fern-server-name: Production
+    - url: https://api.eu.junction.com
+      x-fern-server-name: ProductionEU
+    - url: https://api.sandbox.us.junction.com
+      x-fern-server-name: Sandbox
+    - url: https://api.sandbox.eu.junction.com
+      x-fern-server-name: SandboxEU
 components:
   schemas:
-    HTTPValidationError:
+    LabChargePricingComponent:
       properties:
-        detail:
-          title: Detail
+        id:
+          type: string
+          const: lab_charge
+          title: Id
+        pricing:
+          anyOf:
+          - $ref: '#/components/schemas/SpecifiedPricing_ComponentPricingConditions_'
+          - $ref: '#/components/schemas/UnspecifiedPricing'
+          title: Pricing
+        marker_breakdown:
+          anyOf:
+          - additionalProperties:
+              anyOf:
+              - $ref: '#/components/schemas/SpecifiedPricing_MarkerPricingConditions_'
+              - $ref: '#/components/schemas/UnspecifiedPricing'
+            type: object
+          - type: 'null'
+          title: Marker Breakdown
       type: object
-      title: HTTPValidationError
+      required:
+      - id
+      - pricing
+      title: LabChargePricingComponent
+    LabTestPromotion:
+      properties:
+        source_sandbox_lab_test_id:
+          type: string
+          format: uuid
+          title: Source Sandbox Lab Test Id
+        production_lab_test_id:
+          type: string
+          format: uuid
+          title: Production Lab Test Id
+        status:
+          $ref: '#/components/schemas/LabTestStatus'
+          description: ℹ️ This enum is non-exhaustive.
+      type: object
+      required:
+      - source_sandbox_lab_test_id
+      - production_lab_test_id
+      - status
+      title: LabTestPromotion
+    OrderSetParameters:
+      properties:
+        fasting:
+          anyOf:
+          - $ref: '#/components/schemas/OrderSetFastingRequirement'
+          - type: 'null'
+          description: ℹ️ This enum is non-exhaustive.
+      type: object
+      title: OrderSetParameters
+    ComponentPricingConditions:
+      properties:
+        us_state:
+          anyOf:
+          - $ref: '#/components/schemas/USStatePricingCondition'
+          - type: 'null'
+        reflex:
+          anyOf:
+          - $ref: '#/components/schemas/ReflexPricingCondition'
+          - type: 'null'
+        critical_care:
+          anyOf:
+          - $ref: '#/components/schemas/CriticalCarePricingCondition'
+          - type: 'null'
+      type: object
+      title: ComponentPricingConditions
+    LabTestCollectionMethod:
+      type: string
+      enum:
+      - testkit
+      - walk_in_test
+      - at_home_phlebotomy
+      - on_site_collection
+      title: LabTestCollectionMethod
+      description: The method used to perform a lab test. ℹ️ This enum is non-exhaustive.
+    ClientFacingLabTest:
+      properties:
+        id:
+          type: string
+          format: uuid
+          title: Id
+          description: ''
+        slug:
+          type: string
+          title: Slug
+          description: ''
+        name:
+          type: string
+          title: Name
+          description: ''
+        sample_type:
+          $ref: '#/components/schemas/LabTestSampleType'
+          description: ℹ️ This enum is non-exhaustive.
+        method:
+          $ref: '#/components/schemas/LabTestCollectionMethod'
+          description: ℹ️ This enum is non-exhaustive.
+        price:
+          type: number
+          title: Price
+          description: ''
+        is_active:
+          type: boolean
+          title: Is Active
+          description: Deprecated. Use status instead.
+        status:
+          $ref: '#/components/schemas/LabTestStatus'
+          description: ℹ️ This enum is non-exhaustive.
+        fasting:
+          type: boolean
+          title: Fasting
+          description: Defines whether a lab test requires fasting.
+          default: false
+        lab:
+          anyOf:
+          - $ref: '#/components/schemas/ClientFacingLab'
+          - type: 'null'
+          description: ''
+        markers:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/ClientFacingMarker'
+            type: array
+          - type: 'null'
+          title: Markers
+          description: ''
+        is_delegated:
+          type: boolean
+          title: Is Delegated
+          description: Deprecated and always false. Delegation is now at the lab account level. Used to denote whether a lab test requires using non-Vital physician networks.
+          default: false
+          deprecated: true
+        auto_generated:
+          type: boolean
+          title: Auto Generated
+          description: Whether the lab test was auto-generated by Vital
+          default: false
+        source_sandbox_lab_test_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Source Sandbox Lab Test Id
+        has_collection_instructions:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Has Collection Instructions
+          description: Whether or not the lab test has collection instructions.
+        common_tat_days:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Common Tat Days
+          description: The common turnaround time in days for the lab test. This is the expected time for the lab to process the test and return results.
+        worst_case_tat_days:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Worst Case Tat Days
+          description: The worst-case turnaround time in days for the lab test. This is the maximum time the lab may take to process the test and return results.
+      type: object
+      required:
+      - id
+      - slug
+      - name
+      - sample_type
+      - method
+      - price
+      - is_active
+      - status
+      - lab
+      - markers
+      title: ClientFacingLabTest
+      example:
+        lab_test:
+          description: Cholesterol test
+          fasting: false
+          has_collection_instructions: false
+          is_delegated: false
+          lab:
+            city: New York
+            first_line_address: 123 Main St
+            name: US Specialty Lab
+            slug: USSL
+            zipcode: '10001'
+          markers:
+          - description: Hemoglobin A1c is a form of hemoglobin that is measured identify your average blood sugar levels over the past 3 months.
+            id: 1
+            lab_id: 1
+            name: Hemoglobin A1c
+            price: '10.00'
+            provider_id: '1234'
+            slug: hemoglobin-a1c
+            type: biomarker
+            unit: '%'
+          method: testkit
+          name: Lipids Panel
+          price: 10.0
+          sample_type: dried blood spot
+          status: active
     LabTestStatus:
       type: string
       enum:
@@ -680,6 +1148,456 @@ components:
       - inactive
       title: LabTestStatus
       description: ℹ️ This enum is non-exhaustive.
+    ClientFacingLab:
+      properties:
+        id:
+          type: integer
+          title: Id
+        slug:
+          type: string
+          title: Slug
+        name:
+          type: string
+          title: Name
+        first_line_address:
+          type: string
+          title: First Line Address
+        city:
+          type: string
+          title: City
+        zipcode:
+          type: string
+          title: Zipcode
+        collection_methods:
+          items:
+            $ref: '#/components/schemas/LabTestCollectionMethod'
+          type: array
+          title: Collection Methods
+        sample_types:
+          items:
+            $ref: '#/components/schemas/LabTestSampleType'
+          type: array
+          title: Sample Types
+        logo_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Logo Url
+      type: object
+      required:
+      - id
+      - slug
+      - name
+      - first_line_address
+      - city
+      - zipcode
+      - collection_methods
+      - sample_types
+      title: ClientFacingLab
+      example:
+        city: San Francisco
+        collection_methods:
+        - testkit
+        first_line_address: 123 Main St
+        id: 1
+        logo_url: https://assets.tryvital.io/labs/labcorp.png
+        name: LabCorp
+        sample_types:
+        - saliva
+        slug: labcorp
+        zipcode: '91789'
+    GenericPricingComponent:
+      properties:
+        id:
+          $ref: '#/components/schemas/PricingComponentID'
+          description: ℹ️ This enum is non-exhaustive.
+        pricing:
+          anyOf:
+          - $ref: '#/components/schemas/SpecifiedPricing_ComponentPricingConditions_'
+          - $ref: '#/components/schemas/UnspecifiedPricing'
+          title: Pricing
+      type: object
+      required:
+      - id
+      - pricing
+      title: GenericPricingComponent
+    MarkerPricingConditions:
+      properties:
+        us_state:
+          anyOf:
+          - $ref: '#/components/schemas/USStatePricingCondition'
+          - type: 'null'
+        reflex:
+          anyOf:
+          - $ref: '#/components/schemas/ReflexPricingCondition'
+          - type: 'null'
+      type: object
+      title: MarkerPricingConditions
+    CriticalCarePricingCondition:
+      properties: {}
+      type: object
+      title: CriticalCarePricingCondition
+    PricingComponentID:
+      type: string
+      enum:
+      - placed_order_charge
+      - requisition_charge
+      - draw_charge
+      - mobile_phlebotomy_charge
+      - delivered_kit_charge
+      - completed_kit_charge
+      - critical_care_charge
+      - lab_charge
+      - lab_priority_charge
+      title: PricingComponentID
+      description: ℹ️ This enum is non-exhaustive.
+    GetMarkersResponse:
+      properties:
+        markers:
+          items:
+            $ref: '#/components/schemas/ClientFacingMarkerComplete'
+          type: array
+          title: Markers
+        total:
+          anyOf:
+          - type: integer
+            minimum: 0.0
+          - type: 'null'
+          title: Total
+        page:
+          anyOf:
+          - type: integer
+            minimum: 0.0
+          - type: 'null'
+          title: Page
+        size:
+          anyOf:
+          - type: integer
+            minimum: 0.0
+          - type: 'null'
+          title: Size
+        pages:
+          anyOf:
+          - type: integer
+            minimum: 0.0
+          - type: 'null'
+          title: Pages
+        pricing:
+          anyOf:
+          - $ref: '#/components/schemas/MarkerPricingResponse'
+          - type: 'null'
+      type: object
+      required:
+      - markers
+      - total
+      - page
+      - size
+      - pages
+      title: GetMarkersResponse
+    CreateLabTestRequest:
+      properties:
+        marker_ids:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Marker Ids
+        provider_ids:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Provider Ids
+        name:
+          type: string
+          title: Name
+        method:
+          $ref: '#/components/schemas/LabTestCollectionMethod'
+          description: ℹ️ This enum is non-exhaustive.
+        description:
+          type: string
+          title: Description
+        fasting:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Fasting
+          default: false
+        lab_account_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Lab Account Id
+        lab_slug:
+          anyOf:
+          - $ref: '#/components/schemas/Labs'
+          - type: 'null'
+          description: ℹ️ This enum is non-exhaustive.
+      type: object
+      required:
+      - name
+      - method
+      - description
+      title: CreateLabTestRequest
+    SpecifiedPricing_MarkerPricingConditions_:
+      properties:
+        base_amount_minor:
+          type: integer
+          title: Base Amount Minor
+          description: Amount chargeable in the smallest denomination of the currency, e.g. cents for USD.
+        modifiers:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/PricingModifier_MarkerPricingConditions_'
+            type: array
+          - type: 'null'
+          title: Modifiers
+      type: object
+      required:
+      - base_amount_minor
+      title: SpecifiedPricing[MarkerPricingConditions]
+    Question:
+      properties:
+        id:
+          type: integer
+          format: int64
+          title: Id
+        required:
+          type: boolean
+          title: Required
+        code:
+          type: string
+          title: Code
+        value:
+          type: string
+          title: Value
+        type:
+          $ref: '#/components/schemas/QuestionType'
+          description: ℹ️ This enum is non-exhaustive.
+        sequence:
+          type: integer
+          title: Sequence
+        answers:
+          items:
+            $ref: '#/components/schemas/Answer'
+          type: array
+          title: Answers
+        constraint:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Constraint
+        default:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Default
+      type: object
+      required:
+      - id
+      - required
+      - code
+      - value
+      - type
+      - sequence
+      - answers
+      title: Question
+    ClientFacingResult:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        slug:
+          type: string
+          title: Slug
+        lab_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Lab Id
+        provider_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Provider Id
+        required:
+          type: boolean
+          title: Required
+        loinc:
+          anyOf:
+          - $ref: '#/components/schemas/ClientFacingLoinc'
+          - type: 'null'
+      type: object
+      required:
+      - id
+      - name
+      - slug
+      - required
+      title: ClientFacingResult
+      example:
+        id: 1
+        lab_id: 1
+        loinc:
+          code: 1234-1
+          id: 1
+          name: Hemoglobin A1c
+          slug: hemoglobin-a1c
+          unit: '%'
+        name: Hemoglobin A1c
+        provider_id: '1234'
+        slug: hemoglobin-a1c
+    MarkerType:
+      type: string
+      enum:
+      - biomarker
+      - panel
+      title: MarkerType
+      description: ℹ️ This enum is non-exhaustive.
+    PricingModifier_MarkerPricingConditions_:
+      properties:
+        delta_amount_minor:
+          anyOf:
+          - type: integer
+          - $ref: '#/components/schemas/PricingModifierRange'
+          title: Delta Amount Minor
+          description: Amount delta in the smallest denomination of the currency, e.g. cents for USD.
+        conditions:
+          $ref: '#/components/schemas/MarkerPricingConditions'
+        keys:
+          items:
+            type: string
+          type: array
+          title: Keys
+          description: Property names present in conditions, including names unknown to a deserializer.
+      type: object
+      required:
+      - delta_amount_minor
+      - conditions
+      - keys
+      title: PricingModifier[MarkerPricingConditions]
+    ReflexPricingCondition:
+      properties: {}
+      type: object
+      title: ReflexPricingCondition
+    UpdateLabTestRequest:
+      properties:
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        active:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Active
+      type: object
+      title: UpdateLabTestRequest
+    MarkerPricingResponse:
+      properties:
+        currency:
+          type: string
+          const: USD
+          title: Currency
+          default: USD
+        data:
+          additionalProperties:
+            anyOf:
+            - $ref: '#/components/schemas/SpecifiedPricing_MarkerPricingConditions_'
+            - $ref: '#/components/schemas/UnspecifiedPricing'
+          type: object
+          title: Data
+      type: object
+      required:
+      - data
+      title: MarkerPricingResponse
+      description: Per-marker pricing, keyed by marker ID.
+    PricingModifierRange:
+      properties:
+        minimum:
+          type: integer
+          title: Minimum
+        maximum:
+          type: integer
+          title: Maximum
+      type: object
+      required:
+      - minimum
+      - maximum
+      title: PricingModifierRange
+    LabTestPromotionSource:
+      properties:
+        name:
+          type: string
+          title: Name
+        description:
+          type: string
+          title: Description
+        method:
+          $ref: '#/components/schemas/LabTestCollectionMethod'
+          description: ℹ️ This enum is non-exhaustive.
+        fasting:
+          type: boolean
+          title: Fasting
+        lab_slug:
+          $ref: '#/components/schemas/Labs'
+          description: ℹ️ This enum is non-exhaustive.
+        provider_ids:
+          items:
+            type: string
+          type: array
+          title: Provider Ids
+        source_sandbox_lab_test_id:
+          type: string
+          format: uuid
+          title: Source Sandbox Lab Test Id
+      type: object
+      required:
+      - name
+      - description
+      - method
+      - fasting
+      - lab_slug
+      - provider_ids
+      - source_sandbox_lab_test_id
+      title: LabTestPromotionSource
+    LabTestPanelPricing:
+      properties:
+        pricing:
+          anyOf:
+          - $ref: '#/components/schemas/SpecifiedPricing_MarkerPricingConditions_'
+          - $ref: '#/components/schemas/UnspecifiedPricing'
+          title: Pricing
+        marker_breakdown:
+          anyOf:
+          - additionalProperties:
+              anyOf:
+              - $ref: '#/components/schemas/SpecifiedPricing_MarkerPricingConditions_'
+              - $ref: '#/components/schemas/UnspecifiedPricing'
+            type: object
+          - type: 'null'
+          title: Marker Breakdown
+      type: object
+      required:
+      - pricing
+      title: LabTestPanelPricing
+    USStatePricingCondition:
+      properties:
+        any_of:
+          items:
+            type: string
+          type: array
+          title: Any Of
+      type: object
+      required:
+      - any_of
+      title: USStatePricingCondition
     LabTestGenerationMethodFilter:
       type: string
       enum:
@@ -688,13 +1606,23 @@ components:
       - all
       title: LabTestGenerationMethodFilter
       description: ℹ️ This enum is non-exhaustive.
-    MarkerType:
-      type: string
-      enum:
-      - biomarker
-      - panel
-      title: MarkerType
-      description: ℹ️ This enum is non-exhaustive.
+    SpecifiedPricing_ComponentPricingConditions_:
+      properties:
+        base_amount_minor:
+          type: integer
+          title: Base Amount Minor
+          description: Amount chargeable in the smallest denomination of the currency, e.g. cents for USD.
+        modifiers:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/PricingModifier_ComponentPricingConditions_'
+            type: array
+          - type: 'null'
+          title: Modifiers
+      type: object
+      required:
+      - base_amount_minor
+      title: SpecifiedPricing[ComponentPricingConditions]
     ClientFacingMarkerComplete:
       properties:
         id:
@@ -794,129 +1722,54 @@ components:
         slug: hemoglobin-a1c
         type: biomarker
         unit: '%'
-    AoE:
+    OrderSetPricing:
       properties:
-        questions:
+        aggregate_pricing:
+          anyOf:
+          - $ref: '#/components/schemas/SpecifiedPricing_ComponentPricingConditions_'
+          - $ref: '#/components/schemas/UnspecifiedPricing'
+          title: Aggregate Pricing
+        components:
           items:
-            $ref: '#/components/schemas/Question'
+            oneOf:
+            - $ref: '#/components/schemas/LabChargePricingComponent'
+            - $ref: '#/components/schemas/GenericPricingComponent'
           type: array
-          title: Questions
+          title: Components
       type: object
       required:
-      - questions
-      title: AoE
-    QuestionType:
+      - aggregate_pricing
+      - components
+      title: OrderSetPricing
+    OrderSetFastingRequirement:
       type: string
       enum:
-      - choice
-      - text
-      - numeric
-      - multi_choice
-      title: QuestionType
+      - fasting_not_required
+      - fasting_required
+      title: OrderSetFastingRequirement
       description: ℹ️ This enum is non-exhaustive.
-    Question:
+    Billing:
+      type: string
+      enum:
+      - client_bill
+      - commercial_insurance
+      - patient_bill_passthrough
+      - patient_bill
+      - upfront_payment
+      title: Billing
+      description: ℹ️ This enum is non-exhaustive.
+    GetLabTestCollectionInstructionsResponse:
       properties:
-        id:
+        total_tubes:
           type: integer
-          format: int64
-          title: Id
-        required:
-          type: boolean
-          title: Required
-        code:
-          type: string
-          title: Code
-        value:
-          type: string
-          title: Value
-        type:
-          $ref: '#/components/schemas/QuestionType'
-          description: ℹ️ This enum is non-exhaustive.
-        sequence:
-          type: integer
-          title: Sequence
-        answers:
-          items:
-            $ref: '#/components/schemas/Answer'
-          type: array
-          title: Answers
-        constraint:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Constraint
-        default:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Default
+          title: Total Tubes
+        lab:
+          $ref: '#/components/schemas/ClientFacingLab'
       type: object
       required:
-      - id
-      - required
-      - code
-      - value
-      - type
-      - sequence
-      - answers
-      title: Question
-    GetMarkersResponse:
-      properties:
-        markers:
-          items:
-            $ref: '#/components/schemas/ClientFacingMarkerComplete'
-          type: array
-          title: Markers
-        total:
-          anyOf:
-          - type: integer
-            minimum: 0
-          - type: 'null'
-          title: Total
-        page:
-          anyOf:
-          - type: integer
-            minimum: 0
-          - type: 'null'
-          title: Page
-        size:
-          anyOf:
-          - type: integer
-            minimum: 0
-          - type: 'null'
-          title: Size
-        pages:
-          anyOf:
-          - type: integer
-            minimum: 0
-          - type: 'null'
-          title: Pages
-      type: object
-      required:
-      - markers
-      - total
-      - page
-      - size
-      - pages
-      title: GetMarkersResponse
-    AddOnOrder:
-      properties:
-        marker_ids:
-          anyOf:
-          - items:
-              type: integer
-            type: array
-          - type: 'null'
-          title: Marker Ids
-        provider_ids:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Provider Ids
-      type: object
-      title: AddOnOrder
+      - total_tubes
+      - lab
+      title: GetLabTestCollectionInstructionsResponse
     LabTestResourcesResponse:
       properties:
         data:
@@ -930,11 +1783,39 @@ components:
           - type: 'null'
           title: Next Cursor
           description: The cursor for fetching the next page, or `null` to fetch the first page.
+        pricing:
+          anyOf:
+          - $ref: '#/components/schemas/GetLabTestPricingResponse'
+          - type: 'null'
       type: object
       required:
       - data
       - next_cursor
       title: LabTestResourcesResponse
+    EstimateOrderSetPricingBody:
+      properties:
+        order_sets:
+          items:
+            $ref: '#/components/schemas/OrderSetRequest'
+          type: array
+          minItems: 1
+          title: Order Sets
+        modality:
+          $ref: '#/components/schemas/LabTestCollectionMethod'
+          description: ℹ️ This enum is non-exhaustive.
+        us_state:
+          type: string
+          title: Us State
+        billing:
+          $ref: '#/components/schemas/Billing'
+          default: client_bill
+          description: ℹ️ This enum is non-exhaustive.
+      type: object
+      required:
+      - order_sets
+      - modality
+      - us_state
+      title: EstimateOrderSetPricingBody
     ClientFacingMarker:
       properties:
         id:
@@ -1028,67 +1909,198 @@ components:
         type: biomarker
         unit: '%'
         worst_case_tat_days: 5
-    LabTestCollectionMethod:
-      type: string
-      enum:
-      - testkit
-      - walk_in_test
-      - at_home_phlebotomy
-      - on_site_collection
-      title: LabTestCollectionMethod
-      description: The method used to perform a lab test. ℹ️ This enum is non-exhaustive.
-    ClientFacingLab:
+    ClientFacingLoinc:
       properties:
         id:
           type: integer
           title: Id
-        slug:
-          type: string
-          title: Slug
         name:
           type: string
           title: Name
-        first_line_address:
+        slug:
           type: string
-          title: First Line Address
-        city:
+          title: Slug
+        code:
           type: string
-          title: City
-        zipcode:
-          type: string
-          title: Zipcode
-        collection_methods:
-          items:
-            $ref: '#/components/schemas/LabTestCollectionMethod'
-          type: array
-          title: Collection Methods
-        sample_types:
-          items:
-            $ref: '#/components/schemas/LabTestSampleType'
-          type: array
-          title: Sample Types
+          title: Code
+        unit:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Unit
       type: object
       required:
       - id
-      - slug
       - name
-      - first_line_address
-      - city
-      - zipcode
-      - collection_methods
-      - sample_types
-      title: ClientFacingLab
+      - slug
+      - code
+      title: ClientFacingLoinc
       example:
-        city: San Francisco
-        collection_methods:
-        - testkit
-        first_line_address: 123 Main St
+        code: 1234-1
         id: 1
-        name: LabCorp
-        sample_types:
-        - saliva
-        slug: labcorp
-        zipcode: '91789'
+        name: Hemoglobin A1c
+        slug: hemoglobin-a1c
+        unit: '%'
+    PricingModifier_ComponentPricingConditions_:
+      properties:
+        delta_amount_minor:
+          anyOf:
+          - type: integer
+          - $ref: '#/components/schemas/PricingModifierRange'
+          title: Delta Amount Minor
+          description: Amount delta in the smallest denomination of the currency, e.g. cents for USD.
+        conditions:
+          $ref: '#/components/schemas/ComponentPricingConditions'
+        keys:
+          items:
+            type: string
+          type: array
+          title: Keys
+          description: Property names present in conditions, including names unknown to a deserializer.
+      type: object
+      required:
+      - delta_amount_minor
+      - conditions
+      - keys
+      title: PricingModifier[ComponentPricingConditions]
+    GetLabTestPricingResponse:
+      properties:
+        currency:
+          type: string
+          const: USD
+          title: Currency
+          default: USD
+        data:
+          additionalProperties:
+            $ref: '#/components/schemas/LabTestPanelPricing'
+          type: object
+          title: Data
+      type: object
+      required:
+      - data
+      title: GetLabTestPricingResponse
+      description: Aggregated per-panel pricing, keyed by lab test ID.
+    QuestionType:
+      type: string
+      enum:
+      - choice
+      - text
+      - numeric
+      - multi_choice
+      title: QuestionType
+      description: ℹ️ This enum is non-exhaustive.
+    Answer:
+      properties:
+        id:
+          type: integer
+          title: Id
+        code:
+          type: string
+          title: Code
+        value:
+          type: string
+          title: Value
+      type: object
+      required:
+      - id
+      - code
+      - value
+      title: Answer
+    EstimateOrderSetPricingResponse:
+      properties:
+        currency:
+          type: string
+          const: USD
+          title: Currency
+        data:
+          items:
+            $ref: '#/components/schemas/OrderSetPricing'
+          type: array
+          title: Data
+      type: object
+      required:
+      - currency
+      - data
+      title: EstimateOrderSetPricingResponse
+    AddOnOrder:
+      properties:
+        marker_ids:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Marker Ids
+        provider_ids:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Provider Ids
+      type: object
+      title: AddOnOrder
+    Labs:
+      type: string
+      enum:
+      - ayumetrix
+      - spiriplex
+      - ussl
+      - quest
+      - sonora_quest
+      - labcorp
+      - bioreference
+      - us_biotek
+      - manual
+      - sanocardio
+      - ihd
+      - nexus
+      - my_uti
+      - crl
+      - mtl
+      title: Labs
+      description: ℹ️ This enum is non-exhaustive.
+    AoE:
+      properties:
+        questions:
+          items:
+            $ref: '#/components/schemas/Question'
+          type: array
+          title: Questions
+      type: object
+      required:
+      - questions
+      title: AoE
+    UnspecifiedPricing:
+      properties:
+        unspecified:
+          type: string
+          enum:
+          - refer_to_contract
+          - price_unavailable
+          title: Unspecified
+          description: ℹ️ This enum is non-exhaustive.
+      type: object
+      required:
+      - unspecified
+      title: UnspecifiedPricing
+    HTTPValidationError:
+      properties:
+        detail:
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    LabTestSampleType:
+      type: string
+      enum:
+      - dried_blood_spot
+      - arm_collector
+      - serum
+      - saliva
+      - urine
+      - stool
+      title: LabTestSampleType
+      description: The type of sample used to perform a lab test. ℹ️ This enum is non-exhaustive.
     OrderSetRequest:
       properties:
         lab_test_ids:
@@ -1109,118 +2121,13 @@ components:
             format: uuid
           - type: 'null'
           title: Lab Account Id
+        parameters:
+          anyOf:
+          - $ref: '#/components/schemas/OrderSetParameters'
+          - type: 'null'
       type: object
       title: OrderSetRequest
-    UpdateLabTestRequest:
-      properties:
-        name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Name
-        active:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Active
-      type: object
-      title: UpdateLabTestRequest
-    CreateLabTestRequest:
-      properties:
-        marker_ids:
-          anyOf:
-          - items:
-              type: integer
-            type: array
-          - type: 'null'
-          title: Marker Ids
-        provider_ids:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Provider Ids
-        name:
-          type: string
-          title: Name
-        method:
-          $ref: '#/components/schemas/LabTestCollectionMethod'
-          description: ℹ️ This enum is non-exhaustive.
-        description:
-          type: string
-          title: Description
-        fasting:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Fasting
-          default: false
-        lab_account_id:
-          anyOf:
-          - type: string
-            format: uuid
-          - type: 'null'
-          title: Lab Account Id
-        lab_slug:
-          anyOf:
-          - $ref: '#/components/schemas/Labs'
-          - type: 'null'
-          description: ℹ️ This enum is non-exhaustive.
-      type: object
-      required:
-      - name
-      - method
-      - description
-      title: CreateLabTestRequest
-    ClientFacingResult:
-      properties:
-        id:
-          type: integer
-          title: Id
-        name:
-          type: string
-          title: Name
-        slug:
-          type: string
-          title: Slug
-        lab_id:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Lab Id
-        provider_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Provider Id
-        required:
-          type: boolean
-          title: Required
-        loinc:
-          anyOf:
-          - $ref: '#/components/schemas/ClientFacingLoinc'
-          - type: 'null'
-      type: object
-      required:
-      - id
-      - name
-      - slug
-      - required
-      title: ClientFacingResult
-      example:
-        id: 1
-        lab_id: 1
-        loinc:
-          code: 1234-1
-          id: 1
-          name: Hemoglobin A1c
-          slug: hemoglobin-a1c
-          unit: '%'
-        name: Hemoglobin A1c
-        provider_id: '1234'
-        slug: hemoglobin-a1c
-    ClientFacingLabTest:
+    ClientFacingLabTest_2:
       properties:
         id:
           type: string
@@ -1259,7 +2166,7 @@ components:
           default: false
         lab:
           anyOf:
-          - $ref: '#/components/schemas/ClientFacingLab'
+          - $ref: '#/components/schemas/ClientFacingLab_2'
           - type: 'null'
           description: ''
         markers:
@@ -1339,39 +2246,116 @@ components:
           price: 10
           sample_type: dried blood spot
           status: active
-    ClientFacingLoinc:
+    ClientFacingLab_2:
       properties:
         id:
           type: integer
           title: Id
-        name:
-          type: string
-          title: Name
         slug:
           type: string
           title: Slug
-        code:
+        name:
           type: string
-          title: Code
-        unit:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Unit
+          title: Name
+        first_line_address:
+          type: string
+          title: First Line Address
+        city:
+          type: string
+          title: City
+        zipcode:
+          type: string
+          title: Zipcode
+        collection_methods:
+          items:
+            $ref: '#/components/schemas/LabTestCollectionMethod'
+          type: array
+          title: Collection Methods
+        sample_types:
+          items:
+            $ref: '#/components/schemas/LabTestSampleType'
+          type: array
+          title: Sample Types
       type: object
       required:
       - id
-      - name
       - slug
-      - code
-      title: ClientFacingLoinc
+      - name
+      - first_line_address
+      - city
+      - zipcode
+      - collection_methods
+      - sample_types
+      title: ClientFacingLab
       example:
-        code: 1234-1
+        city: San Francisco
+        collection_methods:
+        - testkit
+        first_line_address: 123 Main St
         id: 1
-        name: Hemoglobin A1c
-        slug: hemoglobin-a1c
-        unit: '%'
-    Labs:
+        name: LabCorp
+        sample_types:
+        - saliva
+        slug: labcorp
+        zipcode: '91789'
+    GetMarkersResponse_2:
+      properties:
+        markers:
+          items:
+            $ref: '#/components/schemas/ClientFacingMarkerComplete'
+          type: array
+          title: Markers
+        total:
+          anyOf:
+          - type: integer
+            minimum: 0
+          - type: 'null'
+          title: Total
+        page:
+          anyOf:
+          - type: integer
+            minimum: 0
+          - type: 'null'
+          title: Page
+        size:
+          anyOf:
+          - type: integer
+            minimum: 0
+          - type: 'null'
+          title: Size
+        pages:
+          anyOf:
+          - type: integer
+            minimum: 0
+          - type: 'null'
+          title: Pages
+      type: object
+      required:
+      - markers
+      - total
+      - page
+      - size
+      - pages
+      title: GetMarkersResponse
+    LabTestResourcesResponse_2:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/ClientFacingLabTest_2'
+          type: array
+          title: Data
+        next_cursor:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Cursor
+          description: The cursor for fetching the next page, or `null` to fetch the first page.
+      type: object
+      required:
+      - data
+      - next_cursor
+      title: LabTestResourcesResponse
+    Labs_2:
       type: string
       enum:
       - ayumetrix
@@ -1390,37 +2374,34 @@ components:
       - crl
       title: Labs
       description: ℹ️ This enum is non-exhaustive.
-    LabTestSampleType:
-      type: string
-      enum:
-      - dried_blood_spot
-      - arm_collector
-      - serum
-      - saliva
-      - urine
-      - stool
-      title: LabTestSampleType
-      description: The type of sample used to perform a lab test. ℹ️ This enum is non-exhaustive.
-    Answer:
+    OrderSetRequest_2:
       properties:
-        id:
-          type: integer
-          title: Id
-        code:
-          type: string
-          title: Code
-        value:
-          type: string
-          title: Value
+        lab_test_ids:
+          anyOf:
+          - items:
+              type: string
+              format: uuid
+            type: array
+          - type: 'null'
+          title: Lab Test Ids
+        add_on:
+          anyOf:
+          - $ref: '#/components/schemas/AddOnOrder'
+          - type: 'null'
+        lab_account_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Lab Account Id
       type: object
-      required:
-      - id
-      - code
-      - value
-      title: Answer
+      title: OrderSetRequest
   securitySchemes:
     apiKeyAuth:
       type: apiKey
       in: header
       name: x-vital-api-key
       description: Vital Team API Key
+x-refined-from:
+- junction-openapi-live-2026-10-12.json
+- vital-openapi-original.json

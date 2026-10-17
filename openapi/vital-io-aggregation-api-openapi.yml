@@ -1,8 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Junction Aggregation API
-  description: https://docs.junction.com/
-  version: 0.4.497
+  title: Vital Io Aggregation API
+  version: '1.0'
+  description: 'Operations tagged aggregation across 2 of this provider''s published API definitions: junction-openapi-live-2026-10-12.json, vital-openapi-original.json. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.us.junction.com
   x-fern-server-name: Production
@@ -42,6 +42,15 @@ webhooks:
             application/json:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
+    servers:
+    - url: https://api.us.junction.com
+      x-fern-server-name: Production
+    - url: https://api.eu.junction.com
+      x-fern-server-name: ProductionEU
+    - url: https://api.sandbox.us.junction.com
+      x-fern-server-name: Sandbox
+    - url: https://api.sandbox.eu.junction.com
+      x-fern-server-name: SandboxEU
 components:
   schemas:
     HTTPValidationError:
@@ -50,7 +59,74 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    ClientFacingContinuousQueryResultTableChanged:
+      properties:
+        event_type:
+          type: string
+          const: continuous_query.result_table.changed
+          title: Event Type
+          x-junction-exhaustive: true
+        user_id:
+          type: string
+          format: uuid
+          title: User Id
+        client_user_id:
+          type: string
+          format: uuid
+          title: Client User Id
+        team_id:
+          type: string
+          format: uuid
+          title: Team Id
+        data:
+          items:
+            $ref: '#/components/schemas/ContinuousQueryResultTableChanges'
+          type: array
+          title: Data
+      type: object
+      required:
+      - event_type
+      - user_id
+      - client_user_id
+      - team_id
+      - data
+      title: ClientFacingContinuousQueryResultTableChanged
     ContinuousQueryResultTableChanges:
+      properties:
+        query_id:
+          type: string
+          format: uuid
+          title: Query Id
+        query_slug:
+          type: string
+          title: Query Slug
+        data:
+          additionalProperties:
+            items: {}
+            type: array
+          type: object
+          title: Data
+      type: object
+      required:
+      - query_id
+      - query_slug
+      - data
+      title: ContinuousQueryResultTableChanges
+      example:
+        data:
+          group_key.0:
+          - '2025-02-17T00:00:00'
+          mean.efficiency:
+          - 98.22
+          mean.sleep_score:
+          - 76.75
+          min.sleep_score:
+          - 61.0
+          newest.chronotype:
+          - third
+        query_id: eb25038c-0d0b-48c3-9305-f6e115a9c486
+        query_slug: sleep-analysis-v1
+    ContinuousQueryResultTableChanges_2:
       properties:
         query_id:
           type: string
@@ -85,41 +161,12 @@ components:
           - third
         query_id: 3d459f48-a736-476a-8714-95aa3b2b3708
         query_slug: sleep-analysis-v1
-    ClientFacingContinuousQueryResultTableChanged:
-      properties:
-        event_type:
-          type: string
-          const: continuous_query.result_table.changed
-          title: Event Type
-          x-junction-exhaustive: true
-        user_id:
-          type: string
-          format: uuid
-          title: User Id
-        client_user_id:
-          type: string
-          format: uuid
-          title: Client User Id
-        team_id:
-          type: string
-          format: uuid
-          title: Team Id
-        data:
-          items:
-            $ref: '#/components/schemas/ContinuousQueryResultTableChanges'
-          type: array
-          title: Data
-      type: object
-      required:
-      - event_type
-      - user_id
-      - client_user_id
-      - team_id
-      - data
-      title: ClientFacingContinuousQueryResultTableChanged
   securitySchemes:
     apiKeyAuth:
       type: apiKey
       in: header
       name: x-vital-api-key
       description: Vital Team API Key
+x-refined-from:
+- junction-openapi-live-2026-10-12.json
+- vital-openapi-original.json

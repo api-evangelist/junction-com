@@ -1,0 +1,1000 @@
+openapi: 3.2.0
+info:
+  title: Junction Checkout API
+  description: https://docs.junction.com/
+  version: 0.4.911
+servers:
+- url: https://api.us.junction.com
+  x-fern-server-name: Production
+- url: https://api.eu.junction.com
+  x-fern-server-name: ProductionEU
+- url: https://api.sandbox.us.junction.com
+  x-fern-server-name: Sandbox
+- url: https://api.sandbox.eu.junction.com
+  x-fern-server-name: SandboxEU
+security:
+- apiKeyAuth: []
+tags:
+- name: Checkout
+paths:
+  /checkout/v1/session:
+    post:
+      tags:
+      - Checkout
+      summary: Create Session
+      description: 'Create a checkout session for a quote.
+
+
+        Retries carrying the same X-Idempotency-Key attach to the existing session
+
+        and return its identifiers; omitting the key deliberately creates a fresh
+
+        attempt. The session expires at the quote''s expiry or 24 hours after
+
+        creation, whichever comes first.'
+      operationId: create_session_checkout_v1_session_post
+      parameters:
+      - name: X-Idempotency-Key
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: X-Idempotency-Key
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCheckoutSessionBody'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckoutSession'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      x-fern-sdk-group-name: checkout
+      x-fern-sdk-method-name: create_checkout_session
+      x-fern-availability: beta
+  /checkout/v1/session/{checkout_session_id}:
+    get:
+      tags:
+      - Checkout
+      summary: Get Session
+      description: 'Get the checkout session snapshot.
+
+
+        In-flight sessions reflect live workflow state; terminal sessions are
+
+        served from the persisted snapshot. A read arriving moments after session
+
+        creation can 404 until the workflow''s first persistence write commits.'
+      operationId: get_session_checkout_v1_session__checkout_session_id__get
+      parameters:
+      - name: checkout_session_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Checkout Session Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckoutSession'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      x-fern-sdk-group-name: checkout
+      x-fern-sdk-method-name: get_checkout_session
+      x-fern-availability: beta
+  /checkout/v1/session/{checkout_session_id}/confirm:
+    post:
+      tags:
+      - Checkout
+      summary: Confirm Session
+      description: 'Confirm the checkout session after completing payment.
+
+
+        In-flight sessions verify payment against the channel (Stripe) and report
+
+        order progress; terminal sessions return the persisted snapshot untouched.'
+      operationId: confirm_session_checkout_v1_session__checkout_session_id__confirm_post
+      parameters:
+      - name: checkout_session_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Checkout Session Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckoutSession'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      x-fern-sdk-group-name: checkout
+      x-fern-sdk-method-name: confirm_checkout_session
+      x-fern-availability: beta
+  /checkout/v1/quote:
+    post:
+      tags:
+      - Checkout
+      summary: Create Quote
+      operationId: create_quote_checkout_v1_quote_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCheckoutQuoteBody'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckoutQuote'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      x-fern-sdk-group-name: checkout
+      x-fern-sdk-method-name: create_quote
+      x-fern-availability: beta
+  /checkout/v1/quote/{quote_id}/refine:
+    post:
+      tags:
+      - Checkout
+      summary: Refine Quote
+      operationId: refine_quote_checkout_v1_quote__quote_id__refine_post
+      parameters:
+      - name: quote_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Quote Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefineCheckoutQuoteBody'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckoutQuote'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      x-fern-sdk-group-name: checkout
+      x-fern-sdk-method-name: refine_quote
+      x-fern-availability: beta
+  /checkout/v1/quote/{quote_id}:
+    get:
+      tags:
+      - Checkout
+      summary: Get Quote
+      operationId: get_quote_checkout_v1_quote__quote_id__get
+      parameters:
+      - name: quote_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Quote Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckoutQuote'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      x-fern-sdk-group-name: checkout
+      x-fern-sdk-method-name: get_quote
+      x-fern-availability: beta
+webhooks:
+  checkout.quote.created:
+    post:
+      tags:
+      - Checkout
+      summary: Checkout Quote Created
+      operationId: checkout_quote_createdcheckout_quote_created_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientFacingCheckoutQuoteCreated'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  checkout.session.created:
+    post:
+      tags:
+      - Checkout
+      summary: Checkout Session Created
+      operationId: checkout_session_createdcheckout_session_created_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientFacingCheckoutSessionCreated'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  checkout.session.updated:
+    post:
+      tags:
+      - Checkout
+      summary: Checkout Session Updated
+      operationId: checkout_session_updatedcheckout_session_updated_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientFacingCheckoutSessionUpdated'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    ClientFacingCheckoutQuoteCreated:
+      properties:
+        event_type:
+          type: string
+          const: checkout.quote.created
+          title: Event Type
+          x-junction-exhaustive: true
+        team_id:
+          type: string
+          format: uuid
+          title: Team Id
+        data:
+          $ref: '#/components/schemas/CheckoutQuote'
+      type: object
+      required:
+      - event_type
+      - team_id
+      - data
+      title: ClientFacingCheckoutQuoteCreated
+    OrderSetParameters:
+      properties:
+        fasting:
+          anyOf:
+          - $ref: '#/components/schemas/OrderSetFastingRequirement'
+          - type: 'null'
+          description: ℹ️ This enum is non-exhaustive.
+      type: object
+      title: OrderSetParameters
+    Ethnicity:
+      type: string
+      enum:
+      - hispanic
+      - non_hispanic
+      - ashkenazi_jewish
+      - other
+      title: Ethnicity
+      description: ℹ️ This enum is non-exhaustive.
+    LabTestCollectionMethod:
+      type: string
+      enum:
+      - testkit
+      - walk_in_test
+      - at_home_phlebotomy
+      - on_site_collection
+      title: LabTestCollectionMethod
+      description: The method used to perform a lab test. ℹ️ This enum is non-exhaustive.
+    CheckoutSessionPayment:
+      properties:
+        channel:
+          type: string
+          const: stripe
+          title: Channel
+        method:
+          $ref: '#/components/schemas/CheckoutSessionPaymentMethod'
+          description: ℹ️ This enum is non-exhaustive.
+        success_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Success Url
+          description: Where the hosted checkout page redirects after a successful payment. Required for `checkout_session`, rejected for `payment_intent`. Include the literal `{JUNCTION_CHECKOUT_SESSION_ID}` anywhere in the URL to receive the Junction checkout session ID; Stripe's `{CHECKOUT_SESSION_ID}` placeholder still resolves to the Stripe session ID.
+        cancel_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Cancel Url
+          description: Where the hosted checkout page redirects when the patient cancels. Only accepted for `checkout_session`. Include the literal `{JUNCTION_CHECKOUT_SESSION_ID}` anywhere in the URL to receive the Junction checkout session ID; Stripe's `{CHECKOUT_SESSION_ID}` placeholder still resolves to the Stripe session ID.
+      type: object
+      required:
+      - channel
+      - method
+      title: CheckoutSessionPayment
+    PatientDetailsWithValidation:
+      properties:
+        first_name:
+          type: string
+          maxLength: 50
+          minLength: 1
+          title: First Name
+        last_name:
+          type: string
+          maxLength: 50
+          minLength: 1
+          title: Last Name
+        dob:
+          type: string
+          format: date
+          title: Dob
+        gender:
+          $ref: '#/components/schemas/Gender'
+          description: ℹ️ This enum is non-exhaustive.
+        phone_number:
+          type: string
+          title: Phone Number
+        email:
+          type: string
+          format: email
+          title: Email
+        medical_proxy:
+          anyOf:
+          - $ref: '#/components/schemas/GuarantorDetails'
+          - type: 'null'
+          description: Parent/medical_proxy details. Required if patient is a minor.
+        race:
+          anyOf:
+          - $ref: '#/components/schemas/Race'
+          - type: 'null'
+          description: If not provided, will be set to 'Not Specified' ℹ️ This enum is non-exhaustive.
+        ethnicity:
+          anyOf:
+          - $ref: '#/components/schemas/Ethnicity'
+          - type: 'null'
+          description: If not provided, will be set to 'Not Specified' ℹ️ This enum is non-exhaustive.
+        sexual_orientation:
+          anyOf:
+          - $ref: '#/components/schemas/SexualOrientation'
+          - type: 'null'
+          description: If not provided, will be set to 'Not Specified' ℹ️ This enum is non-exhaustive.
+        gender_identity:
+          anyOf:
+          - $ref: '#/components/schemas/GenderIdentity'
+          - type: 'null'
+          description: If not provided, will be set to 'Not Specified' ℹ️ This enum is non-exhaustive.
+        household_income:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Household Income
+          description: Household income in USD. If not provided, will be set to None
+        household_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Household Size
+          description: Household size. If not provided, will be set to None
+      type: object
+      required:
+      - first_name
+      - last_name
+      - dob
+      - gender
+      - phone_number
+      - email
+      title: PatientDetailsWithValidation
+      description: Patient details with validation for first_name, last_name, email, and dob.
+    Gender:
+      type: string
+      enum:
+      - female
+      - male
+      - other
+      - unknown
+      title: Gender
+      description: ℹ️ This enum is non-exhaustive.
+    GuarantorDetails:
+      properties:
+        first_name:
+          type: string
+          title: First Name
+        last_name:
+          type: string
+          title: Last Name
+        address:
+          $ref: '#/components/schemas/Address'
+        phone_number:
+          type: string
+          title: Phone Number
+        household_income:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Household Income
+        household_size:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Household Size
+        email:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Email
+      type: object
+      required:
+      - first_name
+      - last_name
+      - address
+      - phone_number
+      title: GuarantorDetails
+    CheckoutSessionAppointment:
+      properties:
+        booking_key:
+          type: string
+          title: Booking Key
+          description: Slot token from the PSC appointment availability endpoint. The slot must start after the session's payment deadline and, when the quote lists collection networks, belong to one of them.
+        appointment_notes:
+          type: string
+          maxLength: 1000
+          title: Appointment Notes
+          description: Notes stored on the appointment once it is attached to the order.
+        async_confirmation_timeout_millisecond:
+          type: integer
+          maximum: 1800000.0
+          minimum: 60000.0
+          title: Async Confirmation Timeout Millisecond
+          description: How long the hold keeps retrying with the collection network before it is reported as failed.
+          default: 900000
+      type: object
+      required:
+      - booking_key
+      - appointment_notes
+      title: CheckoutSessionAppointment
+      description: 'A PSC slot held with the collection network while the patient pays; it
+
+        becomes the order''s appointment once payment creates the order.'
+    CheckoutQuote:
+      properties:
+        id:
+          type: string
+          format: uuid
+          title: Id
+        parent_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Parent Id
+        created_at:
+          type: string
+          format: date-time
+          title: Created At
+          examples:
+          - '2021-01-01T00:00:00Z'
+          - '2021-01-01T00:00:00+00:00'
+          - '2021-01-01T00:00:00'
+        expires_at:
+          type: string
+          format: date-time
+          title: Expires At
+          examples:
+          - '2021-01-01T00:00:00Z'
+          - '2021-01-01T00:00:00+00:00'
+          - '2021-01-01T00:00:00'
+        modality:
+          $ref: '#/components/schemas/LabTestCollectionMethod'
+          description: ℹ️ This enum is non-exhaustive.
+        priority:
+          type: boolean
+          title: Priority
+        us_state:
+          type: string
+          title: Us State
+        order_set:
+          $ref: '#/components/schemas/OrderSetRequest'
+        walk_in_collection_networks:
+          items:
+            $ref: '#/components/schemas/WalkInCollectionNetworkSlug'
+          type: array
+          title: Walk In Collection Networks
+        line_items:
+          items:
+            $ref: '#/components/schemas/CheckoutQuoteLineItem'
+          type: array
+          title: Line Items
+      type: object
+      required:
+      - id
+      - parent_id
+      - created_at
+      - expires_at
+      - modality
+      - priority
+      - us_state
+      - order_set
+      - walk_in_collection_networks
+      - line_items
+      title: CheckoutQuote
+    CreateCheckoutQuoteBody:
+      properties:
+        order_set:
+          $ref: '#/components/schemas/OrderSetRequest'
+        modality:
+          $ref: '#/components/schemas/LabTestCollectionMethod'
+          description: ℹ️ This enum is non-exhaustive.
+        priority:
+          type: boolean
+          title: Priority
+        us_state:
+          type: string
+          title: Us State
+      type: object
+      required:
+      - order_set
+      - modality
+      - priority
+      - us_state
+      title: CreateCheckoutQuoteBody
+    RefineCheckoutQuoteBody:
+      properties:
+        priority:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Priority
+      type: object
+      title: RefineCheckoutQuoteBody
+    ClientFacingCheckoutSessionCreated:
+      properties:
+        event_type:
+          type: string
+          const: checkout.session.created
+          title: Event Type
+          x-junction-exhaustive: true
+        team_id:
+          type: string
+          format: uuid
+          title: Team Id
+        data:
+          $ref: '#/components/schemas/CheckoutSession'
+      type: object
+      required:
+      - event_type
+      - team_id
+      - data
+      title: ClientFacingCheckoutSessionCreated
+    CheckoutSessionPaymentMethod:
+      type: string
+      enum:
+      - checkout_session
+      - payment_intent
+      title: CheckoutSessionPaymentMethod
+      description: ℹ️ This enum is non-exhaustive.
+    SexualOrientation:
+      type: string
+      enum:
+      - lesbian_gay_or_homosexual
+      - heterosexual_or_straight
+      - bisexual
+      - dont_know
+      - other
+      title: SexualOrientation
+      description: ℹ️ This enum is non-exhaustive.
+    CheckoutSessionStatus:
+      type: string
+      enum:
+      - unpaid
+      - paid
+      - expired
+      - cancelled
+      title: CheckoutSessionStatus
+      description: ℹ️ This enum is non-exhaustive.
+    OrderSetFastingRequirement:
+      type: string
+      enum:
+      - fasting_not_required
+      - fasting_required
+      title: OrderSetFastingRequirement
+      description: ℹ️ This enum is non-exhaustive.
+    WalkInCollectionNetworkSlug:
+      type: string
+      enum:
+      - quest
+      - sonora_quest
+      - labcorp
+      - bioreference
+      title: WalkInCollectionNetworkSlug
+      description: ℹ️ This enum is non-exhaustive.
+    Address:
+      properties:
+        first_line:
+          type: string
+          title: First Line
+        second_line:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Second Line
+          default: ''
+        country:
+          type: string
+          title: Country
+        zip:
+          type: string
+          title: Zip
+        city:
+          type: string
+          title: City
+        state:
+          type: string
+          title: State
+        access_notes:
+          anyOf:
+          - type: string
+            maxLength: 1000
+          - type: 'null'
+          title: Access Notes
+      type: object
+      required:
+      - first_line
+      - country
+      - zip
+      - city
+      - state
+      title: Address
+    Race:
+      type: string
+      enum:
+      - african_american_or_black
+      - asian
+      - indigenous_native_american_alaska_native
+      - other
+      - pacific_islander_or_hawaiian
+      - white_caucasian
+      title: Race
+      description: ℹ️ This enum is non-exhaustive.
+    CreateCheckoutSessionBody:
+      properties:
+        quote_id:
+          type: string
+          format: uuid
+          title: Quote Id
+        user_id:
+          type: string
+          format: uuid
+          title: User Id
+        payment:
+          $ref: '#/components/schemas/CheckoutSessionPayment'
+        patient_details:
+          $ref: '#/components/schemas/PatientDetailsWithValidation'
+        patient_address:
+          $ref: '#/components/schemas/PatientAddressWithValidation'
+        appointment:
+          anyOf:
+          - $ref: '#/components/schemas/CheckoutSessionAppointment'
+          - type: 'null'
+      type: object
+      required:
+      - quote_id
+      - user_id
+      - payment
+      - patient_details
+      - patient_address
+      title: CreateCheckoutSessionBody
+    PatientAddressWithValidation:
+      properties:
+        receiver_name:
+          type: string
+          title: Receiver Name
+          default: ''
+        first_line:
+          type: string
+          title: First Line
+        second_line:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Second Line
+        city:
+          type: string
+          title: City
+        state:
+          type: string
+          title: State
+        zip:
+          type: string
+          pattern: ^\d{5}(-\d{4})?$
+          title: Zip
+        country:
+          type: string
+          title: Country
+        access_notes:
+          anyOf:
+          - type: string
+            maxLength: 1000
+          - type: 'null'
+          title: Access Notes
+        phone_number:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Phone Number
+      type: object
+      required:
+      - first_line
+      - city
+      - state
+      - zip
+      - country
+      title: PatientAddressWithValidation
+    ClientFacingCheckoutSessionUpdated:
+      properties:
+        event_type:
+          type: string
+          const: checkout.session.updated
+          title: Event Type
+          x-junction-exhaustive: true
+        team_id:
+          type: string
+          format: uuid
+          title: Team Id
+        data:
+          $ref: '#/components/schemas/CheckoutSession'
+      type: object
+      required:
+      - event_type
+      - team_id
+      - data
+      title: ClientFacingCheckoutSessionUpdated
+    GenderIdentity:
+      type: string
+      enum:
+      - male
+      - female
+      - female_to_male_ftm_transgender_male_trans_man
+      - male_to_female_mtf_transgender_female_trans_woman
+      - genderqueer
+      - other
+      title: GenderIdentity
+      description: ℹ️ This enum is non-exhaustive.
+    CheckoutAppointmentHoldStatus:
+      type: string
+      enum:
+      - pending
+      - held
+      - failed
+      title: CheckoutAppointmentHoldStatus
+      description: 'Public view of the checkout''s PSC appointment hold. `None` on the
+
+        snapshot means no appointment was requested. `held` covers both a live
+
+        vendor hold and the attached appointment (`appointment_id` set); `failed`
+
+        covers every way the hold ended without one (slot gone, PSC unreachable,
+
+        released on expiry, cancellation, or operator request). ℹ️ This enum is non-exhaustive.'
+    CheckoutQuoteLineItemCode:
+      type: string
+      enum:
+      - lab_test_fee
+      - draw_fee
+      title: CheckoutQuoteLineItemCode
+      description: ℹ️ This enum is non-exhaustive.
+    AddOnOrder:
+      properties:
+        marker_ids:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: 'null'
+          title: Marker Ids
+        provider_ids:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Provider Ids
+      type: object
+      title: AddOnOrder
+    CheckoutQuoteLineItem:
+      properties:
+        code:
+          $ref: '#/components/schemas/CheckoutQuoteLineItemCode'
+          description: ℹ️ This enum is non-exhaustive.
+        amount_minor:
+          type: integer
+          minimum: 0.0
+          title: Amount Minor
+        currency:
+          type: string
+          const: USD
+          title: Currency
+      type: object
+      required:
+      - code
+      - amount_minor
+      - currency
+      title: CheckoutQuoteLineItem
+    CheckoutSession:
+      properties:
+        checkout_session_id:
+          type: string
+          format: uuid
+          title: Checkout Session Id
+        status:
+          $ref: '#/components/schemas/CheckoutSessionStatus'
+          description: ℹ️ This enum is non-exhaustive.
+        pay_before:
+          type: string
+          format: date-time
+          title: Pay Before
+          examples:
+          - '2021-01-01T00:00:00Z'
+          - '2021-01-01T00:00:00+00:00'
+          - '2021-01-01T00:00:00'
+        payment_resource_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Payment Resource Id
+          description: ID of the Stripe Checkout Session (`cs_...`) or PaymentIntent (`pi_...`) collecting payment. `null` until the payment resource is created.
+        order_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Order Id
+        order_transaction_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Order Transaction Id
+        appointment_hold_status:
+          anyOf:
+          - $ref: '#/components/schemas/CheckoutAppointmentHoldStatus'
+          - type: 'null'
+          description: ℹ️ This enum is non-exhaustive.
+        appointment_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Appointment Id
+        payment_resource_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Payment Resource Url
+          description: Stripe-hosted payment page URL, for the `checkout_session` payment method. Returned only by the create, get and confirm endpoints while `status` is `unpaid`; always `null` in webhooks.
+        payment_resource_client_secret:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Payment Resource Client Secret
+          description: Client secret for confirming the Stripe PaymentIntent with Stripe.js, for the `payment_intent` payment method. Returned only by the create, get and confirm endpoints while `status` is `unpaid`; always `null` in webhooks.
+      type: object
+      required:
+      - checkout_session_id
+      - status
+      - pay_before
+      - payment_resource_id
+      - order_id
+      - order_transaction_id
+      - appointment_hold_status
+      - appointment_id
+      title: CheckoutSession
+      description: 'A checkout session collects payment for a quote; once it is paid, the
+
+        order is created. The checkout session endpoints return this object, and
+
+        `checkout.session.*` webhooks carry it as `data`.'
+    HTTPValidationError:
+      properties:
+        detail:
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    OrderSetRequest:
+      properties:
+        lab_test_ids:
+          anyOf:
+          - items:
+              type: string
+              format: uuid
+            type: array
+          - type: 'null'
+          title: Lab Test Ids
+        add_on:
+          anyOf:
+          - $ref: '#/components/schemas/AddOnOrder'
+          - type: 'null'
+        lab_account_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Lab Account Id
+        parameters:
+          anyOf:
+          - $ref: '#/components/schemas/OrderSetParameters'
+          - type: 'null'
+      type: object
+      title: OrderSetRequest
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-vital-api-key
+      description: Vital Team API Key

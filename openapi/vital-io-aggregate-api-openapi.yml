@@ -1,8 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Junction Aggregate API
-  description: https://docs.junction.com/
-  version: 0.4.497
+  title: Vital Io Aggregate API
+  version: '1.0'
+  description: 'Operations tagged Aggregate across 2 of this provider''s published API definitions: junction-openapi-live-2026-10-12.json, vital-openapi-original.json. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.us.junction.com
   x-fern-server-name: Production
@@ -65,6 +65,15 @@ paths:
       x-fern-availability: beta
       tags:
       - Aggregate
+    servers:
+    - url: https://api.us.junction.com
+      x-fern-server-name: Production
+    - url: https://api.eu.junction.com
+      x-fern-server-name: ProductionEU
+    - url: https://api.sandbox.us.junction.com
+      x-fern-server-name: Sandbox
+    - url: https://api.sandbox.eu.junction.com
+      x-fern-server-name: SandboxEU
   /aggregate/v1/user/{user_id}/continuous_query/{query_id_or_slug}/result_table:
     get:
       summary: Get Result Table For Query
@@ -117,6 +126,15 @@ paths:
       x-fern-availability: beta
       tags:
       - Aggregate
+    servers:
+    - url: https://api.us.junction.com
+      x-fern-server-name: Production
+    - url: https://api.eu.junction.com
+      x-fern-server-name: ProductionEU
+    - url: https://api.sandbox.us.junction.com
+      x-fern-server-name: Sandbox
+    - url: https://api.sandbox.eu.junction.com
+      x-fern-server-name: SandboxEU
   /aggregate/v1/user/{user_id}/continuous_query/{query_id_or_slug}/task_history:
     get:
       summary: Get Task History For Query
@@ -172,227 +190,17 @@ paths:
       x-fern-availability: beta
       tags:
       - Aggregate
+    servers:
+    - url: https://api.us.junction.com
+      x-fern-server-name: Production
+    - url: https://api.eu.junction.com
+      x-fern-server-name: ProductionEU
+    - url: https://api.sandbox.us.junction.com
+      x-fern-server-name: Sandbox
+    - url: https://api.sandbox.eu.junction.com
+      x-fern-server-name: SandboxEU
 components:
   schemas:
-    QueryConfig:
-      properties:
-        provider_priority_overrides:
-          anyOf:
-          - items:
-              anyOf:
-              - $ref: '#/components/schemas/Providers'
-              - $ref: '#/components/schemas/Labs'
-            type: array
-          - type: 'null'
-          title: Provider Priority Overrides
-      type: object
-      title: QueryConfig
-    RelativeTimeframe:
-      properties:
-        type:
-          type: string
-          const: relative
-          title: Type
-        anchor:
-          type: string
-          format: date
-          title: Anchor
-        past:
-          $ref: '#/components/schemas/Period'
-      type: object
-      required:
-      - type
-      - anchor
-      - past
-      title: RelativeTimeframe
-    MCMenstrualFlowFieldExpr:
-      properties:
-        field_for:
-          type: string
-          const: menstrual_cycle
-          title: Field For
-          default: menstrual_cycle
-        menstrual_flow:
-          type: string
-          enum:
-          - date
-          - flow
-          title: Menstrual Flow
-          description: ℹ️ This enum is non-exhaustive.
-      additionalProperties: false
-      type: object
-      required:
-      - menstrual_flow
-      title: MCMenstrualFlowFieldExpr
-    ElementFieldExpr:
-      properties:
-        element:
-          type: boolean
-          const: true
-          title: Element
-      additionalProperties: false
-      type: object
-      required:
-      - element
-      title: ElementFieldExpr
-      description: 'References the element itself in a scalar-element list subquery arg.
-
-
-        Symmetric with the reserved ``element`` keyword in WHERE predicates.
-
-        Only valid when the UNNEST source is a ``List[scalar]``.'
-    AggregateFieldExpr:
-      properties:
-        func:
-          type: string
-          enum:
-          - mean
-          - min
-          - max
-          - sum
-          - count
-          - median
-          - stddev
-          - oldest
-          - newest
-          title: Func
-          description: ℹ️ This enum is non-exhaustive.
-        arg:
-          anyOf:
-          - $ref: '#/components/schemas/MCMenstrualFlowFieldExpr'
-          - $ref: '#/components/schemas/MCCervicalMucusFieldExpr'
-          - $ref: '#/components/schemas/MCIntermenstrualBleedingFieldExpr'
-          - $ref: '#/components/schemas/MCContraceptiveFieldExpr'
-          - $ref: '#/components/schemas/MCDetectedDeviationsFieldExpr'
-          - $ref: '#/components/schemas/MCOvulationTestFieldExpr'
-          - $ref: '#/components/schemas/MCHomePregnancyTestFieldExpr'
-          - $ref: '#/components/schemas/MCHomeProgesteroneTestFieldExpr'
-          - $ref: '#/components/schemas/MCSexualActivityFieldExpr'
-          - $ref: '#/components/schemas/MCBasalBodyTemperatureFieldExpr'
-          - $ref: '#/components/schemas/ElementFieldExpr'
-          - type: 'null'
-          title: Arg
-      type: object
-      required:
-      - func
-      title: AggregateFieldExpr
-      description: 'Aggregate over unnested list elements, optionally targeting a struct field.
-
-
-        When arg is None, the aggregate operates on the list elements directly
-
-        (e.g., count-all, or mean/sum on a scalar numeric list).
-
-        When arg is a FieldExpr, the struct field is extracted before aggregating.'
-    MCBasalBodyTemperatureFieldExpr:
-      properties:
-        field_for:
-          type: string
-          const: menstrual_cycle
-          title: Field For
-          default: menstrual_cycle
-        basal_body_temperature:
-          type: string
-          enum:
-          - date
-          - value
-          title: Basal Body Temperature
-          description: ℹ️ This enum is non-exhaustive.
-      additionalProperties: false
-      type: object
-      required:
-      - basal_body_temperature
-      title: MCBasalBodyTemperatureFieldExpr
-    HTTPValidationError:
-      properties:
-        detail:
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    QueryBatch:
-      properties:
-        timeframe:
-          anyOf:
-          - $ref: '#/components/schemas/RelativeTimeframe'
-          - $ref: '#/components/schemas/Placeholder'
-          title: Timeframe
-        queries:
-          items:
-            $ref: '#/components/schemas/Query'
-          type: array
-          title: Queries
-        config:
-          $ref: '#/components/schemas/QueryConfig'
-      type: object
-      required:
-      - timeframe
-      - queries
-      title: QueryBatch
-    DerivedReadinessColumnExpr:
-      properties:
-        derived_readiness:
-          type: string
-          enum:
-          - date
-          - chronotype
-          - sleep_score
-          - recovery_score
-          - recovery_zone
-          - stress_score
-          - strain_score
-          - strain_zone
-          title: Derived Readiness
-          description: ℹ️ This enum is non-exhaustive.
-      type: object
-      required:
-      - derived_readiness
-      title: DerivedReadinessColumnExpr
-    WorkoutColumnExpr:
-      properties:
-        workout:
-          type: string
-          enum:
-          - session_start
-          - session_end
-          - title
-          - sport_name
-          - sport_slug
-          - duration_active_second
-          - heart_rate_mean
-          - heart_rate_minimum
-          - heart_rate_maximum
-          - heart_rate_zone_1
-          - heart_rate_zone_2
-          - heart_rate_zone_3
-          - heart_rate_zone_4
-          - heart_rate_zone_5
-          - heart_rate_zone_6
-          - distance_meter
-          - calories
-          - elevation_gain_meter
-          - elevation_maximum_meter
-          - elevation_minimum_meter
-          - speed_mean
-          - speed_maximum
-          - power_source
-          - power_mean
-          - power_maximum
-          - power_weighted_mean
-          - steps
-          - map_polyline
-          - map_summary_polyline
-          - source_type
-          - source_provider
-          - source_app_id
-          - source_device_id
-          - external_id
-          - time_zone
-          title: Workout
-          description: ℹ️ This enum is non-exhaustive.
-      type: object
-      required:
-      - workout
-      title: WorkoutColumnExpr
     SourceColumnExpr:
       properties:
         source:
@@ -413,79 +221,141 @@ components:
       required:
       - source
       title: SourceColumnExpr
-    DatePartExpr:
+    AwakeningsValueMacroExpr:
       properties:
-        arg:
-          anyOf:
-          - $ref: '#/components/schemas/IndexColumnExpr'
-          - $ref: '#/components/schemas/Placeholder'
-          title: Arg
-        date_part:
-          anyOf:
-          - type: string
-            enum:
-            - minute
-            - hour
-            - day
-            - week
-            - month
-            - year
-          - type: string
-            enum:
-            - weekday
-            - week_of_year
-            - day_of_year
-          title: Date Part
-          description: ℹ️ This enum is non-exhaustive.
+        value_macro:
+          type: string
+          const: awakenings
+          title: Value Macro
+        version:
+          type: string
+          const: automatic
+          title: Version
+          default: automatic
       type: object
       required:
-      - arg
-      - date_part
-      title: DatePartExpr
-    DiscreteTimeseriesExpr:
+      - value_macro
+      title: AwakeningsValueMacroExpr
+    SleepColumnExpr:
       properties:
-        timeseries:
+        sleep:
           type: string
           enum:
-          - glucose
-          - heartrate
-          - hrv
-          - ige
-          - igg
-          - cholesterol
-          - weight
-          - fat
-          - blood_oxygen
-          - electrocardiogram_voltage
+          - id
+          - session_start
+          - session_end
+          - state
+          - type
+          - duration_second
+          - stage_asleep_second
+          - stage_awake_second
+          - stage_light_second
+          - stage_rem_second
+          - stage_deep_second
+          - stage_unknown_second
+          - latency_second
+          - heart_rate_minimum
+          - heart_rate_mean
+          - heart_rate_maximum
+          - heart_rate_dip
+          - heart_rate_resting
+          - efficiency
+          - hrv_mean_rmssd
+          - hrv_mean_sdnn
+          - skin_temperature
+          - skin_temperature_delta
           - respiratory_rate
-          - stress_level
-          title: Timeseries
-          description: ℹ️ This enum is non-exhaustive.
-        field:
-          anyOf:
-          - type: string
-            enum:
-            - source_provider
-            - source_type
-          - type: string
-            const: source_app_id
-          - type: string
-            enum:
-            - source_workout_id
-            - source_sport
-          - type: string
-            enum:
-            - timezone_offset
-            - type
-          - type: string
-            const: value
-          title: Field
+          - score
+          - recovery_readiness_score
+          - source_type
+          - source_provider
+          - source_app_id
+          - source_device_id
+          - time_zone
+          title: Sleep
           description: ℹ️ This enum is non-exhaustive.
       type: object
       required:
-      - timeseries
-      - field
-      title: DiscreteTimeseriesExpr
+      - sleep
+      title: SleepColumnExpr
+    QueryBatch:
+      properties:
+        timeframe:
+          anyOf:
+          - $ref: '#/components/schemas/RelativeTimeframe'
+          - $ref: '#/components/schemas/Placeholder'
+          title: Timeframe
+        queries:
+          items:
+            $ref: '#/components/schemas/Query'
+          type: array
+          title: Queries
+        config:
+          $ref: '#/components/schemas/QueryConfig'
+      type: object
+      required:
+      - timeframe
+      - queries
+      title: QueryBatch
+    CarryForwardExpr:
+      properties:
+        mode:
+          type: string
+          const: carry_forward
+          title: Mode
+        max_age:
+          anyOf:
+          - $ref: '#/components/schemas/Period'
+          - type: 'null'
+      additionalProperties: false
+      type: object
+      required:
+      - mode
+      title: CarryForwardExpr
+      description: 'Post-aggregation carry operator: last-observation-carried-forward.
+
+
+        For each empty bucket, carries the most recent prior non-empty bucket''s
+
+        aggregate forward. `max_age=None` means no cap (carry indefinitely);
+
+        when set, enforced >= group_by_period at CQ validation time.'
+    ScalarOutputSubqueryExpr:
+      properties:
+        select:
+          anyOf:
+          - $ref: '#/components/schemas/AggregateFieldExpr'
+          - $ref: '#/components/schemas/Placeholder'
+          title: Select
+        from:
+          anyOf:
+          - $ref: '#/components/schemas/UnnestExpr'
+          - $ref: '#/components/schemas/Placeholder'
+          title: From
+        where:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Where
+      type: object
+      required:
+      - select
+      - from
+      title: ScalarOutputSubqueryExpr
+      description: A subquery that produces a single scalar value per row.
+    QueryConfig:
+      properties:
+        provider_priority_overrides:
+          anyOf:
+          - items:
+              anyOf:
+              - $ref: '#/components/schemas/Providers'
+              - $ref: '#/components/schemas/Labs'
+            type: array
+          - type: 'null'
+          title: Provider Priority Overrides
+      type: object
+      title: QueryConfig
     MealColumnExpr:
       properties:
         meal:
@@ -545,205 +415,6 @@ components:
       required:
       - meal
       title: MealColumnExpr
-    Period:
-      properties:
-        value:
-          type: integer
-          minimum: 1
-          title: Value
-          default: 1
-        unit:
-          type: string
-          enum:
-          - minute
-          - hour
-          - day
-          - week
-          - month
-          - year
-          title: Unit
-          description: ℹ️ This enum is non-exhaustive.
-      type: object
-      required:
-      - unit
-      title: Period
-    ScalarOutputSubqueryExpr:
-      properties:
-        select:
-          anyOf:
-          - $ref: '#/components/schemas/AggregateFieldExpr'
-          - $ref: '#/components/schemas/Placeholder'
-          title: Select
-        from:
-          anyOf:
-          - $ref: '#/components/schemas/UnnestExpr'
-          - $ref: '#/components/schemas/Placeholder'
-          title: From
-        where:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Where
-      type: object
-      required:
-      - select
-      - from
-      title: ScalarOutputSubqueryExpr
-      description: A subquery that produces a single scalar value per row.
-    ActivityColumnExpr:
-      properties:
-        activity:
-          type: string
-          enum:
-          - date
-          - calories_total
-          - calories_active
-          - steps
-          - distance_meter
-          - floors_climbed
-          - duration_active_second
-          - intensity_sedentary_second
-          - intensity_low_second
-          - intensity_medium_second
-          - intensity_high_second
-          - heart_rate_mean
-          - heart_rate_minimum
-          - heart_rate_maximum
-          - heart_rate_resting
-          - heart_rate_mean_walking
-          - wheelchair_use
-          - wheelchair_push
-          - source_type
-          - source_provider
-          - source_app_id
-          - source_device_id
-          - time_zone
-          - time_zone_offset
-          title: Activity
-          description: ℹ️ This enum is non-exhaustive.
-      type: object
-      required:
-      - activity
-      title: ActivityColumnExpr
-    BodyColumnExpr:
-      properties:
-        body:
-          type: string
-          enum:
-          - measured_at
-          - weight_kilogram
-          - fat_mass_percentage
-          - water_percentage
-          - muscle_mass_percentage
-          - visceral_fat_index
-          - bone_mass_percentage
-          - body_mass_index
-          - lean_body_mass_kilogram
-          - waist_circumference_centimeter
-          - source_type
-          - source_provider
-          - source_app_id
-          - source_device_id
-          - time_zone
-          title: Body
-          description: ℹ️ This enum is non-exhaustive.
-      type: object
-      required:
-      - body
-      title: BodyColumnExpr
-    NoteTimeseriesExpr:
-      properties:
-        timeseries:
-          type: string
-          const: note
-          title: Timeseries
-        field:
-          anyOf:
-          - type: string
-            enum:
-            - source_provider
-            - source_type
-          - type: string
-            const: source_app_id
-          - type: string
-            enum:
-            - source_workout_id
-            - source_sport
-          - type: string
-            enum:
-            - timezone_offset
-            - type
-          - type: string
-            enum:
-            - tags
-            - content
-          title: Field
-          description: ℹ️ This enum is non-exhaustive.
-      type: object
-      required:
-      - timeseries
-      - field
-      title: NoteTimeseriesExpr
-    MenstrualCycleColumnExpr:
-      properties:
-        menstrual_cycle:
-          type: string
-          enum:
-          - period_start
-          - period_end
-          - cycle_end
-          - is_predicted
-          - menstrual_flow
-          - cervical_mucus
-          - intermenstrual_bleeding
-          - contraceptive
-          - detected_deviations
-          - ovulation_test
-          - home_pregnancy_test
-          - home_progesterone_test
-          - sexual_activity
-          - basal_body_temperature
-          - source_type
-          - source_provider
-          - source_app_id
-          - source_device_id
-          title: Menstrual Cycle
-          description: ℹ️ This enum is non-exhaustive.
-      type: object
-      required:
-      - menstrual_cycle
-      title: MenstrualCycleColumnExpr
-    MCIntermenstrualBleedingFieldExpr:
-      properties:
-        field_for:
-          type: string
-          const: menstrual_cycle
-          title: Field For
-          default: menstrual_cycle
-        intermenstrual_bleeding:
-          type: string
-          const: date
-          title: Intermenstrual Bleeding
-      additionalProperties: false
-      type: object
-      required:
-      - intermenstrual_bleeding
-      title: MCIntermenstrualBleedingFieldExpr
-    AwakeAtValueMacroExpr:
-      properties:
-        value_macro:
-          type: string
-          const: awake_at
-          title: Value Macro
-        version:
-          type: string
-          const: automatic
-          title: Version
-          default: automatic
-      type: object
-      required:
-      - value_macro
-      title: AwakeAtValueMacroExpr
     ContinuousQueryTaskHistoryEntry:
       properties:
         query_id:
@@ -788,25 +459,46 @@ components:
       - ended_at
       - error_details
       title: ContinuousQueryTaskHistoryEntry
-    MCContraceptiveFieldExpr:
+    MCOvulationTestFieldExpr:
       properties:
         field_for:
           type: string
           const: menstrual_cycle
           title: Field For
           default: menstrual_cycle
-        contraceptive:
+        ovulation_test:
           type: string
           enum:
           - date
-          - type
-          title: Contraceptive
+          - test_result
+          title: Ovulation Test
           description: ℹ️ This enum is non-exhaustive.
       additionalProperties: false
       type: object
       required:
-      - contraceptive
-      title: MCContraceptiveFieldExpr
+      - ovulation_test
+      title: MCOvulationTestFieldExpr
+    AlignExpr:
+      properties:
+        carry:
+          anyOf:
+          - $ref: '#/components/schemas/CarryForwardExpr'
+          - $ref: '#/components/schemas/CarryBackwardExpr'
+          - $ref: '#/components/schemas/CarryNearestExpr'
+          title: Carry
+      additionalProperties: false
+      type: object
+      required:
+      - carry
+      title: AlignExpr
+      description: 'Post-aggregation alignment clause for a CQ query.
+
+
+        `carry` runs after group_by+aggregate, implicitly materialising missing
+
+        datetime buckets before filling them. Omitting `.align()` entirely preserves
+
+        honest-null behaviour; the `carry` field is required when `align` is present.'
     ProfileColumnExpr:
       properties:
         profile:
@@ -848,6 +540,336 @@ components:
       required:
       - home_progesterone_test
       title: MCHomeProgesteroneTestFieldExpr
+    MCDetectedDeviationsFieldExpr:
+      properties:
+        field_for:
+          type: string
+          const: menstrual_cycle
+          title: Field For
+          default: menstrual_cycle
+        detected_deviations:
+          type: string
+          enum:
+          - date
+          - deviation
+          title: Detected Deviations
+          description: ℹ️ This enum is non-exhaustive.
+      additionalProperties: false
+      type: object
+      required:
+      - detected_deviations
+      title: MCDetectedDeviationsFieldExpr
+    RelativeTimeframe:
+      properties:
+        type:
+          type: string
+          const: relative
+          title: Type
+        anchor:
+          type: string
+          format: date
+          title: Anchor
+        past:
+          $ref: '#/components/schemas/Period'
+      type: object
+      required:
+      - type
+      - anchor
+      - past
+      title: RelativeTimeframe
+    Providers:
+      type: string
+      enum:
+      - oura
+      - fitbit
+      - garmin
+      - whoop
+      - strava
+      - renpho
+      - peloton
+      - wahoo
+      - zwift
+      - freestyle_libre
+      - abbott_libreview
+      - tandem_source
+      - freestyle_libre_ble
+      - eight_sleep
+      - withings
+      - apple_health_kit
+      - manual
+      - ihealth
+      - google_fit
+      - beurer_api
+      - beurer_ble
+      - omron
+      - omron_ble
+      - onetouch_ble
+      - accuchek_ble
+      - contour_ble
+      - dexcom
+      - dexcom_v3
+      - hammerhead
+      - my_fitness_pal
+      - health_connect
+      - samsung_health
+      - polar
+      - cronometer
+      - kardia
+      - whoop_v2
+      - ultrahuman
+      - my_fitness_pal_v2
+      - map_my_fitness
+      - runkeeper
+      - google_health
+      title: Providers
+      description: ℹ️ This enum is non-exhaustive.
+    IndexColumnExpr:
+      properties:
+        index:
+          type: string
+          enum:
+          - sleep
+          - derived_readiness
+          - reliability
+          - activity
+          - workout
+          - body
+          - meal
+          - menstrual_cycle
+          - profile
+          - timeseries
+          title: Index
+          description: ℹ️ This enum is non-exhaustive.
+      type: object
+      required:
+      - index
+      title: IndexColumnExpr
+    MCIntermenstrualBleedingFieldExpr:
+      properties:
+        field_for:
+          type: string
+          const: menstrual_cycle
+          title: Field For
+          default: menstrual_cycle
+        intermenstrual_bleeding:
+          type: string
+          const: date
+          title: Intermenstrual Bleeding
+      additionalProperties: false
+      type: object
+      required:
+      - intermenstrual_bleeding
+      title: MCIntermenstrualBleedingFieldExpr
+    MCContraceptiveFieldExpr:
+      properties:
+        field_for:
+          type: string
+          const: menstrual_cycle
+          title: Field For
+          default: menstrual_cycle
+        contraceptive:
+          type: string
+          enum:
+          - date
+          - type
+          title: Contraceptive
+          description: ℹ️ This enum is non-exhaustive.
+      additionalProperties: false
+      type: object
+      required:
+      - contraceptive
+      title: MCContraceptiveFieldExpr
+    CarryNearestExpr:
+      properties:
+        mode:
+          type: string
+          const: carry_nearest
+          title: Mode
+        span:
+          anyOf:
+          - $ref: '#/components/schemas/Period'
+          - type: 'null'
+      additionalProperties: false
+      type: object
+      required:
+      - mode
+      title: CarryNearestExpr
+      description: 'Post-aggregation carry operator: carry from the nearest non-empty bucket.
+
+
+        For each empty bucket, borrows the nearest non-empty adjacent bucket''s
+
+        aggregate — past or future, whichever is closer. On a tie the past value
+
+        is preferred. `span=None` means no cap; when set, enforced >=
+
+        group_by_period at CQ validation time.'
+    MCMenstrualFlowFieldExpr:
+      properties:
+        field_for:
+          type: string
+          const: menstrual_cycle
+          title: Field For
+          default: menstrual_cycle
+        menstrual_flow:
+          type: string
+          enum:
+          - date
+          - flow
+          title: Menstrual Flow
+          description: ℹ️ This enum is non-exhaustive.
+      additionalProperties: false
+      type: object
+      required:
+      - menstrual_flow
+      title: MCMenstrualFlowFieldExpr
+    CarryBackwardExpr:
+      properties:
+        mode:
+          type: string
+          const: carry_backward
+          title: Mode
+        max_age:
+          anyOf:
+          - $ref: '#/components/schemas/Period'
+          - type: 'null'
+      additionalProperties: false
+      type: object
+      required:
+      - mode
+      title: CarryBackwardExpr
+      description: 'Post-aggregation carry operator: carry-backward.
+
+
+        For each empty bucket, carries the nearest subsequent non-empty bucket''s
+
+        aggregate backward in time. `max_age=None` means no cap; when set,
+
+        enforced >= group_by_period at CQ validation time.'
+    AsleepAtValueMacroExpr:
+      properties:
+        value_macro:
+          type: string
+          const: asleep_at
+          title: Value Macro
+        version:
+          type: string
+          const: automatic
+          title: Version
+          default: automatic
+      type: object
+      required:
+      - value_macro
+      title: AsleepAtValueMacroExpr
+    ElementFieldExpr:
+      properties:
+        element:
+          type: boolean
+          const: true
+          title: Element
+      additionalProperties: false
+      type: object
+      required:
+      - element
+      title: ElementFieldExpr
+      description: 'References the element itself in a scalar-element list subquery arg.
+
+
+        Symmetric with the reserved ``element`` keyword in WHERE predicates.
+
+        Only valid when the UNNEST source is a ``List[scalar]``.'
+    MCSexualActivityFieldExpr:
+      properties:
+        field_for:
+          type: string
+          const: menstrual_cycle
+          title: Field For
+          default: menstrual_cycle
+        sexual_activity:
+          type: string
+          enum:
+          - date
+          - protection_used
+          title: Sexual Activity
+          description: ℹ️ This enum is non-exhaustive.
+      additionalProperties: false
+      type: object
+      required:
+      - sexual_activity
+      title: MCSexualActivityFieldExpr
+    DerivedReadinessColumnExpr:
+      properties:
+        derived_readiness:
+          type: string
+          enum:
+          - date
+          - chronotype
+          - sleep_score
+          - recovery_score
+          - recovery_zone
+          - stress_score
+          - strain_score
+          - strain_zone
+          title: Derived Readiness
+          description: ℹ️ This enum is non-exhaustive.
+      type: object
+      required:
+      - derived_readiness
+      title: DerivedReadinessColumnExpr
+    DateTruncExpr:
+      properties:
+        date_trunc:
+          $ref: '#/components/schemas/Period'
+        arg:
+          anyOf:
+          - $ref: '#/components/schemas/IndexColumnExpr'
+          - $ref: '#/components/schemas/Placeholder'
+          title: Arg
+      type: object
+      required:
+      - date_trunc
+      - arg
+      title: DateTruncExpr
+    Placeholder:
+      properties:
+        placeholder:
+          type: boolean
+          const: true
+          title: Placeholder
+      type: object
+      required:
+      - placeholder
+      title: Placeholder
+    ContinuousQueryTaskHistoryResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/ContinuousQueryTaskHistoryEntry'
+          type: array
+          title: Data
+        next_cursor:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Cursor
+      type: object
+      required:
+      - data
+      - next_cursor
+      title: ContinuousQueryTaskHistoryResponse
+    AggregationResult:
+      properties:
+        table:
+          additionalProperties:
+            items: {}
+            type: array
+          type: object
+          title: Table
+          description: The result table of the query, organized in a column oriented format.
+      type: object
+      required:
+      - table
+      title: AggregationResult
     TemperatureTimeseriesExpr:
       properties:
         timeseries:
@@ -886,6 +908,95 @@ components:
       - timeseries
       - field
       title: TemperatureTimeseriesExpr
+    GroupKeyColumnExpr:
+      properties:
+        group_key:
+          anyOf:
+          - type: integer
+          - type: string
+            const: '*'
+          title: Group Key
+      type: object
+      required:
+      - group_key
+      title: GroupKeyColumnExpr
+    AggregateExpr:
+      properties:
+        arg:
+          anyOf:
+          - $ref: '#/components/schemas/SleepColumnExpr'
+          - $ref: '#/components/schemas/DerivedReadinessColumnExpr'
+          - $ref: '#/components/schemas/ReliabilityColumnExpr'
+          - $ref: '#/components/schemas/ActivityColumnExpr'
+          - $ref: '#/components/schemas/WorkoutColumnExpr'
+          - $ref: '#/components/schemas/BodyColumnExpr'
+          - $ref: '#/components/schemas/MealColumnExpr'
+          - $ref: '#/components/schemas/MenstrualCycleColumnExpr'
+          - $ref: '#/components/schemas/ProfileColumnExpr'
+          - $ref: '#/components/schemas/SleepScoreValueMacroExpr'
+          - $ref: '#/components/schemas/ChronotypeValueMacroExpr'
+          - $ref: '#/components/schemas/AsleepAtValueMacroExpr'
+          - $ref: '#/components/schemas/AwakeAtValueMacroExpr'
+          - $ref: '#/components/schemas/AwakeningsValueMacroExpr'
+          - $ref: '#/components/schemas/UnrecognizedValueMacroExpr'
+          - $ref: '#/components/schemas/DiscreteTimeseriesExpr'
+          - $ref: '#/components/schemas/IntervalTimeseriesExpr'
+          - $ref: '#/components/schemas/InsulinInjectionTimeseriesExpr'
+          - $ref: '#/components/schemas/BloodPressureTimeseriesExpr'
+          - $ref: '#/components/schemas/TemperatureTimeseriesExpr'
+          - $ref: '#/components/schemas/WorkoutDurationTimeseriesExpr'
+          - $ref: '#/components/schemas/NoteTimeseriesExpr'
+          - $ref: '#/components/schemas/IndexColumnExpr'
+          - $ref: '#/components/schemas/ScalarOutputSubqueryExpr'
+          title: Arg
+        func:
+          type: string
+          enum:
+          - mean
+          - min
+          - max
+          - sum
+          - count
+          - median
+          - stddev
+          - oldest
+          - newest
+          title: Func
+          description: ℹ️ This enum is non-exhaustive.
+      type: object
+      required:
+      - arg
+      - func
+      title: AggregateExpr
+    MenstrualCycleColumnExpr:
+      properties:
+        menstrual_cycle:
+          type: string
+          enum:
+          - period_start
+          - period_end
+          - cycle_end
+          - is_predicted
+          - menstrual_flow
+          - cervical_mucus
+          - intermenstrual_bleeding
+          - contraceptive
+          - detected_deviations
+          - ovulation_test
+          - home_pregnancy_test
+          - home_progesterone_test
+          - sexual_activity
+          - basal_body_temperature
+          - source_type
+          - source_provider
+          - source_app_id
+          - source_device_id
+          title: Menstrual Cycle
+          description: ℹ️ This enum is non-exhaustive.
+      type: object
+      required:
+      - menstrual_cycle
+      title: MenstrualCycleColumnExpr
     InsulinInjectionTimeseriesExpr:
       properties:
         timeseries:
@@ -924,60 +1035,150 @@ components:
       - timeseries
       - field
       title: InsulinInjectionTimeseriesExpr
-    SleepColumnExpr:
+    ReliabilityColumnExpr:
       properties:
-        sleep:
+        reliability:
           type: string
           enum:
-          - id
-          - session_start
-          - session_end
-          - state
-          - type
-          - duration_second
-          - stage_asleep_second
-          - stage_awake_second
-          - stage_light_second
-          - stage_rem_second
-          - stage_deep_second
-          - stage_unknown_second
-          - latency_second
-          - heart_rate_minimum
+          - source_provider
+          - source_type
+          - resource
+          - window_start_date
+          - window_end_date
+          - window_duration_day
+          - presence_day_count
+          - presence_coverage
+          - presence_gap_count
+          - presence_gap_maximum_day
+          - presence_recency_day
+          - presence_gap_mean_day
+          - presence_gap_standard_deviation_day
+          - reliability_status
+          - connection_status
+          title: Reliability
+          description: ℹ️ This enum is non-exhaustive.
+      type: object
+      required:
+      - reliability
+      title: ReliabilityColumnExpr
+    ActivityColumnExpr:
+      properties:
+        activity:
+          type: string
+          enum:
+          - date
+          - calories_total
+          - calories_active
+          - steps
+          - distance_meter
+          - floors_climbed
+          - duration_active_second
+          - intensity_sedentary_second
+          - intensity_low_second
+          - intensity_medium_second
+          - intensity_high_second
           - heart_rate_mean
+          - heart_rate_minimum
           - heart_rate_maximum
-          - heart_rate_dip
           - heart_rate_resting
-          - efficiency
-          - hrv_mean_rmssd
-          - hrv_mean_sdnn
-          - skin_temperature
-          - skin_temperature_delta
-          - respiratory_rate
-          - score
-          - recovery_readiness_score
+          - heart_rate_mean_walking
+          - wheelchair_use
+          - wheelchair_push
           - source_type
           - source_provider
           - source_app_id
           - source_device_id
           - time_zone
-          title: Sleep
+          - time_zone_offset
+          title: Activity
           description: ℹ️ This enum is non-exhaustive.
       type: object
       required:
-      - sleep
-      title: SleepColumnExpr
-    GroupKeyColumnExpr:
+      - activity
+      title: ActivityColumnExpr
+    AggregateFieldExpr:
       properties:
-        group_key:
+        func:
+          type: string
+          enum:
+          - mean
+          - min
+          - max
+          - sum
+          - count
+          - median
+          - stddev
+          - oldest
+          - newest
+          title: Func
+          description: ℹ️ This enum is non-exhaustive.
+        arg:
           anyOf:
-          - type: integer
-          - type: string
-            const: '*'
-          title: Group Key
+          - $ref: '#/components/schemas/MCMenstrualFlowFieldExpr'
+          - $ref: '#/components/schemas/MCCervicalMucusFieldExpr'
+          - $ref: '#/components/schemas/MCIntermenstrualBleedingFieldExpr'
+          - $ref: '#/components/schemas/MCContraceptiveFieldExpr'
+          - $ref: '#/components/schemas/MCDetectedDeviationsFieldExpr'
+          - $ref: '#/components/schemas/MCOvulationTestFieldExpr'
+          - $ref: '#/components/schemas/MCHomePregnancyTestFieldExpr'
+          - $ref: '#/components/schemas/MCHomeProgesteroneTestFieldExpr'
+          - $ref: '#/components/schemas/MCSexualActivityFieldExpr'
+          - $ref: '#/components/schemas/MCBasalBodyTemperatureFieldExpr'
+          - $ref: '#/components/schemas/ElementFieldExpr'
+          - type: 'null'
+          title: Arg
       type: object
       required:
-      - group_key
-      title: GroupKeyColumnExpr
+      - func
+      title: AggregateFieldExpr
+      description: 'Aggregate over unnested list elements, optionally targeting a struct field.
+
+
+        When arg is None, the aggregate operates on the list elements directly
+
+        (e.g., count-all, or mean/sum on a scalar numeric list).
+
+        When arg is a FieldExpr, the struct field is extracted before aggregating.'
+    AwakeAtValueMacroExpr:
+      properties:
+        value_macro:
+          type: string
+          const: awake_at
+          title: Value Macro
+        version:
+          type: string
+          const: automatic
+          title: Version
+          default: automatic
+      type: object
+      required:
+      - value_macro
+      title: AwakeAtValueMacroExpr
+    SleepScoreValueMacroExpr:
+      properties:
+        value_macro:
+          type: string
+          const: sleep_score
+          title: Value Macro
+        version:
+          type: string
+          const: automatic
+          title: Version
+          default: automatic
+      type: object
+      required:
+      - value_macro
+      title: SleepScoreValueMacroExpr
+    ContinuousQueryTaskStatus:
+      type: string
+      enum:
+      - scheduled
+      - started
+      - completed
+      - error
+      - skipped
+      title: ContinuousQueryTaskStatus
+      description: ℹ️ This enum is non-exhaustive.
     IntervalTimeseriesExpr:
       properties:
         timeseries:
@@ -1044,265 +1245,32 @@ components:
       - timeseries
       - field
       title: IntervalTimeseriesExpr
-    AsleepAtValueMacroExpr:
+    BodyColumnExpr:
       properties:
-        value_macro:
-          type: string
-          const: asleep_at
-          title: Value Macro
-        version:
-          type: string
-          const: automatic
-          title: Version
-          default: automatic
-      type: object
-      required:
-      - value_macro
-      title: AsleepAtValueMacroExpr
-    UnrecognizedValueMacroExpr:
-      properties:
-        value_macro:
-          type: string
-          title: Value Macro
-      type: object
-      required:
-      - value_macro
-      title: UnrecognizedValueMacroExpr
-    AggregateExpr:
-      properties:
-        arg:
-          anyOf:
-          - $ref: '#/components/schemas/SleepColumnExpr'
-          - $ref: '#/components/schemas/DerivedReadinessColumnExpr'
-          - $ref: '#/components/schemas/ActivityColumnExpr'
-          - $ref: '#/components/schemas/WorkoutColumnExpr'
-          - $ref: '#/components/schemas/BodyColumnExpr'
-          - $ref: '#/components/schemas/MealColumnExpr'
-          - $ref: '#/components/schemas/MenstrualCycleColumnExpr'
-          - $ref: '#/components/schemas/ProfileColumnExpr'
-          - $ref: '#/components/schemas/SleepScoreValueMacroExpr'
-          - $ref: '#/components/schemas/ChronotypeValueMacroExpr'
-          - $ref: '#/components/schemas/AsleepAtValueMacroExpr'
-          - $ref: '#/components/schemas/AwakeAtValueMacroExpr'
-          - $ref: '#/components/schemas/AwakeningsValueMacroExpr'
-          - $ref: '#/components/schemas/UnrecognizedValueMacroExpr'
-          - $ref: '#/components/schemas/DiscreteTimeseriesExpr'
-          - $ref: '#/components/schemas/IntervalTimeseriesExpr'
-          - $ref: '#/components/schemas/InsulinInjectionTimeseriesExpr'
-          - $ref: '#/components/schemas/BloodPressureTimeseriesExpr'
-          - $ref: '#/components/schemas/TemperatureTimeseriesExpr'
-          - $ref: '#/components/schemas/WorkoutDurationTimeseriesExpr'
-          - $ref: '#/components/schemas/NoteTimeseriesExpr'
-          - $ref: '#/components/schemas/IndexColumnExpr'
-          - $ref: '#/components/schemas/ScalarOutputSubqueryExpr'
-          title: Arg
-        func:
+        body:
           type: string
           enum:
-          - mean
-          - min
-          - max
-          - sum
-          - count
-          - median
-          - stddev
-          - oldest
-          - newest
-          title: Func
+          - measured_at
+          - weight_kilogram
+          - fat_mass_percentage
+          - water_percentage
+          - muscle_mass_percentage
+          - visceral_fat_index
+          - bone_mass_percentage
+          - body_mass_index
+          - lean_body_mass_kilogram
+          - waist_circumference_centimeter
+          - source_type
+          - source_provider
+          - source_app_id
+          - source_device_id
+          - time_zone
+          title: Body
           description: ℹ️ This enum is non-exhaustive.
       type: object
       required:
-      - arg
-      - func
-      title: AggregateExpr
-    ChronotypeValueMacroExpr:
-      properties:
-        value_macro:
-          type: string
-          const: chronotype
-          title: Value Macro
-        version:
-          type: string
-          const: automatic
-          title: Version
-          default: automatic
-      type: object
-      required:
-      - value_macro
-      title: ChronotypeValueMacroExpr
-    MCHomePregnancyTestFieldExpr:
-      properties:
-        field_for:
-          type: string
-          const: menstrual_cycle
-          title: Field For
-          default: menstrual_cycle
-        home_pregnancy_test:
-          type: string
-          enum:
-          - date
-          - test_result
-          title: Home Pregnancy Test
-          description: ℹ️ This enum is non-exhaustive.
-      additionalProperties: false
-      type: object
-      required:
-      - home_pregnancy_test
-      title: MCHomePregnancyTestFieldExpr
-    UnnestExpr:
-      properties:
-        unnest:
-          anyOf:
-          - $ref: '#/components/schemas/SleepColumnExpr'
-          - $ref: '#/components/schemas/DerivedReadinessColumnExpr'
-          - $ref: '#/components/schemas/ActivityColumnExpr'
-          - $ref: '#/components/schemas/WorkoutColumnExpr'
-          - $ref: '#/components/schemas/BodyColumnExpr'
-          - $ref: '#/components/schemas/MealColumnExpr'
-          - $ref: '#/components/schemas/MenstrualCycleColumnExpr'
-          - $ref: '#/components/schemas/ProfileColumnExpr'
-          - $ref: '#/components/schemas/SleepScoreValueMacroExpr'
-          - $ref: '#/components/schemas/ChronotypeValueMacroExpr'
-          - $ref: '#/components/schemas/AsleepAtValueMacroExpr'
-          - $ref: '#/components/schemas/AwakeAtValueMacroExpr'
-          - $ref: '#/components/schemas/AwakeningsValueMacroExpr'
-          - $ref: '#/components/schemas/UnrecognizedValueMacroExpr'
-          - $ref: '#/components/schemas/DiscreteTimeseriesExpr'
-          - $ref: '#/components/schemas/IntervalTimeseriesExpr'
-          - $ref: '#/components/schemas/InsulinInjectionTimeseriesExpr'
-          - $ref: '#/components/schemas/BloodPressureTimeseriesExpr'
-          - $ref: '#/components/schemas/TemperatureTimeseriesExpr'
-          - $ref: '#/components/schemas/WorkoutDurationTimeseriesExpr'
-          - $ref: '#/components/schemas/NoteTimeseriesExpr'
-          title: Unnest
-      type: object
-      required:
-      - unnest
-      title: UnnestExpr
-      description: 'FROM clause variant: unnest a list column into elements.'
-    AggregationResponse:
-      properties:
-        results:
-          items:
-            $ref: '#/components/schemas/AggregationResult'
-          type: array
-          title: Results
-      type: object
-      required:
-      - results
-      title: AggregationResponse
-    MCDetectedDeviationsFieldExpr:
-      properties:
-        field_for:
-          type: string
-          const: menstrual_cycle
-          title: Field For
-          default: menstrual_cycle
-        detected_deviations:
-          type: string
-          enum:
-          - date
-          - deviation
-          title: Detected Deviations
-          description: ℹ️ This enum is non-exhaustive.
-      additionalProperties: false
-      type: object
-      required:
-      - detected_deviations
-      title: MCDetectedDeviationsFieldExpr
-    MCSexualActivityFieldExpr:
-      properties:
-        field_for:
-          type: string
-          const: menstrual_cycle
-          title: Field For
-          default: menstrual_cycle
-        sexual_activity:
-          type: string
-          enum:
-          - date
-          - protection_used
-          title: Sexual Activity
-          description: ℹ️ This enum is non-exhaustive.
-      additionalProperties: false
-      type: object
-      required:
-      - sexual_activity
-      title: MCSexualActivityFieldExpr
-    ContinuousQueryTaskHistoryResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/ContinuousQueryTaskHistoryEntry'
-          type: array
-          title: Data
-        next_cursor:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Next Cursor
-      type: object
-      required:
-      - data
-      - next_cursor
-      title: ContinuousQueryTaskHistoryResponse
-    AggregationResult:
-      properties:
-        table:
-          additionalProperties:
-            items: {}
-            type: array
-          type: object
-          title: Table
-          description: The result table of the query, organized in a column oriented format.
-      type: object
-      required:
-      - table
-      title: AggregationResult
-    DateTruncExpr:
-      properties:
-        date_trunc:
-          $ref: '#/components/schemas/Period'
-        arg:
-          anyOf:
-          - $ref: '#/components/schemas/IndexColumnExpr'
-          - $ref: '#/components/schemas/Placeholder'
-          title: Arg
-      type: object
-      required:
-      - date_trunc
-      - arg
-      title: DateTruncExpr
-    IndexColumnExpr:
-      properties:
-        index:
-          type: string
-          enum:
-          - sleep
-          - derived_readiness
-          - activity
-          - workout
-          - body
-          - meal
-          - menstrual_cycle
-          - profile
-          - timeseries
-          title: Index
-          description: ℹ️ This enum is non-exhaustive.
-      type: object
-      required:
-      - index
-      title: IndexColumnExpr
-    ContinuousQueryTaskStatus:
-      type: string
-      enum:
-      - scheduled
-      - started
-      - completed
-      - error
-      - skipped
-      title: ContinuousQueryTaskStatus
-      description: ℹ️ This enum is non-exhaustive.
+      - body
+      title: BodyColumnExpr
     BloodPressureTimeseriesExpr:
       properties:
         timeseries:
@@ -1336,26 +1304,599 @@ components:
       - timeseries
       - field
       title: BloodPressureTimeseriesExpr
-    MCOvulationTestFieldExpr:
+    WorkoutDurationTimeseriesExpr:
+      properties:
+        timeseries:
+          type: string
+          const: workout_duration
+          title: Timeseries
+        field:
+          anyOf:
+          - type: string
+            enum:
+            - source_provider
+            - source_type
+          - type: string
+            const: source_app_id
+          - type: string
+            enum:
+            - source_workout_id
+            - source_sport
+          - type: string
+            enum:
+            - timezone_offset
+            - type
+          - type: string
+            enum:
+            - duration
+            - value
+          - type: string
+            const: intensity
+          title: Field
+          description: ℹ️ This enum is non-exhaustive.
+      type: object
+      required:
+      - timeseries
+      - field
+      title: WorkoutDurationTimeseriesExpr
+    UnnestExpr:
+      properties:
+        unnest:
+          anyOf:
+          - $ref: '#/components/schemas/SleepColumnExpr'
+          - $ref: '#/components/schemas/DerivedReadinessColumnExpr'
+          - $ref: '#/components/schemas/ReliabilityColumnExpr'
+          - $ref: '#/components/schemas/ActivityColumnExpr'
+          - $ref: '#/components/schemas/WorkoutColumnExpr'
+          - $ref: '#/components/schemas/BodyColumnExpr'
+          - $ref: '#/components/schemas/MealColumnExpr'
+          - $ref: '#/components/schemas/MenstrualCycleColumnExpr'
+          - $ref: '#/components/schemas/ProfileColumnExpr'
+          - $ref: '#/components/schemas/SleepScoreValueMacroExpr'
+          - $ref: '#/components/schemas/ChronotypeValueMacroExpr'
+          - $ref: '#/components/schemas/AsleepAtValueMacroExpr'
+          - $ref: '#/components/schemas/AwakeAtValueMacroExpr'
+          - $ref: '#/components/schemas/AwakeningsValueMacroExpr'
+          - $ref: '#/components/schemas/UnrecognizedValueMacroExpr'
+          - $ref: '#/components/schemas/DiscreteTimeseriesExpr'
+          - $ref: '#/components/schemas/IntervalTimeseriesExpr'
+          - $ref: '#/components/schemas/InsulinInjectionTimeseriesExpr'
+          - $ref: '#/components/schemas/BloodPressureTimeseriesExpr'
+          - $ref: '#/components/schemas/TemperatureTimeseriesExpr'
+          - $ref: '#/components/schemas/WorkoutDurationTimeseriesExpr'
+          - $ref: '#/components/schemas/NoteTimeseriesExpr'
+          title: Unnest
+      type: object
+      required:
+      - unnest
+      title: UnnestExpr
+      description: 'FROM clause variant: unnest a list column into elements.'
+    DatePartExpr:
+      properties:
+        arg:
+          anyOf:
+          - $ref: '#/components/schemas/IndexColumnExpr'
+          - $ref: '#/components/schemas/Placeholder'
+          title: Arg
+        date_part:
+          anyOf:
+          - type: string
+            enum:
+            - minute
+            - hour
+            - day
+            - week
+            - month
+            - year
+          - type: string
+            enum:
+            - weekday
+            - week_of_year
+            - day_of_year
+          title: Date Part
+          description: ℹ️ This enum is non-exhaustive.
+      type: object
+      required:
+      - arg
+      - date_part
+      title: DatePartExpr
+    AggregationResponse:
+      properties:
+        results:
+          items:
+            $ref: '#/components/schemas/AggregationResult'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: AggregationResponse
+    MCBasalBodyTemperatureFieldExpr:
       properties:
         field_for:
           type: string
           const: menstrual_cycle
           title: Field For
           default: menstrual_cycle
-        ovulation_test:
+        basal_body_temperature:
           type: string
           enum:
           - date
-          - test_result
-          title: Ovulation Test
+          - value
+          title: Basal Body Temperature
           description: ℹ️ This enum is non-exhaustive.
       additionalProperties: false
       type: object
       required:
-      - ovulation_test
-      title: MCOvulationTestFieldExpr
+      - basal_body_temperature
+      title: MCBasalBodyTemperatureFieldExpr
+    Period:
+      properties:
+        value:
+          type: integer
+          minimum: 1.0
+          title: Value
+          default: 1
+        unit:
+          type: string
+          enum:
+          - minute
+          - hour
+          - day
+          - week
+          - month
+          - year
+          title: Unit
+          description: ℹ️ This enum is non-exhaustive.
+      type: object
+      required:
+      - unit
+      title: Period
     Labs:
+      type: string
+      enum:
+      - ayumetrix
+      - spiriplex
+      - ussl
+      - quest
+      - sonora_quest
+      - labcorp
+      - bioreference
+      - us_biotek
+      - manual
+      - sanocardio
+      - ihd
+      - nexus
+      - my_uti
+      - crl
+      - mtl
+      title: Labs
+      description: ℹ️ This enum is non-exhaustive.
+    DiscreteTimeseriesExpr:
+      properties:
+        timeseries:
+          type: string
+          enum:
+          - glucose
+          - heartrate
+          - hrv
+          - ige
+          - igg
+          - cholesterol
+          - weight
+          - fat
+          - blood_oxygen
+          - electrocardiogram_voltage
+          - respiratory_rate
+          - stress_level
+          title: Timeseries
+          description: ℹ️ This enum is non-exhaustive.
+        field:
+          anyOf:
+          - type: string
+            enum:
+            - source_provider
+            - source_type
+          - type: string
+            const: source_app_id
+          - type: string
+            enum:
+            - source_workout_id
+            - source_sport
+          - type: string
+            enum:
+            - timezone_offset
+            - type
+          - type: string
+            const: value
+          title: Field
+          description: ℹ️ This enum is non-exhaustive.
+      type: object
+      required:
+      - timeseries
+      - field
+      title: DiscreteTimeseriesExpr
+    Query:
+      properties:
+        select:
+          items:
+            anyOf:
+            - $ref: '#/components/schemas/AggregateExpr'
+            - $ref: '#/components/schemas/GroupKeyColumnExpr'
+            - $ref: '#/components/schemas/SleepColumnExpr'
+            - $ref: '#/components/schemas/DerivedReadinessColumnExpr'
+            - $ref: '#/components/schemas/ReliabilityColumnExpr'
+            - $ref: '#/components/schemas/ActivityColumnExpr'
+            - $ref: '#/components/schemas/WorkoutColumnExpr'
+            - $ref: '#/components/schemas/BodyColumnExpr'
+            - $ref: '#/components/schemas/MealColumnExpr'
+            - $ref: '#/components/schemas/MenstrualCycleColumnExpr'
+            - $ref: '#/components/schemas/ProfileColumnExpr'
+            - $ref: '#/components/schemas/SleepScoreValueMacroExpr'
+            - $ref: '#/components/schemas/ChronotypeValueMacroExpr'
+            - $ref: '#/components/schemas/AsleepAtValueMacroExpr'
+            - $ref: '#/components/schemas/AwakeAtValueMacroExpr'
+            - $ref: '#/components/schemas/AwakeningsValueMacroExpr'
+            - $ref: '#/components/schemas/UnrecognizedValueMacroExpr'
+            - $ref: '#/components/schemas/DiscreteTimeseriesExpr'
+            - $ref: '#/components/schemas/IntervalTimeseriesExpr'
+            - $ref: '#/components/schemas/InsulinInjectionTimeseriesExpr'
+            - $ref: '#/components/schemas/BloodPressureTimeseriesExpr'
+            - $ref: '#/components/schemas/TemperatureTimeseriesExpr'
+            - $ref: '#/components/schemas/WorkoutDurationTimeseriesExpr'
+            - $ref: '#/components/schemas/NoteTimeseriesExpr'
+            - $ref: '#/components/schemas/IndexColumnExpr'
+            - $ref: '#/components/schemas/ScalarOutputSubqueryExpr'
+            - $ref: '#/components/schemas/SourceColumnExpr'
+          type: array
+          title: Select
+        group_by:
+          items:
+            anyOf:
+            - $ref: '#/components/schemas/DateTruncExpr'
+            - $ref: '#/components/schemas/DatePartExpr'
+            - $ref: '#/components/schemas/SleepColumnExpr'
+            - $ref: '#/components/schemas/DerivedReadinessColumnExpr'
+            - $ref: '#/components/schemas/ReliabilityColumnExpr'
+            - $ref: '#/components/schemas/ActivityColumnExpr'
+            - $ref: '#/components/schemas/WorkoutColumnExpr'
+            - $ref: '#/components/schemas/BodyColumnExpr'
+            - $ref: '#/components/schemas/MealColumnExpr'
+            - $ref: '#/components/schemas/MenstrualCycleColumnExpr'
+            - $ref: '#/components/schemas/ProfileColumnExpr'
+            - $ref: '#/components/schemas/SleepScoreValueMacroExpr'
+            - $ref: '#/components/schemas/ChronotypeValueMacroExpr'
+            - $ref: '#/components/schemas/AsleepAtValueMacroExpr'
+            - $ref: '#/components/schemas/AwakeAtValueMacroExpr'
+            - $ref: '#/components/schemas/AwakeningsValueMacroExpr'
+            - $ref: '#/components/schemas/UnrecognizedValueMacroExpr'
+            - $ref: '#/components/schemas/DiscreteTimeseriesExpr'
+            - $ref: '#/components/schemas/IntervalTimeseriesExpr'
+            - $ref: '#/components/schemas/InsulinInjectionTimeseriesExpr'
+            - $ref: '#/components/schemas/BloodPressureTimeseriesExpr'
+            - $ref: '#/components/schemas/TemperatureTimeseriesExpr'
+            - $ref: '#/components/schemas/WorkoutDurationTimeseriesExpr'
+            - $ref: '#/components/schemas/NoteTimeseriesExpr'
+            - $ref: '#/components/schemas/SourceColumnExpr'
+          type: array
+          title: Group By
+        where:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Where
+          description: 'A WHERE clause filtering the input data. If a GROUP BY clause is present, filtering happens prior to GROUP BY evaluation.
+
+
+            WHERE clause uses SQL Expression syntax to describe the filtering criteria:
+
+            * Available operators: `>`, `>=`, `<`, `<=`, `=`, `!=`, `NOT`, `AND` and `OR`.
+
+            * Parentheses is supported.'
+        align:
+          anyOf:
+          - $ref: '#/components/schemas/AlignExpr'
+          - type: 'null'
+          description: 'Post-aggregation alignment clause. When a carry operator is set, missing
+
+            datetime buckets are materialised and filled after group_by+aggregate.
+
+            Omitting this field preserves honest-null behaviour.'
+      type: object
+      required:
+      - select
+      title: Query
+    ChronotypeValueMacroExpr:
+      properties:
+        value_macro:
+          type: string
+          const: chronotype
+          title: Value Macro
+        version:
+          type: string
+          const: automatic
+          title: Version
+          default: automatic
+      type: object
+      required:
+      - value_macro
+      title: ChronotypeValueMacroExpr
+    UnrecognizedValueMacroExpr:
+      properties:
+        value_macro:
+          type: string
+          title: Value Macro
+      type: object
+      required:
+      - value_macro
+      title: UnrecognizedValueMacroExpr
+    WorkoutColumnExpr:
+      properties:
+        workout:
+          type: string
+          enum:
+          - session_start
+          - session_end
+          - title
+          - sport_name
+          - sport_slug
+          - duration_active_second
+          - heart_rate_mean
+          - heart_rate_minimum
+          - heart_rate_maximum
+          - heart_rate_zone_1
+          - heart_rate_zone_2
+          - heart_rate_zone_3
+          - heart_rate_zone_4
+          - heart_rate_zone_5
+          - heart_rate_zone_6
+          - distance_meter
+          - calories
+          - elevation_gain_meter
+          - elevation_maximum_meter
+          - elevation_minimum_meter
+          - speed_mean
+          - speed_maximum
+          - power_source
+          - power_mean
+          - power_maximum
+          - power_weighted_mean
+          - steps
+          - map_polyline
+          - map_summary_polyline
+          - source_type
+          - source_provider
+          - source_app_id
+          - source_device_id
+          - external_id
+          - time_zone
+          title: Workout
+          description: ℹ️ This enum is non-exhaustive.
+      type: object
+      required:
+      - workout
+      title: WorkoutColumnExpr
+    NoteTimeseriesExpr:
+      properties:
+        timeseries:
+          type: string
+          const: note
+          title: Timeseries
+        field:
+          anyOf:
+          - type: string
+            enum:
+            - source_provider
+            - source_type
+          - type: string
+            const: source_app_id
+          - type: string
+            enum:
+            - source_workout_id
+            - source_sport
+          - type: string
+            enum:
+            - timezone_offset
+            - type
+          - type: string
+            enum:
+            - tags
+            - content
+          title: Field
+          description: ℹ️ This enum is non-exhaustive.
+      type: object
+      required:
+      - timeseries
+      - field
+      title: NoteTimeseriesExpr
+    HTTPValidationError:
+      properties:
+        detail:
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    MCHomePregnancyTestFieldExpr:
+      properties:
+        field_for:
+          type: string
+          const: menstrual_cycle
+          title: Field For
+          default: menstrual_cycle
+        home_pregnancy_test:
+          type: string
+          enum:
+          - date
+          - test_result
+          title: Home Pregnancy Test
+          description: ℹ️ This enum is non-exhaustive.
+      additionalProperties: false
+      type: object
+      required:
+      - home_pregnancy_test
+      title: MCHomePregnancyTestFieldExpr
+    MCCervicalMucusFieldExpr:
+      properties:
+        field_for:
+          type: string
+          const: menstrual_cycle
+          title: Field For
+          default: menstrual_cycle
+        cervical_mucus:
+          type: string
+          enum:
+          - date
+          - quality
+          title: Cervical Mucus
+          description: ℹ️ This enum is non-exhaustive.
+      additionalProperties: false
+      type: object
+      required:
+      - cervical_mucus
+      title: MCCervicalMucusFieldExpr
+    Providers_2:
+      type: string
+      enum:
+      - oura
+      - fitbit
+      - garmin
+      - whoop
+      - strava
+      - renpho
+      - peloton
+      - wahoo
+      - zwift
+      - freestyle_libre
+      - abbott_libreview
+      - tandem_source
+      - freestyle_libre_ble
+      - eight_sleep
+      - withings
+      - apple_health_kit
+      - manual
+      - ihealth
+      - google_fit
+      - beurer_api
+      - beurer_ble
+      - omron
+      - omron_ble
+      - onetouch_ble
+      - accuchek_ble
+      - contour_ble
+      - dexcom
+      - dexcom_v3
+      - hammerhead
+      - my_fitness_pal
+      - health_connect
+      - samsung_health
+      - polar
+      - cronometer
+      - kardia
+      - whoop_v2
+      - ultrahuman
+      - my_fitness_pal_v2
+      - map_my_fitness
+      - runkeeper
+      title: Providers
+      description: ℹ️ This enum is non-exhaustive.
+    IndexColumnExpr_2:
+      properties:
+        index:
+          type: string
+          enum:
+          - sleep
+          - derived_readiness
+          - activity
+          - workout
+          - body
+          - meal
+          - menstrual_cycle
+          - profile
+          - timeseries
+          title: Index
+          description: ℹ️ This enum is non-exhaustive.
+      type: object
+      required:
+      - index
+      title: IndexColumnExpr
+    AggregateExpr_2:
+      properties:
+        arg:
+          anyOf:
+          - $ref: '#/components/schemas/SleepColumnExpr'
+          - $ref: '#/components/schemas/DerivedReadinessColumnExpr'
+          - $ref: '#/components/schemas/ActivityColumnExpr'
+          - $ref: '#/components/schemas/WorkoutColumnExpr'
+          - $ref: '#/components/schemas/BodyColumnExpr'
+          - $ref: '#/components/schemas/MealColumnExpr'
+          - $ref: '#/components/schemas/MenstrualCycleColumnExpr'
+          - $ref: '#/components/schemas/ProfileColumnExpr'
+          - $ref: '#/components/schemas/SleepScoreValueMacroExpr'
+          - $ref: '#/components/schemas/ChronotypeValueMacroExpr'
+          - $ref: '#/components/schemas/AsleepAtValueMacroExpr'
+          - $ref: '#/components/schemas/AwakeAtValueMacroExpr'
+          - $ref: '#/components/schemas/AwakeningsValueMacroExpr'
+          - $ref: '#/components/schemas/UnrecognizedValueMacroExpr'
+          - $ref: '#/components/schemas/DiscreteTimeseriesExpr'
+          - $ref: '#/components/schemas/IntervalTimeseriesExpr'
+          - $ref: '#/components/schemas/InsulinInjectionTimeseriesExpr'
+          - $ref: '#/components/schemas/BloodPressureTimeseriesExpr'
+          - $ref: '#/components/schemas/TemperatureTimeseriesExpr'
+          - $ref: '#/components/schemas/WorkoutDurationTimeseriesExpr'
+          - $ref: '#/components/schemas/NoteTimeseriesExpr'
+          - $ref: '#/components/schemas/IndexColumnExpr_2'
+          - $ref: '#/components/schemas/ScalarOutputSubqueryExpr'
+          title: Arg
+        func:
+          type: string
+          enum:
+          - mean
+          - min
+          - max
+          - sum
+          - count
+          - median
+          - stddev
+          - oldest
+          - newest
+          title: Func
+          description: ℹ️ This enum is non-exhaustive.
+      type: object
+      required:
+      - arg
+      - func
+      title: AggregateExpr
+    UnnestExpr_2:
+      properties:
+        unnest:
+          anyOf:
+          - $ref: '#/components/schemas/SleepColumnExpr'
+          - $ref: '#/components/schemas/DerivedReadinessColumnExpr'
+          - $ref: '#/components/schemas/ActivityColumnExpr'
+          - $ref: '#/components/schemas/WorkoutColumnExpr'
+          - $ref: '#/components/schemas/BodyColumnExpr'
+          - $ref: '#/components/schemas/MealColumnExpr'
+          - $ref: '#/components/schemas/MenstrualCycleColumnExpr'
+          - $ref: '#/components/schemas/ProfileColumnExpr'
+          - $ref: '#/components/schemas/SleepScoreValueMacroExpr'
+          - $ref: '#/components/schemas/ChronotypeValueMacroExpr'
+          - $ref: '#/components/schemas/AsleepAtValueMacroExpr'
+          - $ref: '#/components/schemas/AwakeAtValueMacroExpr'
+          - $ref: '#/components/schemas/AwakeningsValueMacroExpr'
+          - $ref: '#/components/schemas/UnrecognizedValueMacroExpr'
+          - $ref: '#/components/schemas/DiscreteTimeseriesExpr'
+          - $ref: '#/components/schemas/IntervalTimeseriesExpr'
+          - $ref: '#/components/schemas/InsulinInjectionTimeseriesExpr'
+          - $ref: '#/components/schemas/BloodPressureTimeseriesExpr'
+          - $ref: '#/components/schemas/TemperatureTimeseriesExpr'
+          - $ref: '#/components/schemas/WorkoutDurationTimeseriesExpr'
+          - $ref: '#/components/schemas/NoteTimeseriesExpr'
+          title: Unnest
+      type: object
+      required:
+      - unnest
+      title: UnnestExpr
+      description: 'FROM clause variant: unnest a list column into elements.'
+    Labs_2:
       type: string
       enum:
       - ayumetrix
@@ -1374,12 +1915,12 @@ components:
       - crl
       title: Labs
       description: ℹ️ This enum is non-exhaustive.
-    Query:
+    Query_2:
       properties:
         select:
           items:
             anyOf:
-            - $ref: '#/components/schemas/AggregateExpr'
+            - $ref: '#/components/schemas/AggregateExpr_2'
             - $ref: '#/components/schemas/GroupKeyColumnExpr'
             - $ref: '#/components/schemas/SleepColumnExpr'
             - $ref: '#/components/schemas/DerivedReadinessColumnExpr'
@@ -1402,7 +1943,7 @@ components:
             - $ref: '#/components/schemas/TemperatureTimeseriesExpr'
             - $ref: '#/components/schemas/WorkoutDurationTimeseriesExpr'
             - $ref: '#/components/schemas/NoteTimeseriesExpr'
-            - $ref: '#/components/schemas/IndexColumnExpr'
+            - $ref: '#/components/schemas/IndexColumnExpr_2'
             - $ref: '#/components/schemas/ScalarOutputSubqueryExpr'
             - $ref: '#/components/schemas/SourceColumnExpr'
           type: array
@@ -1453,148 +1994,12 @@ components:
       required:
       - select
       title: Query
-    Placeholder:
-      properties:
-        placeholder:
-          type: boolean
-          const: true
-          title: Placeholder
-      type: object
-      required:
-      - placeholder
-      title: Placeholder
-    Providers:
-      type: string
-      enum:
-      - oura
-      - fitbit
-      - garmin
-      - whoop
-      - strava
-      - renpho
-      - peloton
-      - wahoo
-      - zwift
-      - freestyle_libre
-      - abbott_libreview
-      - tandem_source
-      - freestyle_libre_ble
-      - eight_sleep
-      - withings
-      - apple_health_kit
-      - manual
-      - ihealth
-      - google_fit
-      - beurer_api
-      - beurer_ble
-      - omron
-      - omron_ble
-      - onetouch_ble
-      - accuchek_ble
-      - contour_ble
-      - dexcom
-      - dexcom_v3
-      - hammerhead
-      - my_fitness_pal
-      - health_connect
-      - samsung_health
-      - polar
-      - cronometer
-      - kardia
-      - whoop_v2
-      - ultrahuman
-      - my_fitness_pal_v2
-      - map_my_fitness
-      - runkeeper
-      title: Providers
-      description: ℹ️ This enum is non-exhaustive.
-    WorkoutDurationTimeseriesExpr:
-      properties:
-        timeseries:
-          type: string
-          const: workout_duration
-          title: Timeseries
-        field:
-          anyOf:
-          - type: string
-            enum:
-            - source_provider
-            - source_type
-          - type: string
-            const: source_app_id
-          - type: string
-            enum:
-            - source_workout_id
-            - source_sport
-          - type: string
-            enum:
-            - timezone_offset
-            - type
-          - type: string
-            enum:
-            - duration
-            - value
-          - type: string
-            const: intensity
-          title: Field
-          description: ℹ️ This enum is non-exhaustive.
-      type: object
-      required:
-      - timeseries
-      - field
-      title: WorkoutDurationTimeseriesExpr
-    AwakeningsValueMacroExpr:
-      properties:
-        value_macro:
-          type: string
-          const: awakenings
-          title: Value Macro
-        version:
-          type: string
-          const: automatic
-          title: Version
-          default: automatic
-      type: object
-      required:
-      - value_macro
-      title: AwakeningsValueMacroExpr
-    SleepScoreValueMacroExpr:
-      properties:
-        value_macro:
-          type: string
-          const: sleep_score
-          title: Value Macro
-        version:
-          type: string
-          const: automatic
-          title: Version
-          default: automatic
-      type: object
-      required:
-      - value_macro
-      title: SleepScoreValueMacroExpr
-    MCCervicalMucusFieldExpr:
-      properties:
-        field_for:
-          type: string
-          const: menstrual_cycle
-          title: Field For
-          default: menstrual_cycle
-        cervical_mucus:
-          type: string
-          enum:
-          - date
-          - quality
-          title: Cervical Mucus
-          description: ℹ️ This enum is non-exhaustive.
-      additionalProperties: false
-      type: object
-      required:
-      - cervical_mucus
-      title: MCCervicalMucusFieldExpr
   securitySchemes:
     apiKeyAuth:
       type: apiKey
       in: header
       name: x-vital-api-key
       description: Vital Team API Key
+x-refined-from:
+- junction-openapi-live-2026-10-12.json
+- vital-openapi-original.json

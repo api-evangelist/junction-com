@@ -1,8 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Junction Providers API
-  description: https://docs.junction.com/
-  version: 0.4.497
+  title: Vital Io Providers API
+  version: '1.0'
+  description: 'Operations tagged providers across 2 of this provider''s published API definitions: junction-openapi-live-2026-10-12.json, vital-openapi-original.json. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.us.junction.com
   x-fern-server-name: Production
@@ -51,9 +51,161 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       x-fern-sdk-group-name: providers
       x-fern-sdk-method-name: get_all
+    servers:
+    - url: https://api.us.junction.com
+      x-fern-server-name: Production
+    - url: https://api.eu.junction.com
+      x-fern-server-name: ProductionEU
+    - url: https://api.sandbox.us.junction.com
+      x-fern-server-name: Sandbox
+    - url: https://api.sandbox.eu.junction.com
+      x-fern-server-name: SandboxEU
 components:
   schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ClientFacingProviderDetailed:
+      properties:
+        name:
+          type: string
+          title: Name
+          description: Name of source of information
+        slug:
+          type: string
+          title: Slug
+          description: Slug for designated source
+        description:
+          type: string
+          title: Description
+          description: Description of source of information
+        logo:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Logo
+          description: URL for source logo
+        auth_type:
+          anyOf:
+          - $ref: '#/components/schemas/SourceAuthType'
+          - type: 'null'
+          description: ℹ️ This enum is non-exhaustive.
+        supported_resources:
+          items:
+            $ref: '#/components/schemas/Resource'
+          type: array
+          title: Supported Resources
+          default: []
+      type: object
+      required:
+      - name
+      - slug
+      - description
+      - logo
+      title: Provider
+      example:
+        auth_type: oauth
+        logo: https://logo_url.com
+        name: Oura
+        slug: oura
+        supported_resources:
+        - workouts
+        - sleep
+    SourceAuthType:
+      type: string
+      enum:
+      - oauth
+      - team_oauth
+      - sdk
+      - password
+      - email
+      - app
+      - ''
+      title: SourceAuthType
+      x-fern-enum:
+        ? ''
+        : name: Empty
+      description: ℹ️ This enum is non-exhaustive.
     Resource:
+      type: string
+      enum:
+      - profile
+      - activity
+      - sleep
+      - body
+      - workouts
+      - workout_stream
+      - connection
+      - order
+      - result
+      - match_review
+      - appointment
+      - result_table
+      - glucose
+      - heartrate
+      - hrv
+      - hrv
+      - ige
+      - igg
+      - blood_oxygen
+      - blood_pressure
+      - cholesterol
+      - device
+      - device_legacy
+      - weight
+      - fat
+      - body_temperature
+      - body_temperature_delta
+      - meal
+      - water
+      - caffeine
+      - mindfulness_minutes
+      - steps
+      - calories_active
+      - distance
+      - floors_climbed
+      - respiratory_rate
+      - vo2_max
+      - calories_basal
+      - stress_level
+      - menstrual_cycle
+      - sleep_cycle
+      - electrocardiogram
+      - electrocardiogram_voltage
+      - afib_burden
+      - heart_rate_alert
+      - stand_hour
+      - stand_duration
+      - sleep_apnea_alert
+      - sleep_breathing_disturbance
+      - wheelchair_push
+      - forced_expiratory_volume_1
+      - forced_vital_capacity
+      - peak_expiratory_flow_rate
+      - inhaler_usage
+      - fall
+      - uv_exposure
+      - daylight_exposure
+      - handwashing
+      - basal_body_temperature
+      - heart_rate_recovery_one_minute
+      - body_mass_index
+      - lean_body_mass
+      - waist_circumference
+      - workout_distance
+      - workout_swimming_stroke
+      - workout_duration
+      - insulin_injection
+      - carbohydrates
+      - note
+      - sleep_stream
+      title: ClientFacingResource
+      x-fern-type-name: ClientFacingResource
+      description: ℹ️ This enum is non-exhaustive.
+    Resource_2:
       type: string
       enum:
       - profile
@@ -129,76 +281,12 @@ components:
       title: ClientFacingResource
       x-fern-type-name: ClientFacingResource
       description: ℹ️ This enum is non-exhaustive.
-    HTTPValidationError:
-      properties:
-        detail:
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    ClientFacingProviderDetailed:
-      properties:
-        name:
-          type: string
-          title: Name
-          description: Name of source of information
-        slug:
-          type: string
-          title: Slug
-          description: Slug for designated source
-        description:
-          type: string
-          title: Description
-          description: Description of source of information
-        logo:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Logo
-          description: URL for source logo
-        auth_type:
-          anyOf:
-          - $ref: '#/components/schemas/SourceAuthType'
-          - type: 'null'
-          description: ℹ️ This enum is non-exhaustive.
-        supported_resources:
-          items:
-            $ref: '#/components/schemas/Resource'
-          type: array
-          title: Supported Resources
-          default: []
-      type: object
-      required:
-      - name
-      - slug
-      - description
-      - logo
-      title: Provider
-      example:
-        auth_type: oauth
-        logo: https://logo_url.com
-        name: Oura
-        slug: oura
-        supported_resources:
-        - workouts
-        - sleep
-    SourceAuthType:
-      type: string
-      enum:
-      - oauth
-      - team_oauth
-      - sdk
-      - password
-      - email
-      - app
-      - ''
-      title: SourceAuthType
-      x-fern-enum:
-        ? ''
-        : name: Empty
-      description: ℹ️ This enum is non-exhaustive.
   securitySchemes:
     apiKeyAuth:
       type: apiKey
       in: header
       name: x-vital-api-key
       description: Vital Team API Key
+x-refined-from:
+- junction-openapi-live-2026-10-12.json
+- vital-openapi-original.json

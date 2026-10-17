@@ -1,8 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Junction Compendium API
-  description: https://docs.junction.com/
-  version: 0.4.497
+  title: Vital Io Compendium API
+  version: '1.0'
+  description: 'Operations tagged compendium across 2 of this provider''s published API definitions: junction-openapi-live-2026-10-12.json, vital-openapi-original.json. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.us.junction.com
   x-fern-server-name: Production
@@ -44,6 +44,15 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       x-fern-sdk-group-name: compendium
       x-fern-sdk-method-name: search
+    servers:
+    - url: https://api.us.junction.com
+      x-fern-server-name: Production
+    - url: https://api.eu.junction.com
+      x-fern-server-name: ProductionEU
+    - url: https://api.sandbox.us.junction.com
+      x-fern-server-name: Sandbox
+    - url: https://api.sandbox.eu.junction.com
+      x-fern-server-name: SandboxEU
   /v3/compendium/convert:
     post:
       tags:
@@ -71,8 +80,200 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       x-fern-sdk-group-name: compendium
       x-fern-sdk-method-name: convert
+    servers:
+    - url: https://api.us.junction.com
+      x-fern-server-name: Production
+    - url: https://api.eu.junction.com
+      x-fern-server-name: ProductionEU
+    - url: https://api.sandbox.us.junction.com
+      x-fern-server-name: Sandbox
+    - url: https://api.sandbox.eu.junction.com
+      x-fern-server-name: SandboxEU
+  /v3/compendium/search_orderable_tests:
+    post:
+      tags:
+      - compendium
+      summary: Search Orderable Tests
+      operationId: search_orderable_tests_v3_compendium_search_orderable_tests_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchOrderableTestsBody'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchOrderableTestsResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      x-fern-sdk-group-name: compendium
+      x-fern-sdk-method-name: search_orderable_tests
+    servers:
+    - url: https://api.us.junction.com
+      x-fern-server-name: Production
+    - url: https://api.eu.junction.com
+      x-fern-server-name: ProductionEU
+    - url: https://api.sandbox.us.junction.com
+      x-fern-server-name: Sandbox
+    - url: https://api.sandbox.eu.junction.com
+      x-fern-server-name: SandboxEU
 components:
   schemas:
+    SearchMode:
+      type: string
+      enum:
+      - canonical
+      - crosswalk
+      title: SearchMode
+      description: ℹ️ This enum is non-exhaustive.
+    SearchOrderableTestsResponse:
+      properties:
+        candidates:
+          additionalProperties:
+            items:
+              $ref: '#/components/schemas/PerLabCandidate'
+            type: array
+          type: object
+          title: Candidates
+      type: object
+      title: SearchOrderableTestsResponse
+    ConvertCompendiumBody:
+      properties:
+        lab_test_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Lab Test Id
+        provider_ids:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Provider Ids
+        target_lab:
+          $ref: '#/components/schemas/CompendiumSearchLabs'
+          description: ℹ️ This enum is non-exhaustive.
+        limit:
+          type: integer
+          title: Limit
+          default: 3
+      type: object
+      required:
+      - target_lab
+      title: ConvertCompendiumBody
+    SearchCompendiumResponse:
+      properties:
+        mode:
+          $ref: '#/components/schemas/SearchMode'
+          description: ℹ️ This enum is non-exhaustive.
+        selected_canonical:
+          anyOf:
+          - $ref: '#/components/schemas/CanonicalCandidate'
+          - type: 'null'
+        canonical_candidates:
+          items:
+            $ref: '#/components/schemas/CanonicalCandidate'
+          type: array
+          title: Canonical Candidates
+        per_lab:
+          additionalProperties:
+            items:
+              $ref: '#/components/schemas/PerLabCandidate'
+            type: array
+          type: object
+          title: Per Lab
+        related:
+          items:
+            $ref: '#/components/schemas/RelatedCandidate'
+          type: array
+          title: Related
+      type: object
+      required:
+      - mode
+      title: SearchCompendiumResponse
+    CompendiumSearchLabs:
+      type: string
+      enum:
+      - labcorp
+      - quest
+      - bioreference
+      - sonora_quest
+      title: CompendiumSearchLabs
+      description: ℹ️ This enum is non-exhaustive.
+    ConvertCompendiumResponse:
+      properties:
+        source_lab_test_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Source Lab Test Id
+        source_lab_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Source Lab Id
+        target_lab_id:
+          type: integer
+          title: Target Lab Id
+        target_lab_slug:
+          type: string
+          title: Target Lab Slug
+        source_provider_ids:
+          items:
+            type: string
+          type: array
+          title: Source Provider Ids
+        converted_provider_ids:
+          items:
+            type: string
+          type: array
+          title: Converted Provider Ids
+        unresolved_provider_ids:
+          items:
+            type: string
+          type: array
+          title: Unresolved Provider Ids
+        by_source_provider_id:
+          additionalProperties:
+            $ref: '#/components/schemas/ProviderIdConversionResponse'
+          type: object
+          title: By Source Provider Id
+      type: object
+      required:
+      - target_lab_id
+      - target_lab_slug
+      title: ConvertCompendiumResponse
+    SearchOrderableTestsBody:
+      properties:
+        provider_ids:
+          items:
+            type: string
+          type: array
+          maxItems: 100
+          title: Provider Ids
+        target_lab:
+          $ref: '#/components/schemas/CompendiumSearchLabs'
+          description: ℹ️ This enum is non-exhaustive.
+        per_provider_limit:
+          type: integer
+          title: Per Provider Limit
+          default: 1
+      type: object
+      required:
+      - provider_ids
+      - target_lab
+      title: SearchOrderableTestsBody
     CanonicalCandidate:
       properties:
         loinc_set_hash:
@@ -124,6 +325,26 @@ components:
       - popularity_score
       - confidence
       title: CanonicalCandidate
+    HTTPValidationError:
+      properties:
+        detail:
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ProviderIdConversionResponse:
+      properties:
+        source_provider_id:
+          type: string
+          title: Source Provider Id
+        candidates:
+          items:
+            $ref: '#/components/schemas/PerLabCandidate'
+          type: array
+          title: Candidates
+      type: object
+      required:
+      - source_provider_id
+      title: ProviderIdConversionResponse
     PerLabCandidate:
       properties:
         marker_id:
@@ -197,12 +418,27 @@ components:
       - confidence
       - marker_popularity_score
       title: PerLabCandidate
-    HTTPValidationError:
+    RelatedCandidate:
       properties:
-        detail:
-          title: Detail
+        canonical:
+          $ref: '#/components/schemas/CanonicalCandidate'
+        relation:
+          type: string
+          title: Relation
+        confidence:
+          type: number
+          title: Confidence
+        reason_codes:
+          items:
+            type: string
+          type: array
+          title: Reason Codes
       type: object
-      title: HTTPValidationError
+      required:
+      - canonical
+      - relation
+      - confidence
+      title: RelatedCandidate
     SearchCompendiumBody:
       properties:
         mode:
@@ -242,160 +478,12 @@ components:
       required:
       - mode
       title: SearchCompendiumBody
-    RelatedCandidate:
-      properties:
-        canonical:
-          $ref: '#/components/schemas/CanonicalCandidate'
-        relation:
-          type: string
-          title: Relation
-        confidence:
-          type: number
-          title: Confidence
-        reason_codes:
-          items:
-            type: string
-          type: array
-          title: Reason Codes
-      type: object
-      required:
-      - canonical
-      - relation
-      - confidence
-      title: RelatedCandidate
-    ConvertCompendiumBody:
-      properties:
-        lab_test_id:
-          anyOf:
-          - type: string
-            format: uuid
-          - type: 'null'
-          title: Lab Test Id
-        provider_ids:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Provider Ids
-        target_lab:
-          $ref: '#/components/schemas/CompendiumSearchLabs'
-          description: ℹ️ This enum is non-exhaustive.
-        limit:
-          type: integer
-          title: Limit
-          default: 3
-      type: object
-      required:
-      - target_lab
-      title: ConvertCompendiumBody
-    CompendiumSearchLabs:
-      type: string
-      enum:
-      - labcorp
-      - quest
-      - bioreference
-      - sonora_quest
-      title: CompendiumSearchLabs
-      description: ℹ️ This enum is non-exhaustive.
-    SearchCompendiumResponse:
-      properties:
-        mode:
-          $ref: '#/components/schemas/SearchMode'
-          description: ℹ️ This enum is non-exhaustive.
-        selected_canonical:
-          anyOf:
-          - $ref: '#/components/schemas/CanonicalCandidate'
-          - type: 'null'
-        canonical_candidates:
-          items:
-            $ref: '#/components/schemas/CanonicalCandidate'
-          type: array
-          title: Canonical Candidates
-        per_lab:
-          additionalProperties:
-            items:
-              $ref: '#/components/schemas/PerLabCandidate'
-            type: array
-          type: object
-          title: Per Lab
-        related:
-          items:
-            $ref: '#/components/schemas/RelatedCandidate'
-          type: array
-          title: Related
-      type: object
-      required:
-      - mode
-      title: SearchCompendiumResponse
-    SearchMode:
-      type: string
-      enum:
-      - canonical
-      - crosswalk
-      title: SearchMode
-      description: ℹ️ This enum is non-exhaustive.
-    ConvertCompendiumResponse:
-      properties:
-        source_lab_test_id:
-          anyOf:
-          - type: string
-            format: uuid
-          - type: 'null'
-          title: Source Lab Test Id
-        source_lab_id:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Source Lab Id
-        target_lab_id:
-          type: integer
-          title: Target Lab Id
-        target_lab_slug:
-          type: string
-          title: Target Lab Slug
-        source_provider_ids:
-          items:
-            type: string
-          type: array
-          title: Source Provider Ids
-        converted_provider_ids:
-          items:
-            type: string
-          type: array
-          title: Converted Provider Ids
-        unresolved_provider_ids:
-          items:
-            type: string
-          type: array
-          title: Unresolved Provider Ids
-        by_source_provider_id:
-          additionalProperties:
-            $ref: '#/components/schemas/ProviderIdConversionResponse'
-          type: object
-          title: By Source Provider Id
-      type: object
-      required:
-      - target_lab_id
-      - target_lab_slug
-      title: ConvertCompendiumResponse
-    ProviderIdConversionResponse:
-      properties:
-        source_provider_id:
-          type: string
-          title: Source Provider Id
-        candidates:
-          items:
-            $ref: '#/components/schemas/PerLabCandidate'
-          type: array
-          title: Candidates
-      type: object
-      required:
-      - source_provider_id
-      title: ProviderIdConversionResponse
   securitySchemes:
     apiKeyAuth:
       type: apiKey
       in: header
       name: x-vital-api-key
       description: Vital Team API Key
+x-refined-from:
+- junction-openapi-live-2026-10-12.json
+- vital-openapi-original.json

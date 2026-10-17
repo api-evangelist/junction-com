@@ -1,8 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Junction Payor API
-  description: https://docs.junction.com/
-  version: 0.4.497
+  title: Vital Io Payor API
+  version: '1.0'
+  description: 'Operations tagged payor across 2 of this provider''s published API definitions: junction-openapi-live-2026-10-12.json, vital-openapi-original.json. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.us.junction.com
   x-fern-server-name: Production
@@ -44,6 +44,15 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       x-fern-sdk-group-name: payor
       x-fern-sdk-method-name: create_payor
+    servers:
+    - url: https://api.us.junction.com
+      x-fern-server-name: Production
+    - url: https://api.eu.junction.com
+      x-fern-server-name: ProductionEU
+    - url: https://api.sandbox.us.junction.com
+      x-fern-server-name: Sandbox
+    - url: https://api.sandbox.eu.junction.com
+      x-fern-server-name: SandboxEU
 components:
   schemas:
     ClientFacingPayorCodeSource:
@@ -53,61 +62,6 @@ components:
       - team
       title: ClientFacingPayorCodeSource
       description: ℹ️ This enum is non-exhaustive.
-    HTTPValidationError:
-      properties:
-        detail:
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    PayorCodeExternalProvider:
-      type: string
-      enum:
-      - change_healthcare
-      - availity
-      - stedi
-      - waystar
-      - claim_md
-      - apero
-      - pverify
-      title: PayorCodeExternalProvider
-      description: ℹ️ This enum is non-exhaustive.
-    Address:
-      properties:
-        first_line:
-          type: string
-          title: First Line
-        second_line:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Second Line
-          default: ''
-        country:
-          type: string
-          title: Country
-        zip:
-          type: string
-          title: Zip
-        city:
-          type: string
-          title: City
-        state:
-          type: string
-          title: State
-        access_notes:
-          anyOf:
-          - type: string
-            maxLength: 1000
-          - type: 'null'
-          title: Access Notes
-      type: object
-      required:
-      - first_line
-      - country
-      - zip
-      - city
-      - state
-      title: Address
     ClientFacingPayor:
       properties:
         payor_code:
@@ -160,9 +114,67 @@ components:
       - name
       - address
       title: CreatePayorBody
+    Address:
+      properties:
+        first_line:
+          type: string
+          title: First Line
+        second_line:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Second Line
+          default: ''
+        country:
+          type: string
+          title: Country
+        zip:
+          type: string
+          title: Zip
+        city:
+          type: string
+          title: City
+        state:
+          type: string
+          title: State
+        access_notes:
+          anyOf:
+          - type: string
+            maxLength: 1000
+          - type: 'null'
+          title: Access Notes
+      type: object
+      required:
+      - first_line
+      - country
+      - zip
+      - city
+      - state
+      title: Address
+    HTTPValidationError:
+      properties:
+        detail:
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    PayorCodeExternalProvider:
+      type: string
+      enum:
+      - change_healthcare
+      - availity
+      - stedi
+      - waystar
+      - claim_md
+      - apero
+      - pverify
+      title: PayorCodeExternalProvider
+      description: ℹ️ This enum is non-exhaustive.
   securitySchemes:
     apiKeyAuth:
       type: apiKey
       in: header
       name: x-vital-api-key
       description: Vital Team API Key
+x-refined-from:
+- junction-openapi-live-2026-10-12.json
+- vital-openapi-original.json
