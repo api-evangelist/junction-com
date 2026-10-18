@@ -64,6 +64,26 @@ tags:
 - HIPAA
 - HealthKit
 - Health Connect
+- Electronic Health Records
+- Biomarkers
+- Diagnostics
+- Continuous Glucose Monitoring
+- Sleep
+- Activity
+- Heart Rate
+- Webhook
+- Phlebotomy
+- Lab Orders
+tags_raw:
+- Health Data
+- Wearables
+- Lab Testing
+- Digital Health
+- Health Tech
+- Healthcare
+- HIPAA
+- HealthKit
+- Health Connect
 - EHR
 - EMR
 - Biomarkers
@@ -1248,6 +1268,8 @@ apis:
   humanURL: https://docs.junction.com/api-details/junction-management-api
   baseURL: https://api.us.junction.com
   tags:
+  - Checkout
+  tags_raw:
   - checkout
   properties:
   - type: OpenAPI
