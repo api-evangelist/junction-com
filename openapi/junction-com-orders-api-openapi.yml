@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Vital Io Orders API
+  title: Junction Orders API
   version: '1.0'
   description: 'Operations tagged orders across 2 of this provider''s published API definitions: junction-openapi-live-2026-10-12.json, vital-openapi-original.json. Each path carries the servers of the definition it was published in.'
 servers:

@@ -169,7 +169,7 @@ common:
   url: packages/junction-com-packages.yml
 - type: CapabilityMap
   url: capabilities/junction-com-capability-edges.yml
-  name: Vital Business Capability Map
+  name: Junction Business Capability Map
 - type: AgenticAccess
   url: agentic-access/junction-com-agentic-access.yml
 - type: DomainSecurity
@@ -180,36 +180,36 @@ common:
   url: https://www.postman.com/kinlaneapi/vital/overview
 - type: Arazzo
   url: arazzo/junction-com-at-home-phlebotomy-booking-workflow.yml
-  name: Vital Schedule an At-Home Phlebotomy Draw
+  name: Junction Schedule an At-Home Phlebotomy Draw
 - type: Arazzo
   url: arazzo/junction-com-await-order-results-workflow.yml
-  name: Vital Await Lab Order Completion and Retrieve Results
+  name: Junction Await Lab Order Completion and Retrieve Results
 - type: Arazzo
   url: arazzo/junction-com-browse-lab-tests-markers-workflow.yml
-  name: Vital Browse Lab Tests and Inspect Markers
+  name: Junction Browse Lab Tests and Inspect Markers
 - type: Arazzo
   url: arazzo/junction-com-cancel-order-notify-portal-workflow.yml
-  name: Vital Cancel a Lab Order and Send the User a Portal Link
+  name: Junction Cancel a Lab Order and Send the User a Portal Link
 - type: Arazzo
   url: arazzo/junction-com-create-order-poll-status-workflow.yml
-  name: Vital Create a Lab Order and Poll Until Resolved
+  name: Junction Create a Lab Order and Poll Until Resolved
 - type: Arazzo
   url: arazzo/junction-com-demo-connection-verify-sources-workflow.yml
-  name: Vital Connect a Demo Provider and Verify Connected Sources
+  name: Junction Connect a Demo Provider and Verify Connected Sources
 - type: Arazzo
   url: arazzo/junction-com-mobile-signin-token-handoff-workflow.yml
-  name: Vital Provision a User and Hand Off a Mobile Sign-In Token
+  name: Junction Provision a User and Hand Off a Mobile Sign-In Token
 - type: Arazzo
   url: arazzo/junction-com-onboard-user-connect-wearable-workflow.yml
-  name: Vital Onboard a User and Connect a Wearable
+  name: Junction Onboard a User and Connect a Wearable
 - type: Arazzo
   url: arazzo/junction-com-testkit-order-register-workflow.yml
-  name: Vital Create and Register a Lab Testkit Order
+  name: Junction Create and Register a Lab Testkit Order
 - type: Arazzo
   url: arazzo/junction-com-user-device-inventory-workflow.yml
-  name: Vital Inventory a User's Connected Devices
+  name: Junction Inventory a User's Connected Devices
 - url: https://www.junction.com
-  name: Vital / Junction
+  name: Junction / Junction
   type: Portal
 - url: https://docs.junction.com
   name: Junction Documentation
@@ -326,22 +326,22 @@ common:
   name: vital-connect-rn (React Native Connect app)
   type: SampleApp
 - url: rules/vital-rules.yml
-  name: Vital Spectral Rules
+  name: Junction Spectral Rules
   type: SpectralRules
 - url: vocabulary/junction-com-vocabulary.yml
-  name: Vital Platform Vocabulary
+  name: Junction Platform Vocabulary
   type: Vocabulary
 - url: json-ld/junction-com-context.jsonld
-  name: Vital JSON-LD Context
+  name: Junction JSON-LD Context
   type: JSONLD
 - url: plans/junction-com-plans-pricing.yml
-  name: Vital Plans and Pricing (API Commons)
+  name: Junction Plans and Pricing (API Commons)
   type: Plans
 - url: rate-limits/junction-com-rate-limits.yml
-  name: Vital Rate Limits (API Commons)
+  name: Junction Rate Limits (API Commons)
   type: RateLimits
 - url: finops/junction-com-finops.yml
-  name: Vital FinOps (FOCUS-aligned)
+  name: Junction FinOps (FOCUS-aligned)
   type: FinOps
 - type: Features
   data:
@@ -350,7 +350,7 @@ common:
       Withings, Polar, Strava, Wahoo, Cronometer, Ultrahuman, Peloton, Zwift, Hammerhead, Dexcom (G6 and
       G7), Freestyle Libre (cloud + BLE), Abbott LibreView, 8Sleep, Beurer, Kardia, Accu-Chek, Contour,
       Omron — all behind a single, normalized schema.
-  - name: Vital Link Widget and Connect app
+  - name: Junction Link Widget and Connect app
     description: Drop-in user-facing UI that handles OAuth, email/password, and mobile-SDK connection
       flows. Generate a one-time Link token, hand it to the widget or Connect app, and the widget runs
       the full consent-and-connect handshake for any supported provider.
@@ -513,8 +513,8 @@ common:
   url: security/junction-com-domain-security.yml
 
 apis:
-- aid: vital-io:vital-management-api
-  name: Vital Management API
+- aid: junction-com:junction-management-api
+  name: Junction Management API
   tags:
   - Management
   - Organization
@@ -541,8 +541,8 @@ apis:
     data-pull preferences, ETL pipeline configuration (Azure Event Hubs, Google Cloud Pub/Sub, RabbitMQ),
     webhook subscriptions (create, list, rotate secret, update headers, patch, delete), scope requirements,
     physician assignments, and lab-account team assignments.
-- aid: vital-io:vital-io-aggregate-api
-  name: Vital Aggregate API
+- aid: junction-com:junction-com-aggregate-api
+  name: Junction Aggregate API
   description: The Aggregate API from Vital — 3 operation(s) for aggregate.
   humanURL: https://docs.junction.com/api-details/junction-api
   baseURL: https://api.us.junction.com
@@ -583,8 +583,8 @@ apis:
     url: examples/vital-lab-result-example.json
   - type: Documentation
     url: https://docs.junction.com/api-details/junction-management-api
-- aid: vital-io:vital-io-compendium-api
-  name: Vital Compendium API
+- aid: junction-com:junction-com-compendium-api
+  name: Junction Compendium API
   description: The compendium API from Vital — 2 operation(s) for compendium.
   humanURL: https://docs.junction.com/api-details/junction-api
   baseURL: https://api.us.junction.com
@@ -625,8 +625,8 @@ apis:
     url: examples/vital-lab-result-example.json
   - type: Documentation
     url: https://docs.junction.com/api-details/junction-management-api
-- aid: vital-io:vital-io-insurance-api
-  name: Vital Insurance API
+- aid: junction-com:junction-com-insurance-api
+  name: Junction Insurance API
   description: The insurance API from Vital — 3 operation(s) for insurance.
   humanURL: https://docs.junction.com/api-details/junction-api
   baseURL: https://api.us.junction.com
@@ -669,8 +669,8 @@ apis:
     url: examples/vital-lab-result-example.json
   - type: Documentation
     url: https://docs.junction.com/api-details/junction-management-api
-- aid: vital-io:vital-io-introspect-api
-  name: Vital Introspect API
+- aid: junction-com:junction-com-introspect-api
+  name: Junction Introspect API
   description: The introspect API from Vital — 2 operation(s) for introspect.
   humanURL: https://docs.junction.com/api-details/junction-api
   baseURL: https://api.us.junction.com
@@ -713,8 +713,8 @@ apis:
     url: examples/vital-lab-result-example.json
   - type: Documentation
     url: https://docs.junction.com/api-details/junction-management-api
-- aid: vital-io:vital-io-lab-account-api
-  name: Vital Lab Account API
+- aid: junction-com:junction-com-lab-account-api
+  name: Junction Lab Account API
   description: The lab_account API from Vital — 1 operation(s) for lab_account.
   humanURL: https://docs.junction.com/api-details/junction-api
   baseURL: https://api.us.junction.com
@@ -756,8 +756,8 @@ apis:
     url: examples/vital-lab-result-example.json
   - type: Documentation
     url: https://docs.junction.com/api-details/junction-management-api
-- aid: vital-io:vital-io-lab-report-api
-  name: Vital Lab Report API
+- aid: junction-com:junction-com-lab-report-api
+  name: Junction Lab Report API
   description: The lab_report API from Vital — 2 operation(s) for lab_report.
   humanURL: https://docs.junction.com/api-details/junction-api
   baseURL: https://api.us.junction.com
@@ -799,8 +799,8 @@ apis:
     url: examples/vital-lab-result-example.json
   - type: Documentation
     url: https://docs.junction.com/api-details/junction-management-api
-- aid: vital-io:vital-io-lab-tests-api
-  name: Vital Lab Tests API
+- aid: junction-com:junction-com-lab-tests-api
+  name: Junction Lab Tests API
   description: The lab_tests API from Vital — 9 operation(s) for lab_tests.
   humanURL: https://docs.junction.com/api-details/junction-api
   baseURL: https://api.us.junction.com
@@ -843,8 +843,8 @@ apis:
     url: examples/vital-lab-result-example.json
   - type: Documentation
     url: https://docs.junction.com/api-details/junction-management-api
-- aid: vital-io:vital-io-link-api
-  name: Vital Link API
+- aid: junction-com:junction-com-link-api
+  name: Junction Link API
   description: The link API from Vital — 13 operation(s) for link.
   humanURL: https://docs.junction.com/api-details/junction-api
   baseURL: https://api.us.junction.com
@@ -887,8 +887,8 @@ apis:
     url: examples/vital-lab-result-example.json
   - type: Documentation
     url: https://docs.junction.com/api-details/junction-management-api
-- aid: vital-io:vital-io-order-api
-  name: Vital Order API
+- aid: junction-com:junction-com-order-api
+  name: Junction Order API
   description: The order API from Vital — 32 operation(s) for order.
   humanURL: https://docs.junction.com/api-details/junction-api
   baseURL: https://api.us.junction.com
@@ -931,8 +931,8 @@ apis:
     url: examples/vital-lab-result-example.json
   - type: Documentation
     url: https://docs.junction.com/api-details/junction-management-api
-- aid: vital-io:vital-io-order-transaction-api
-  name: Vital Order Transaction API
+- aid: junction-com:junction-com-order-transaction-api
+  name: Junction Order Transaction API
   description: The order_transaction API from Vital — 3 operation(s) for order_transaction.
   humanURL: https://docs.junction.com/api-details/junction-api
   baseURL: https://api.us.junction.com
@@ -974,8 +974,8 @@ apis:
     url: examples/vital-lab-result-example.json
   - type: Documentation
     url: https://docs.junction.com/api-details/junction-management-api
-- aid: vital-io:vital-io-orders-api
-  name: Vital Orders API
+- aid: junction-com:junction-com-orders-api
+  name: Junction Orders API
   description: The orders API from Vital — 1 operation(s) for orders.
   humanURL: https://docs.junction.com/api-details/junction-api
   baseURL: https://api.us.junction.com
@@ -1018,8 +1018,8 @@ apis:
     url: examples/vital-lab-result-example.json
   - type: Documentation
     url: https://docs.junction.com/api-details/junction-management-api
-- aid: vital-io:vital-io-payor-api
-  name: Vital Payor API
+- aid: junction-com:junction-com-payor-api
+  name: Junction Payor API
   description: The payor API from Vital — 1 operation(s) for payor.
   humanURL: https://docs.junction.com/api-details/junction-api
   baseURL: https://api.us.junction.com
@@ -1060,8 +1060,8 @@ apis:
     url: examples/vital-lab-result-example.json
   - type: Documentation
     url: https://docs.junction.com/api-details/junction-management-api
-- aid: vital-io:vital-io-providers-api
-  name: Vital Providers API
+- aid: junction-com:junction-com-providers-api
+  name: Junction Providers API
   description: The providers API from Vital — 1 operation(s) for providers.
   humanURL: https://docs.junction.com/api-details/junction-api
   baseURL: https://api.us.junction.com
@@ -1104,8 +1104,8 @@ apis:
     url: examples/vital-lab-result-example.json
   - type: Documentation
     url: https://docs.junction.com/api-details/junction-management-api
-- aid: vital-io:vital-io-summary-api
-  name: Vital Summary API
+- aid: junction-com:junction-com-summary-api
+  name: Junction Summary API
   description: The summary API from Vital — 15 operation(s) for summary.
   humanURL: https://docs.junction.com/api-details/junction-api
   baseURL: https://api.us.junction.com
@@ -1148,8 +1148,8 @@ apis:
     url: examples/vital-lab-result-example.json
   - type: Documentation
     url: https://docs.junction.com/api-details/junction-management-api
-- aid: vital-io:vital-io-team-api
-  name: Vital Team API
+- aid: junction-com:junction-com-team-api
+  name: Junction Team API
   description: The team API from Vital — 5 operation(s) for team.
   humanURL: https://docs.junction.com/api-details/junction-api
   baseURL: https://api.us.junction.com
@@ -1192,8 +1192,8 @@ apis:
     url: examples/vital-lab-result-example.json
   - type: Documentation
     url: https://docs.junction.com/api-details/junction-management-api
-- aid: vital-io:vital-io-user-api
-  name: Vital User API
+- aid: junction-com:junction-com-user-api
+  name: Junction User API
   description: The user API from Vital — 16 operation(s) for user.
   humanURL: https://docs.junction.com/api-details/junction-api
   baseURL: https://api.us.junction.com
@@ -1236,8 +1236,8 @@ apis:
     url: examples/vital-lab-result-example.json
   - type: Documentation
     url: https://docs.junction.com/api-details/junction-management-api
-- aid: vital-io:vital-io-aggregation-api
-  name: Vital Aggregation API
+- aid: junction-com:junction-com-aggregation-api
+  name: Junction Aggregation API
   description: The aggregation API from Vital — 0 operation(s) for aggregation.
   humanURL: https://docs.junction.com/api-details/junction-management-api
   baseURL: https://api.us.junction.com
@@ -1248,8 +1248,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/junction-com-aggregation-api-openapi.yml
-- aid: vital-io:vital-io-lab-testing-api
-  name: Vital Lab Testing API
+- aid: junction-com:junction-com-lab-testing-api
+  name: Junction Lab Testing API
   description: The lab-testing API from Vital — 0 operation(s) for lab-testing.
   humanURL: https://docs.junction.com/api-details/junction-management-api
   baseURL: https://api.us.junction.com
@@ -1260,8 +1260,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/junction-com-lab-testing-api-openapi.yml
-- aid: vital-io:vital-io-checkout-api
-  name: Vital Checkout API
+- aid: junction-com:junction-com-checkout-api
+  name: Junction Checkout API
   description: The checkout API from Vital — 6 operation(s) for checkout.
   humanURL: https://docs.junction.com/api-details/junction-management-api
   baseURL: https://api.us.junction.com
@@ -1304,8 +1304,8 @@ apis:
     url: examples/vital-lab-result-example.json
   - type: Documentation
     url: https://docs.junction.com/api-details/junction-management-api
-- aid: vital-io:vital-io-unmatched-api
-  name: Vital Unmatched API
+- aid: junction-com:junction-com-unmatched-api
+  name: Junction Unmatched API
   description: The unmatched API from Vital — 8 operation(s) for unmatched.
   humanURL: https://docs.junction.com/api-details/junction-management-api
   baseURL: https://api.us.junction.com
@@ -1346,8 +1346,8 @@ apis:
     url: examples/vital-lab-result-example.json
   - type: Documentation
     url: https://docs.junction.com/api-details/junction-management-api
-- aid: vital-io:vital-io-time-series-api
-  name: Vital Time Series API
+- aid: junction-com:junction-com-time-series-api
+  name: Junction Time Series API
   description: The Time Series API from Vital — 80 operation(s) for time series.
   humanURL: https://docs.junction.com/api-details/junction-management-api
   baseURL: https://api.us.junction.com
