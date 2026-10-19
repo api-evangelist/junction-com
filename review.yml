@@ -56,12 +56,12 @@ artifacts:
 - capabilities/sense.yaml
 - capabilities/team.yaml
 - capabilities/management.yaml
-- plans/vital-io-plans-pricing.yml
-- rate-limits/vital-io-rate-limits.yml
-- finops/vital-io-finops.yml
+- plans/junction-com-plans-pricing.yml
+- rate-limits/junction-com-rate-limits.yml
+- finops/junction-com-finops.yml
 - rules/vital-rules.yml
-- vocabulary/vital-io-vocabulary.yml
-- json-ld/vital-io-context.jsonld
+- vocabulary/junction-com-vocabulary.yml
+- json-ld/junction-com-context.jsonld
 sources:
 - https://www.junction.com
 - https://docs.junction.com

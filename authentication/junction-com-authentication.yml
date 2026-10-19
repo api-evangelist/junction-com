@@ -1,0 +1,39 @@
+generated: '2026-10-12'
+method: derived
+source: openapi/junction-com-aggregate-api-openapi.yml, openapi/junction-com-aggregation-api-openapi.yml,
+  openapi/junction-com-compendium-api-openapi.yml, openapi/junction-com-insurance-api-openapi.yml, openapi/junction-com-introspect-api-openapi.yml,
+  openapi/junction-com-lab-account-api-openapi.yml, openapi/junction-com-lab-report-api-openapi.yml,
+  openapi/junction-com-lab-testing-api-openapi.yml, openapi/junction-com-lab-tests-api-openapi.yml,
+  openapi/junction-com-link-api-openapi.yml, openapi/junction-com-order-api-openapi.yml, openapi/junction-com-order-transaction-api-openapi.yml
+  ...
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: apiKeyAuth
+  type: apiKey
+  in: header
+  parameter: x-vital-api-key
+  description: Vital Team API Key
+  sources:
+  - openapi/junction-com-aggregate-api-openapi.yml
+  - openapi/junction-com-aggregation-api-openapi.yml
+  - openapi/junction-com-compendium-api-openapi.yml
+  - openapi/junction-com-insurance-api-openapi.yml
+  - openapi/junction-com-introspect-api-openapi.yml
+  - openapi/junction-com-lab-account-api-openapi.yml
+  - openapi/junction-com-lab-report-api-openapi.yml
+  - openapi/junction-com-lab-testing-api-openapi.yml
+  - openapi/junction-com-lab-tests-api-openapi.yml
+  - openapi/junction-com-link-api-openapi.yml
+  - openapi/junction-com-order-api-openapi.yml
+  - openapi/junction-com-order-transaction-api-openapi.yml
+  - openapi/junction-com-orders-api-openapi.yml
+  - openapi/junction-com-payor-api-openapi.yml
+  - openapi/junction-com-providers-api-openapi.yml
+  - openapi/junction-com-summary-api-openapi.yml
+  - openapi/junction-com-team-api-openapi.yml
+  - openapi/junction-com-time-series-api-openapi.yml
+  - openapi/junction-com-user-api-openapi.yml

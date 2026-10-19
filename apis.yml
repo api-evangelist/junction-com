@@ -1,8 +1,8 @@
-aid: vital-io
+aid: junction-com
 
-name: Vital
+name: Junction
 
-description: Vital (now operating as Junction, formerly tryVital) is a health-data API platform that gives
+description: Junction (formerly Vital, and tryVital before that) is a health-data API platform that gives
   digital-health, virtual-care, diagnostics, wellness, and EHR/EMR builders a single integration to wearable-device
   data and nationwide lab testing. Connect 300+ wearables and health devices — Apple HealthKit, Android
   Health Connect, Oura, Whoop, Garmin, Fitbit, Withings, Dexcom, Freestyle Libre, Withings, Polar, and
@@ -122,7 +122,7 @@ created: '2026-05-25'
 
 modified: '2026-05-25'
 
-url: https://raw.githubusercontent.com/api-evangelist/vital-io/refs/heads/main/apis.yml
+url: https://raw.githubusercontent.com/api-evangelist/junction-com/refs/heads/main/apis.yml
 
 specificationVersion: '0.23'
 
@@ -136,77 +136,77 @@ common:
 - type: Spectral
   url: rules/vital-rules.yml
 - type: Spectral
-  url: rules/vital-io-rules.yml
+  url: rules/junction-com-rules.yml
 - type: Spectral
-  url: rules/vital-io-jsonschema-spectral-rules.yml
+  url: rules/junction-com-jsonschema-spectral-rules.yml
 - type: Webhooks
-  url: asyncapi/vital-io-webhooks.yml
+  url: asyncapi/junction-com-webhooks.yml
 - type: DataModel
-  url: data-model/vital-io-data-model.yml
+  url: data-model/junction-com-data-model.yml
 - type: ChangeLog
-  url: changelog/vital-io-changelog.yml
+  url: changelog/junction-com-changelog.yml
 - type: Idempotency
-  url: conventions/vital-io-conventions.yml
+  url: conventions/junction-com-conventions.yml
 - type: Conventions
-  url: conventions/vital-io-conventions.yml
+  url: conventions/junction-com-conventions.yml
 - type: ErrorCatalog
-  url: errors/vital-io-problem-types.yml
+  url: errors/junction-com-problem-types.yml
 - type: Overlay
-  url: overlays/vital-io-aggregate-api-phrasing-overlay.yaml
+  url: overlays/junction-com-aggregate-api-phrasing-overlay.yaml
 - type: LLMsTxt
-  url: llms/vital-io-llms.txt
+  url: llms/junction-com-llms.txt
 - type: AgentCard
-  url: a2a/vital-io-a2a.yml
+  url: a2a/junction-com-a2a.yml
 - type: ToolCrosswalk
-  url: mcp/vital-io-tool-crosswalk.yml
+  url: mcp/junction-com-tool-crosswalk.yml
 - type: MCPServer
-  url: mcp/vital-io-mcp.yml
+  url: mcp/junction-com-mcp.yml
 - type: Hosts
-  url: hosts/vital-io-hosts.yml
+  url: hosts/junction-com-hosts.yml
 - type: Vendors
-  url: vendors/vital-io-vendors.yml
+  url: vendors/junction-com-vendors.yml
 - type: Packages
-  url: packages/vital-io-packages.yml
+  url: packages/junction-com-packages.yml
 - type: CapabilityMap
-  url: capabilities/vital-io-capability-edges.yml
+  url: capabilities/junction-com-capability-edges.yml
   name: Vital Business Capability Map
 - type: AgenticAccess
-  url: agentic-access/vital-io-agentic-access.yml
+  url: agentic-access/junction-com-agentic-access.yml
 - type: DomainSecurity
-  url: security/vital-io-domain-security.yml
+  url: security/junction-com-domain-security.yml
 - type: Authentication
-  url: authentication/vital-io-authentication.yml
+  url: authentication/junction-com-authentication.yml
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/vital/overview
 - type: Arazzo
-  url: arazzo/vital-io-at-home-phlebotomy-booking-workflow.yml
+  url: arazzo/junction-com-at-home-phlebotomy-booking-workflow.yml
   name: Vital Schedule an At-Home Phlebotomy Draw
 - type: Arazzo
-  url: arazzo/vital-io-await-order-results-workflow.yml
+  url: arazzo/junction-com-await-order-results-workflow.yml
   name: Vital Await Lab Order Completion and Retrieve Results
 - type: Arazzo
-  url: arazzo/vital-io-browse-lab-tests-markers-workflow.yml
+  url: arazzo/junction-com-browse-lab-tests-markers-workflow.yml
   name: Vital Browse Lab Tests and Inspect Markers
 - type: Arazzo
-  url: arazzo/vital-io-cancel-order-notify-portal-workflow.yml
+  url: arazzo/junction-com-cancel-order-notify-portal-workflow.yml
   name: Vital Cancel a Lab Order and Send the User a Portal Link
 - type: Arazzo
-  url: arazzo/vital-io-create-order-poll-status-workflow.yml
+  url: arazzo/junction-com-create-order-poll-status-workflow.yml
   name: Vital Create a Lab Order and Poll Until Resolved
 - type: Arazzo
-  url: arazzo/vital-io-demo-connection-verify-sources-workflow.yml
+  url: arazzo/junction-com-demo-connection-verify-sources-workflow.yml
   name: Vital Connect a Demo Provider and Verify Connected Sources
 - type: Arazzo
-  url: arazzo/vital-io-mobile-signin-token-handoff-workflow.yml
+  url: arazzo/junction-com-mobile-signin-token-handoff-workflow.yml
   name: Vital Provision a User and Hand Off a Mobile Sign-In Token
 - type: Arazzo
-  url: arazzo/vital-io-onboard-user-connect-wearable-workflow.yml
+  url: arazzo/junction-com-onboard-user-connect-wearable-workflow.yml
   name: Vital Onboard a User and Connect a Wearable
 - type: Arazzo
-  url: arazzo/vital-io-testkit-order-register-workflow.yml
+  url: arazzo/junction-com-testkit-order-register-workflow.yml
   name: Vital Create and Register a Lab Testkit Order
 - type: Arazzo
-  url: arazzo/vital-io-user-device-inventory-workflow.yml
+  url: arazzo/junction-com-user-device-inventory-workflow.yml
   name: Vital Inventory a User's Connected Devices
 - url: https://www.junction.com
   name: Vital / Junction
@@ -328,19 +328,19 @@ common:
 - url: rules/vital-rules.yml
   name: Vital Spectral Rules
   type: SpectralRules
-- url: vocabulary/vital-io-vocabulary.yml
+- url: vocabulary/junction-com-vocabulary.yml
   name: Vital Platform Vocabulary
   type: Vocabulary
-- url: json-ld/vital-io-context.jsonld
+- url: json-ld/junction-com-context.jsonld
   name: Vital JSON-LD Context
   type: JSONLD
-- url: plans/vital-io-plans-pricing.yml
+- url: plans/junction-com-plans-pricing.yml
   name: Vital Plans and Pricing (API Commons)
   type: Plans
-- url: rate-limits/vital-io-rate-limits.yml
+- url: rate-limits/junction-com-rate-limits.yml
   name: Vital Rate Limits (API Commons)
   type: RateLimits
-- url: finops/vital-io-finops.yml
+- url: finops/junction-com-finops.yml
   name: Vital FinOps (FOCUS-aligned)
   type: FinOps
 - type: Features
@@ -480,9 +480,7 @@ common:
       branding, uptime SLAs, prioritized integrations, ETL pipelines, and Analytics API access on the
       Scale plan.
 - type: Website
-  url: https://vital.io/
-- type: Documentation
-  url: https://vital.io/help/en/collections/19470958-integration-guide
+  url: https://www.junction.com/
 - type: Support
   url: https://vital.io/help
 - type: Blog
@@ -494,25 +492,25 @@ common:
 - type: StatusPage
   url: https://status.vital.io/
 - type: Lifecycle
-  url: lifecycle/vital-io-lifecycle.yml
+  url: lifecycle/junction-com-lifecycle.yml
 - type: TrustCenter
-  url: security/vital-io-trust-center.yml
+  url: security/junction-com-trust-center.yml
 - type: Compliance
-  url: security/vital-io-trust-center.yml
+  url: security/junction-com-trust-center.yml
 - type: Conformance
-  url: conformance/vital-io-conformance.yml
+  url: conformance/junction-com-conformance.yml
 - type: DomainSecurity
-  url: security/vital-io-domain-security.yml
+  url: security/junction-com-domain-security.yml
 - type: Lifecycle
-  url: lifecycle/vital-io-lifecycle.yml
+  url: lifecycle/junction-com-lifecycle.yml
 - type: TrustCenter
-  url: security/vital-io-trust-center.yml
+  url: security/junction-com-trust-center.yml
 - type: Compliance
-  url: security/vital-io-trust-center.yml
+  url: security/junction-com-trust-center.yml
 - type: Conformance
-  url: conformance/vital-io-conformance.yml
+  url: conformance/junction-com-conformance.yml
 - type: DomainSecurity
-  url: security/vital-io-domain-security.yml
+  url: security/junction-com-domain-security.yml
 
 apis:
 - aid: vital-io:vital-management-api
@@ -552,7 +550,7 @@ apis:
   - Aggregate
   properties:
   - type: OpenAPI
-    url: openapi/vital-io-aggregate-api-openapi.yml
+    url: openapi/junction-com-aggregate-api-openapi.yml
   - type: Documentation
     url: https://docs.junction.com/api-details/junction-api
   - type: JSONSchema
@@ -594,7 +592,7 @@ apis:
   - compendium
   properties:
   - type: OpenAPI
-    url: openapi/vital-io-compendium-api-openapi.yml
+    url: openapi/junction-com-compendium-api-openapi.yml
   - type: Documentation
     url: https://docs.junction.com/api-details/junction-api
   - type: JSONSchema
@@ -638,7 +636,7 @@ apis:
   - insurance
   properties:
   - type: OpenAPI
-    url: openapi/vital-io-insurance-api-openapi.yml
+    url: openapi/junction-com-insurance-api-openapi.yml
   - type: Documentation
     url: https://docs.junction.com/api-details/junction-api
   - type: JSONSchema
@@ -682,7 +680,7 @@ apis:
   - introspect
   properties:
   - type: OpenAPI
-    url: openapi/vital-io-introspect-api-openapi.yml
+    url: openapi/junction-com-introspect-api-openapi.yml
   - type: Documentation
     url: https://docs.junction.com/api-details/junction-api
   - type: JSONSchema
@@ -725,7 +723,7 @@ apis:
   - lab_account
   properties:
   - type: OpenAPI
-    url: openapi/vital-io-lab-account-api-openapi.yml
+    url: openapi/junction-com-lab-account-api-openapi.yml
   - type: Documentation
     url: https://docs.junction.com/api-details/junction-api
   - type: JSONSchema
@@ -768,7 +766,7 @@ apis:
   - lab_report
   properties:
   - type: OpenAPI
-    url: openapi/vital-io-lab-report-api-openapi.yml
+    url: openapi/junction-com-lab-report-api-openapi.yml
   - type: Documentation
     url: https://docs.junction.com/api-details/junction-api
   - type: JSONSchema
@@ -812,7 +810,7 @@ apis:
   - lab_tests
   properties:
   - type: OpenAPI
-    url: openapi/vital-io-lab-tests-api-openapi.yml
+    url: openapi/junction-com-lab-tests-api-openapi.yml
   - type: Documentation
     url: https://docs.junction.com/api-details/junction-api
   - type: JSONSchema
@@ -856,7 +854,7 @@ apis:
   - link
   properties:
   - type: OpenAPI
-    url: openapi/vital-io-link-api-openapi.yml
+    url: openapi/junction-com-link-api-openapi.yml
   - type: Documentation
     url: https://docs.junction.com/api-details/junction-api
   - type: JSONSchema
@@ -900,7 +898,7 @@ apis:
   - order
   properties:
   - type: OpenAPI
-    url: openapi/vital-io-order-api-openapi.yml
+    url: openapi/junction-com-order-api-openapi.yml
   - type: Documentation
     url: https://docs.junction.com/api-details/junction-api
   - type: JSONSchema
@@ -943,7 +941,7 @@ apis:
   - order_transaction
   properties:
   - type: OpenAPI
-    url: openapi/vital-io-order-transaction-api-openapi.yml
+    url: openapi/junction-com-order-transaction-api-openapi.yml
   - type: Documentation
     url: https://docs.junction.com/api-details/junction-api
   - type: JSONSchema
@@ -987,7 +985,7 @@ apis:
   - orders
   properties:
   - type: OpenAPI
-    url: openapi/vital-io-orders-api-openapi.yml
+    url: openapi/junction-com-orders-api-openapi.yml
   - type: Documentation
     url: https://docs.junction.com/api-details/junction-api
   - type: JSONSchema
@@ -1029,7 +1027,7 @@ apis:
   - payor
   properties:
   - type: OpenAPI
-    url: openapi/vital-io-payor-api-openapi.yml
+    url: openapi/junction-com-payor-api-openapi.yml
   - type: Documentation
     url: https://docs.junction.com/api-details/junction-api
   - type: JSONSchema
@@ -1073,7 +1071,7 @@ apis:
   - providers
   properties:
   - type: OpenAPI
-    url: openapi/vital-io-providers-api-openapi.yml
+    url: openapi/junction-com-providers-api-openapi.yml
   - type: Documentation
     url: https://docs.junction.com/api-details/junction-api
   - type: JSONSchema
@@ -1117,7 +1115,7 @@ apis:
   - summary
   properties:
   - type: OpenAPI
-    url: openapi/vital-io-summary-api-openapi.yml
+    url: openapi/junction-com-summary-api-openapi.yml
   - type: Documentation
     url: https://docs.junction.com/api-details/junction-api
   - type: JSONSchema
@@ -1161,7 +1159,7 @@ apis:
   - team
   properties:
   - type: OpenAPI
-    url: openapi/vital-io-team-api-openapi.yml
+    url: openapi/junction-com-team-api-openapi.yml
   - type: Documentation
     url: https://docs.junction.com/api-details/junction-api
   - type: JSONSchema
@@ -1205,7 +1203,7 @@ apis:
   - user
   properties:
   - type: OpenAPI
-    url: openapi/vital-io-user-api-openapi.yml
+    url: openapi/junction-com-user-api-openapi.yml
   - type: Documentation
     url: https://docs.junction.com/api-details/junction-api
   - type: JSONSchema
@@ -1249,7 +1247,7 @@ apis:
   - aggregation
   properties:
   - type: OpenAPI
-    url: openapi/vital-io-aggregation-api-openapi.yml
+    url: openapi/junction-com-aggregation-api-openapi.yml
 - aid: vital-io:vital-io-lab-testing-api
   name: Vital Lab Testing API
   description: The lab-testing API from Vital — 0 operation(s) for lab-testing.
@@ -1261,7 +1259,7 @@ apis:
   - lab-testing
   properties:
   - type: OpenAPI
-    url: openapi/vital-io-lab-testing-api-openapi.yml
+    url: openapi/junction-com-lab-testing-api-openapi.yml
 - aid: vital-io:vital-io-checkout-api
   name: Vital Checkout API
   description: The checkout API from Vital — 6 operation(s) for checkout.
@@ -1273,7 +1271,7 @@ apis:
   - checkout
   properties:
   - type: OpenAPI
-    url: openapi/vital-io-checkout-api-openapi.yml
+    url: openapi/junction-com-checkout-api-openapi.yml
   - type: Documentation
     url: https://docs.junction.com/api-details/junction-api
   - type: JSONSchema
@@ -1315,7 +1313,7 @@ apis:
   - unmatched
   properties:
   - type: OpenAPI
-    url: openapi/vital-io-unmatched-api-openapi.yml
+    url: openapi/junction-com-unmatched-api-openapi.yml
   - type: Documentation
     url: https://docs.junction.com/api-details/junction-api
   - type: JSONSchema
@@ -1357,7 +1355,7 @@ apis:
   - Time Series
   properties:
   - type: OpenAPI
-    url: openapi/vital-io-time-series-api-openapi.yml
+    url: openapi/junction-com-time-series-api-openapi.yml
   - type: Documentation
     url: https://docs.junction.com/api-details/junction-api
   - type: JSONSchema
