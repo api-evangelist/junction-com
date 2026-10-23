@@ -755,3 +755,9 @@ components:
 x-refined-from:
 - junction-openapi-live-2026-10-12.json
 - vital-openapi-original.json
+x-provenance:
+  method: harvested
+  publisher: Junction
+  source: https://api.us.junction.com/openapi.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
