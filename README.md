@@ -1,4 +1,4 @@
-# Vital (vital-io)
+# Junction
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,314 +64,260 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Vital (now operating as Junction, formerly tryVital) is a health-data API platform that gives digital-health, virtual-care, diagnostics, wellness, and EHR/EMR builders a single integration to wearable-device data and nationwide lab testing. Connect 300+ wearables and health devices — Apple HealthKit, Android Health Connect, Oura, Whoop, Garmin, Fitbit, Withings, Dexcom, Freestyle Libre, Withings, Polar, and the rest — through the Vital Link Widget; ingest normalized daily summaries and per-sample timeseries for sleep, activity, body, workouts, heart rate, HRV, glucose, blood pressure, SpO2, ECG, and menstrual cycle; order at-home testkits, at-home phlebotomy, walk-in / Patient Service Center lab collection, and on-site collection across all 50 U.S. states; retrieve structured biomarker results; and run Junction Sense continuous queries to turn raw data into clinically actionable insights. Backed by SOC 2 Type 2, ISO 27001, GDPR-ready, and HIPAA-compliant infrastructure with both US and EU regional deployments.
+Junction (formerly Vital, and tryVital before that) is a health-data API platform that gives digital-health, virtual-care, diagnostics, wellness, and EHR/EMR builders a single integration to wearable-device data and nationwide lab testing. Connect 300+ wearables and health devices — Apple HealthKit, Android Health Connect, Oura, Whoop, Garmin, Fitbit, Withings, Dexcom, Freestyle Libre, Withings, Polar, and the rest — through the Vital Link Widget; ingest normalized daily summaries and per-sample timeseries for sleep, activity, body, workouts, heart rate, HRV, glucose, blood pressure, SpO2, ECG, and menstrual cycle; order at-home testkits, at-home phlebotomy, walk-in / Patient Service Center lab collection, and on-site collection across all 50 U.S. states; retrieve structured biomarker results; and run Junction Sense continuous queries to turn raw data into clinically actionable insights. Backed by SOC 2 Type 2, ISO 27001, GDPR-ready, and HIPAA-compliant infrastructure with both US and EU regional deployments.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/vital-io/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/vital-io/refs/heads/main/apis.yml)
+**Areas:** Health Data · Wearables · Lab Testing · Digital Health · Health Tech · Healthcare · HIPAA · HealthKit · Health Connect · Electronic Health Records · Biomarkers · Diagnostics
 
-## Scope
+## Junction on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
-
-## Tags
+Everything profiled for Junction is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/junction-com/](https://apis.io/providers/junction-com/)** — or go straight to one of the APIs or properties below.
 
-- Health Data
-- Wearables
-- Lab Testing
-- Digital Health
-- Healthtech
-- Healthcare
-- HIPAA
-- HealthKit
-- Health Connect
-- EHR
-- EMR
-- Biomarkers
-- Diagnostics
-- Continuous Glucose Monitoring
-- Sleep
-- Activity
-- Heart Rate
-- Webhooks
-- Phlebotomy
-- Lab Orders
+### APIs (22)
 
-## Timestamps
+- [Junction Management API](https://apis.io/apis/junction-com/junction-management-api/) — Programmatically manage all Junction regional and global resources for your organization. Authenticated with a separate x-vital-management-api-key, this API…
+- [Junction Aggregate API](https://apis.io/apis/junction-com/junction-com-aggregate-api/) — The Aggregate API from Vital — 3 operation(s) for aggregate.
+- [Junction Compendium API](https://apis.io/apis/junction-com/junction-com-compendium-api/) — The compendium API from Vital — 2 operation(s) for compendium.
+- [Junction Insurance API](https://apis.io/apis/junction-com/junction-com-insurance-api/) — The insurance API from Vital — 3 operation(s) for insurance.
+- [Junction Introspect API](https://apis.io/apis/junction-com/junction-com-introspect-api/) — The introspect API from Vital — 2 operation(s) for introspect.
+- [Junction Lab Account API](https://apis.io/apis/junction-com/junction-com-lab-account-api/) — The lab_account API from Vital — 1 operation(s) for lab_account.
+- [Junction Lab Report API](https://apis.io/apis/junction-com/junction-com-lab-report-api/) — The lab_report API from Vital — 2 operation(s) for lab_report.
+- [Junction Lab Tests API](https://apis.io/apis/junction-com/junction-com-lab-tests-api/) — The lab_tests API from Vital — 9 operation(s) for lab_tests.
+- [Junction Link API](https://apis.io/apis/junction-com/junction-com-link-api/) — The link API from Vital — 13 operation(s) for link.
+- [Junction Order API](https://apis.io/apis/junction-com/junction-com-order-api/) — The order API from Vital — 32 operation(s) for order.
+- [Junction Order Transaction API](https://apis.io/apis/junction-com/junction-com-order-transaction-api/) — The order_transaction API from Vital — 3 operation(s) for order_transaction.
+- [Junction Orders API](https://apis.io/apis/junction-com/junction-com-orders-api/) — The orders API from Vital — 1 operation(s) for orders.
+- [Junction Payor API](https://apis.io/apis/junction-com/junction-com-payor-api/) — The payor API from Vital — 1 operation(s) for payor.
+- [Junction Providers API](https://apis.io/apis/junction-com/junction-com-providers-api/) — The providers API from Vital — 1 operation(s) for providers.
+- [Junction Summary API](https://apis.io/apis/junction-com/junction-com-summary-api/) — The summary API from Vital — 15 operation(s) for summary.
+- [Junction Team API](https://apis.io/apis/junction-com/junction-com-team-api/) — The team API from Vital — 5 operation(s) for team.
+- [Junction User API](https://apis.io/apis/junction-com/junction-com-user-api/) — The user API from Vital — 16 operation(s) for user.
+- [Junction Aggregation API](https://apis.io/apis/junction-com/junction-com-aggregation-api/) — The aggregation API from Vital — 0 operation(s) for aggregation.
+- [Junction Lab Testing API](https://apis.io/apis/junction-com/junction-com-lab-testing-api/) — The lab-testing API from Vital — 0 operation(s) for lab-testing.
+- [Junction Checkout API](https://apis.io/apis/junction-com/junction-com-checkout-api/) — The checkout API from Vital — 6 operation(s) for checkout.
+- [Junction Unmatched API](https://apis.io/apis/junction-com/junction-com-unmatched-api/) — The unmatched API from Vital — 8 operation(s) for unmatched.
+- [Junction Time Series API](https://apis.io/apis/junction-com/junction-com-time-series-api/) — The Time Series API from Vital — 80 operation(s) for time series.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-- **Created:** 2026-05-25
-- **Modified:** 2026-05-25
-
-## APIs
-
-### Vital Users API
-
-Create, list, get, update, and delete end users on the Junction (Vital) platform. Each user represents a person whose wearable, device, and lab data is ingested under your team. Manage user demographics, user insurance details, sign-in tokens for the Junction app, portal URLs, user-resolve by client_user_id, refresh of all connected providers for a user, listing of a user's connections, and soft-delete / undo-delete flows.
-
-- **Human URL:** [https://docs.junction.com/api-details/junction-api](https://docs.junction.com/api-details/junction-api)
-- **Base URL:** `https://api.us.junction.com`
-
-#### Tags
-
-- Users
-- User Management
-- Demographics
-- Insurance
-- Sign-In Tokens
-
-#### Properties
-
-- [Documentation](https://docs.junction.com/api-details/junction-api)
-- [OpenAPI](openapi/vital-users-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/vital-users-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/vital-users-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/vital-user-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [Example](examples/vital-create-user-example.json)
+#### Arazzo workflows (10)
+
+Multi-step workflows that chain operations into a business task.
+
+- [Vital Schedule an At-Home Phlebotomy Draw](https://apis.io/arazzos/junction-com/junction-com-at-home-phlebotomy-booking-workflow/)
+- [Vital Await Lab Order Completion and Retrieve Results](https://apis.io/arazzos/junction-com/junction-com-await-order-results-workflow/)
+- [Vital Browse Lab Tests and Inspect Markers](https://apis.io/arazzos/junction-com/junction-com-browse-lab-tests-markers-workflow/)
+- [Vital Cancel a Lab Order and Send the User a Portal Link](https://apis.io/arazzos/junction-com/junction-com-cancel-order-notify-portal-workflow/)
+- [Vital Create a Lab Order and Poll Until Resolved](https://apis.io/arazzos/junction-com/junction-com-create-order-poll-status-workflow/)
+- [Vital Connect a Demo Provider and Verify Connected Sources](https://apis.io/arazzos/junction-com/junction-com-demo-connection-verify-sources-workflow/)
+- [Vital Provision a User and Hand Off a Mobile Sign-In Token](https://apis.io/arazzos/junction-com/junction-com-mobile-signin-token-handoff-workflow/)
+- [Vital Onboard a User and Connect a Wearable](https://apis.io/arazzos/junction-com/junction-com-onboard-user-connect-wearable-workflow/)
+- [Vital Create and Register a Lab Testkit Order](https://apis.io/arazzos/junction-com/junction-com-testkit-order-register-workflow/)
+- [Vital Inventory a User's Connected Devices](https://apis.io/arazzos/junction-com/junction-com-user-device-inventory-workflow/)
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Junction Com Webhooks](https://apis.io/asyncapis/junction-com/junction-com-webhooks/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Junction Com Agentic Access](https://apis.io/agentic-access/junction-com/junction-com-agentic-access/)
+
+#### JSON Schema (7)
+
+The data models the API reads and writes.
+
+- [VitalActivitySummary](https://apis.io/schemas/junction-com/vital-activity-summary/)
+- [VitalHeartRateTimeseries](https://apis.io/schemas/junction-com/vital-heart-rate-timeseries/)
+- [VitalLabOrder](https://apis.io/schemas/junction-com/vital-lab-order/)
+- [VitalLabResult](https://apis.io/schemas/junction-com/vital-lab-result/)
+- [VitalProvider](https://apis.io/schemas/junction-com/vital-provider/)
+- [VitalSleepSummary](https://apis.io/schemas/junction-com/vital-sleep-summary/)
+- [VitalUser](https://apis.io/schemas/junction-com/vital-user/)
 
-### Vital Link API
-
-Connect end users to their wearable and health-data providers. Generate Link tokens that drive the Vital Link Widget, complete OAuth / email / password / demo provider flows, deregister a connection, complete MFA for password providers, run bulk operations (export, import, pause, historical-pull trigger), and retrieve the catalog of 300+ supported providers — Fitbit, Garmin, Oura, Whoop, Withings, Polar, Strava, Dexcom, Freestyle Libre, Apple HealthKit, Android Health Connect, Samsung Health, and the rest.
+#### JSON Structure (2)
 
-- **Human URL:** [https://docs.junction.com/wearables/providers/introduction](https://docs.junction.com/wearables/providers/introduction)
-- **Base URL:** `https://api.us.junction.com`
+Data models expressed in JSON Structure.
 
-#### Tags
+- [Vital Lab Order Structure](https://apis.io/json-structure/junction-com/vital-lab-order-structure/)
+- [Vital User Structure](https://apis.io/json-structure/junction-com/vital-user-structure/)
 
-- Link
-- Provider Connections
-- OAuth
-- Wearables
-- Bulk Operations
+#### JSON-LD (1)
 
-#### Properties
+Linked-data contexts for the provider's vocabulary.
 
-- [Documentation](https://docs.junction.com/wearables/providers/introduction)
-- [OpenAPI](openapi/vital-link-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/vital-link-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/vital-link-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/vital-provider-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [Example](examples/vital-link-token-example.json)
+- [Junction Com Context](https://apis.io/jsonld/junction-com/junction-com-context/)
 
-### Vital Wearables Data API
+#### Examples (6)
 
-Read normalized wearable-device data across 300+ supported devices. Daily summary endpoints cover sleep, sleep cycles, activity, body composition, workouts, menstrual cycle, ECG, meals, and the user profile. Per-sample timeseries endpoints cover heart rate, heart-rate variability, blood pressure, blood oxygen, glucose (including continuous-glucose monitoring), respiratory rate, body temperature, basal body temperature, distance, steps, floors climbed, active and basal calories, stress level, sleep stream, workout stream, and workout-specific metrics (swimming stroke, distance, duration). All data is normalized to a single schema regardless of source provider.
+Example requests and responses.
 
-- **Human URL:** [https://docs.junction.com/api-details/junction-api](https://docs.junction.com/api-details/junction-api)
-- **Base URL:** `https://api.us.junction.com`
+- [Vital Create Order Example](https://apis.io/examples/junction-com/vital-create-order-example/)
+- [Vital Create User Example](https://apis.io/examples/junction-com/vital-create-user-example/)
+- [Vital Heart Rate Timeseries Example](https://apis.io/examples/junction-com/vital-heart-rate-timeseries-example/)
+- [Vital Lab Result Example](https://apis.io/examples/junction-com/vital-lab-result-example/)
+- [Vital Link Token Example](https://apis.io/examples/junction-com/vital-link-token-example/)
+- [Vital Sleep Summary Example](https://apis.io/examples/junction-com/vital-sleep-summary-example/)
 
-#### Tags
+#### Collections (32)
 
-- Wearables
-- Timeseries
-- Summary
-- Sleep
-- Activity
-- Body
-- Workouts
-- Heart Rate
-- HRV
-- Glucose
-- Blood Pressure
-- SpO2
-- ECG
+Postman and Open Collection request collections.
 
-#### Properties
+- [Vital Lab Report Parser Aggregate API](https://apis.io/collections/junction-com/open-junction-com-aggregate-api/)
+- [Vital Lab Report Parser Aggregate compendium API](https://apis.io/collections/junction-com/open-junction-com-compendium-api/)
+- [Vital Lab Report Parser Aggregate insurance API](https://apis.io/collections/junction-com/open-junction-com-insurance-api/)
+- [Vital Lab Report Parser Aggregate introspect API](https://apis.io/collections/junction-com/open-junction-com-introspect-api/)
+- [Vital Lab Report Parser Aggregate lab_account API](https://apis.io/collections/junction-com/open-junction-com-lab-account-api/)
+- [Vital Lab Report Parser Aggregate lab_report API](https://apis.io/collections/junction-com/open-junction-com-lab-report-api/)
+- [Vital Lab Report Parser Aggregate lab_tests API](https://apis.io/collections/junction-com/open-junction-com-lab-tests-api/)
+- [Vital Lab Report Parser Aggregate link API](https://apis.io/collections/junction-com/open-junction-com-link-api/)
+- [Vital Lab Report Parser Aggregate order API](https://apis.io/collections/junction-com/open-junction-com-order-api/)
+- [Vital Lab Report Parser Aggregate order_transaction API](https://apis.io/collections/junction-com/open-junction-com-order-transaction-api/)
+- [Vital Lab Report Parser Aggregate orders API](https://apis.io/collections/junction-com/open-junction-com-orders-api/)
+- [Vital Lab Report Parser Aggregate payor API](https://apis.io/collections/junction-com/open-junction-com-payor-api/)
+- [Vital Lab Report Parser Aggregate providers API](https://apis.io/collections/junction-com/open-junction-com-providers-api/)
+- [Vital Lab Report Parser Aggregate summary API](https://apis.io/collections/junction-com/open-junction-com-summary-api/)
+- [Vital Lab Report Parser Aggregate team API](https://apis.io/collections/junction-com/open-junction-com-team-api/)
+- [Vital Lab Report Parser Aggregate timeseries API](https://apis.io/collections/junction-com/open-junction-com-timeseries-api/)
+- [Vital Lab Report Parser Aggregate user API](https://apis.io/collections/junction-com/open-junction-com-user-api/)
+- [Vital Lab Report Parser API](https://apis.io/collections/junction-com/open-vital-lab-report-parser-api/)
+- [Vital Lab Testing API](https://apis.io/collections/junction-com/open-vital-lab-testing-api/)
+- [Vital Link API](https://apis.io/collections/junction-com/open-vital-link-api/)
+- [Junction API](https://apis.io/collections/junction-com/open-vital-openapi-original/)
+- [Vital Sense API](https://apis.io/collections/junction-com/open-vital-sense-api/)
+- [Vital Team API](https://apis.io/collections/junction-com/open-vital-team-api/)
+- [Vital Users API](https://apis.io/collections/junction-com/open-vital-users-api/)
+- [Vital Wearables Data API](https://apis.io/collections/junction-com/open-vital-wearables-api/)
+- …and 7 more published on APIs.io
 
-- [Documentation](https://docs.junction.com/api-details/junction-api)
-- [OpenAPI](openapi/vital-wearables-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/vital-wearables-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/vital-wearables-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/vital-sleep-summary-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/vital-activity-summary-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/vital-heart-rate-timeseries-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [Example](examples/vital-sleep-summary-example.json)
-- [Example](examples/vital-heart-rate-timeseries-example.json)
+#### Overlays (17)
 
-### Vital Lab Testing API
+OpenAPI overlays, including conversational phrasing for each operation.
 
-Order, fulfill, and retrieve lab tests across a nationwide US lab network spanning all 50 states including NY, NJ, and RI. Covers at-home testkits, at-home phlebotomy, walk-in / Patient Service Center collection, and on-site collection. Endpoints handle order creation and lifecycle (create, get, update, cancel, import, register, simulate), appointment management (availability, booking, cancellation, rescheduling for both phlebotomy and PSC), order transactions, results (JSON and PDF), the lab-test compendium (search + convert), payor and insurance/diagnosis search, ABN forms, requisition and label PDFs, collection instructions, and team lab accounts.
+- [Junction Com Aggregate Api Phrasing Overlay](https://apis.io/overlays/junction-com/junction-com-aggregate-api-phrasing-overlay/)
+- [Junction Com Compendium Api Phrasing Overlay](https://apis.io/overlays/junction-com/junction-com-compendium-api-phrasing-overlay/)
+- [Junction Com Insurance Api Phrasing Overlay](https://apis.io/overlays/junction-com/junction-com-insurance-api-phrasing-overlay/)
+- [Junction Com Introspect Api Phrasing Overlay](https://apis.io/overlays/junction-com/junction-com-introspect-api-phrasing-overlay/)
+- [Junction Com Lab Account Api Phrasing Overlay](https://apis.io/overlays/junction-com/junction-com-lab-account-api-phrasing-overlay/)
+- [Junction Com Lab Report Api Phrasing Overlay](https://apis.io/overlays/junction-com/junction-com-lab-report-api-phrasing-overlay/)
+- [Junction Com Lab Tests Api Phrasing Overlay](https://apis.io/overlays/junction-com/junction-com-lab-tests-api-phrasing-overlay/)
+- [Junction Com Link Api Phrasing Overlay](https://apis.io/overlays/junction-com/junction-com-link-api-phrasing-overlay/)
+- [Junction Com Order Api Phrasing Overlay](https://apis.io/overlays/junction-com/junction-com-order-api-phrasing-overlay/)
+- [Junction Com Order Transaction Api Phrasing Overlay](https://apis.io/overlays/junction-com/junction-com-order-transaction-api-phrasing-overlay/)
+- [Junction Com Orders Api Phrasing Overlay](https://apis.io/overlays/junction-com/junction-com-orders-api-phrasing-overlay/)
+- [Junction Com Payor Api Phrasing Overlay](https://apis.io/overlays/junction-com/junction-com-payor-api-phrasing-overlay/)
+- [Junction Com Providers Api Phrasing Overlay](https://apis.io/overlays/junction-com/junction-com-providers-api-phrasing-overlay/)
+- [Junction Com Summary Api Phrasing Overlay](https://apis.io/overlays/junction-com/junction-com-summary-api-phrasing-overlay/)
+- [Junction Com Team Api Phrasing Overlay](https://apis.io/overlays/junction-com/junction-com-team-api-phrasing-overlay/)
+- [Junction Com Time Series Api Phrasing Overlay](https://apis.io/overlays/junction-com/junction-com-time-series-api-phrasing-overlay/)
+- [Junction Com User Api Phrasing Overlay](https://apis.io/overlays/junction-com/junction-com-user-api-phrasing-overlay/)
 
-- **Human URL:** [https://docs.junction.com/api-details/junction-api](https://docs.junction.com/api-details/junction-api)
-- **Base URL:** `https://api.us.junction.com`
+#### Governance rules (3)
 
-#### Tags
+Spectral rulesets for the provider's contracts.
 
-- Lab Testing
-- Lab Orders
-- Biomarkers
-- Phlebotomy
-- Testkits
-- PSC
-- Insurance
-- Diagnosis
-- Compendium
+- [Junction — jsonschema rules](https://apis.io/rules/junction-com/junction-com-jsonschema-spectral-rules/)
+- [Junction API Rules](https://apis.io/rules/junction-com/junction-com-rules/)
+- [Junction — vital rules](https://apis.io/rules/junction-com/vital-rules/)
 
-#### Properties
+#### Security (3)
 
-- [Documentation](https://docs.junction.com/api-details/junction-api)
-- [OpenAPI](openapi/vital-lab-testing-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/vital-lab-testing-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/vital-lab-testing-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/vital-lab-order-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/vital-lab-result-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [Example](examples/vital-create-order-example.json)
-- [Example](examples/vital-lab-result-example.json)
-
-### Vital Lab Report Parser API
-
-Submit existing lab-result PDFs to be parsed and normalized into structured biomarker results. Create a lab-report parser job, then poll for status and the parsed result set — useful for back-loading historical patient records or for normalizing results from external labs into the Junction biomarker schema.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://docs.junction.com/api-details/junction-api](https://docs.junction.com/api-details/junction-api)
-- **Base URL:** `https://api.us.junction.com`
-
-#### Tags
-
-- Lab Reports
-- PDF Parsing
-- Biomarkers
-- Document AI
-
-#### Properties
-
-- [Documentation](https://docs.junction.com/api-details/junction-api)
-- [OpenAPI](openapi/vital-lab-report-parser-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/vital-lab-report-parser-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/vital-lab-report-parser-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Vital Sense API
-
-Junction Sense — query and aggregation API for per-user health data. Run on-demand aggregate queries across a user's ingested wearable and lab data, fetch the result table for a defined continuous query, and read continuous-query task-execution history. Sense turns raw ingest into clinically meaningful metrics (sleep debt, HRV trends, glucose variability, etc.) without you owning the aggregation infrastructure.
-
-- **Human URL:** [https://docs.junction.com/api-details/junction-api](https://docs.junction.com/api-details/junction-api)
-- **Base URL:** `https://api.us.junction.com`
-
-#### Tags
-
-- Sense
-- Continuous Queries
-- Aggregation
-- Analytics
-- Insights
-
-#### Properties
-
-- [Documentation](https://docs.junction.com/api-details/junction-api)
-- [OpenAPI](openapi/vital-sense-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/vital-sense-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/vital-sense-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Vital Team API
-
-Read and administer team-level resources on the Junction (Vital) platform. Get team metadata, search team users by uuid or client_user_id, fetch the Svix webhook portal URL for managing webhook subscriptions, and introspect team-level historical pulls and per-resource availability for your team's users.
-
-- **Human URL:** [https://docs.junction.com/api-details/junction-management-api](https://docs.junction.com/api-details/junction-management-api)
-- **Base URL:** `https://api.us.junction.com`
-
-#### Tags
-
-- Team
-- Administration
-- Webhooks
-- Introspection
-- Configuration
-
-#### Properties
-
-- [Documentation](https://docs.junction.com/api-details/junction-management-api)
-- [OpenAPI](openapi/vital-team-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/vital-team-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/vital-team-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Vital Management API
-
-Programmatically manage all Junction regional and global resources for your organization. Authenticated with a separate x-vital-management-api-key, this API governs organizations, teams (create, update, delete, list), team and management API keys, team members and invitations, custom OAuth credentials, data-pull preferences, ETL pipeline configuration (Azure Event Hubs, Google Cloud Pub/Sub, RabbitMQ), webhook subscriptions (create, list, rotate secret, update headers, patch, delete), scope requirements, physician assignments, and lab-account team assignments.
-
-- **Human URL:** [https://docs.junction.com/api-details/junction-management-api](https://docs.junction.com/api-details/junction-management-api)
-- **Base URL:** `https://api.us.junction.com`
-
-#### Tags
-
-- Management
-- Organizations
-- Teams
-- API Keys
-- ETL Pipelines
-- Webhooks
-
-#### Properties
-
-- [Documentation](https://docs.junction.com/api-details/junction-management-api)
-- [Postman Collection](collections/vital-lab-report-parser-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/vital-lab-report-parser-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/vital-lab-testing-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/vital-lab-testing-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/vital-link-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/vital-link-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/vital-openapi-original.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/vital-openapi-original.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/vital-sense-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/vital-sense-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/vital-team-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/vital-team-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/vital-users-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/vital-users-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/vital-wearables-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/vital-wearables-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [Arazzo Workflows](arazzo/) — [Arazzo Specification](https://spec.openapis.org/arazzo/latest.html)
-- [Portal](https://www.junction.com)
+- [Junction Com Authentication](https://apis.io/security/junction-com/junction-com-authentication/)
+- [Junction Com Domain Security](https://apis.io/security/junction-com/junction-com-domain-security/)
+- [Junction Com Trust Center](https://apis.io/security/junction-com/junction-com-trust-center/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Junction Com Plans Pricing](https://apis.io/plans/junction-com/junction-com-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Junction Com Rate Limits](https://apis.io/rate-limits/junction-com/junction-com-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Junction Com Finops](https://apis.io/finops/junction-com/junction-com-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.junction.com/)
 - [Documentation](https://docs.junction.com)
-- [API Reference](https://docs.junction.com/api-details/junction-api)
-- [Quickstart](https://docs.junction.com/home/quickstart)
-- [Getting Started](https://docs.junction.com/home/welcome)
-- [Console](https://app.junction.com)
-- [Sign Up](https://app.junction.com/signup)
-- [Sign In](https://app.junction.com/login)
+- [Getting started](https://docs.junction.com/home/quickstart)
+- [API reference](https://docs.junction.com/api-details/junction-api)
 - [Pricing](https://www.tryvital.com/pricing)
-- [Status Page](https://status.tryvital.io)
+- [Support](https://vital.io/help)
 - [Changelog](https://docs.junction.com/home/api/changelog)
-- [Rate Limiting](https://docs.junction.com/home/rate-limiting)
-- [Documentation](https://docs.junction.com/home/regions)
-- [Authentication](https://docs.junction.com/home/authentication)
-- [Webhooks](https://docs.junction.com/webhooks/introduction)
-- [Documentation](https://docs.junction.com/wearables/providers/introduction)
+- [Blog](https://vital.io/newsroom)
 - [Security](https://docs.junction.com/home/security)
-- [GitHub Organization](https://github.com/tryVital)
-- [GitHub Repository](https://github.com/tryVital/vital-fern-api)
-- [GitHub Repository](https://github.com/tryVital/docs)
-- [Sample App](https://github.com/tryVital/quickstart)
-- [OpenAPI](https://raw.githubusercontent.com/tryVital/vital-fern-api/main/fern/openapi/openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [OpenAPI](openapi/vital-openapi-original.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [OpenAPI](openapi/vital-openapi-original.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [SDK](https://www.npmjs.com/package/@tryvital/vital-node)
-- [SDK](https://www.npmjs.com/package/@tryvital/vital-link)
-- [SDK](https://www.npmjs.com/package/@tryvital/vital-core-react-native)
-- [SDK](https://www.npmjs.com/package/@tryvital/vital-devices-react-native)
-- [SDK](https://www.npmjs.com/package/@tryvital/vital-health-react-native)
-- [SDK](https://pypi.org/project/vital/)
-- [SDK](https://github.com/tryVital/vital-python)
-- [SDK](https://github.com/tryVital/vital-node)
-- [SDK](https://github.com/tryVital/vital-go)
-- [SDK](https://github.com/tryVital/vital-java)
-- [SDK](https://github.com/tryVital/vital-ios)
-- [SDK](https://github.com/tryVital/vital-android)
-- [SDK](https://github.com/tryVital/vital-flutter)
-- [SDK](https://github.com/tryVital/vital-react-native)
-- [Sample App](https://github.com/tryVital/vital-connect-rn)
-- [Spectral Rules](rules/vital-rules.yml)
-- [Vocabulary](vocabulary/junction-com-vocabulary.yml)
-- [J S O N- L D](json-ld/junction-com-context.jsonld)
-- [Plans](plans/junction-com-plans-pricing.yml)
-- [Rate Limits](rate-limits/junction-com-rate-limits.yml)
-- [Fin Ops](finops/junction-com-finops.yml)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
-- [Solutions](undefined)
+- [Terms of service](https://vital.io/terms)
+- [Privacy policy](https://vital.io/privacy)
+- [GitHub](https://github.com/tryVital)
+- [Status](https://status.tryvital.io)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** info@apievangelist.com
+**Kin Score 70.8** — exemplar · rubric 0.23.0 · scored 2026-10-11
+
+| Facet | Score |
+|---|---|
+| Discoverability | 71.4 |
+| Contract quality | 61.1 |
+| Contract governance | 45.5 |
+| Operational transparency | 47.4 |
+| Developer ergonomics | 82.1 |
+| Access clarity | 96.8 |
+
+**Agent readiness 38.7** — agent-native
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | verified |
+| Error Semantics | verified |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 23.4** — Health
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/junction-com/](https://apis.io/providers/junction-com/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Junction: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/junction-com/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
